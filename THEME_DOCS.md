@@ -1,6 +1,6 @@
 # Theme System Documentation
 
-This AI Theme Color Playground includes a comprehensive theme system supporting both light and dark modes with beautiful color palettes.
+This Theme Color Playground includes a comprehensive theme system supporting both light and dark modes with beautiful color palettes.
 
 ## 🎨 Color Variables
 

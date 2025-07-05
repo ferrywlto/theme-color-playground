@@ -1,6 +1,6 @@
-# AI Theme Color Playground
+# Theme Color Playground
 
-A playground for exploring AI-generated theme colors built with Astro.
+A playground for exploring theme colors built with Astro.
 
 ## 🚀 Project Structure
 
@@ -46,4 +46,4 @@ The GitHub Actions workflow will automatically build and deploy your site.
 ## 🌐 Live Site
 
 Once deployed, your site will be available at:
-`https://[username].github.io/ai-theme-color-playground`
+`https://[username].github.io/theme-color-playground`
