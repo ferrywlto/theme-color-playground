@@ -25,6 +25,10 @@ import '../styles/theme.css';
 					<button class="download-config-btn" id="download-config" type="button" title="Download Theme Config">
 						<span class="download-icon">📥</span>
 					</button>
+					<button class="upload-config-btn" id="upload-config" type="button" title="Upload Theme Config">
+						<span class="upload-icon">📤</span>
+					</button>
+					<input type="file" id="file-input" accept=".json" style="display: none;">
 				</div>
 			</div>
 
@@ -220,7 +224,7 @@ const themeManager = {
 				<h2>How to Use</h2>
 				<p>Toggle between light and dark themes using the switch above, or press <kbd>Ctrl+T</kbd> for quick switching.</p>
 				<p>Click on any color swatch to open the color picker and customize colors in real time.</p>
-				<p>Download your customized theme configuration using the download button next to the theme toggle.</p>
+				<p>Download your customized theme configuration using the download button (📥) or upload a theme configuration file using the upload button (📤).</p>
 				<p>Watch how all colors, components, and text automatically adapt to provide optimal contrast and readability.</p>
 			</section>
 		</div>
@@ -331,6 +335,42 @@ const themeManager = {
 	}
 
 	.download-config-btn:hover .download-icon {
+		transform: translateY(-2px);
+	}
+
+	.upload-config-btn {
+		position: relative;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		border: 2px solid var(--info);
+		background: transparent;
+		color: var(--text);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.5rem;
+		transition: all 0.3s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.upload-config-btn:hover {
+		background: var(--info);
+		color: white;
+		transform: scale(1.05);
+	}
+
+	.upload-config-btn:active {
+		transform: scale(0.95);
+	}
+
+	.upload-icon {
+		font-size: 1.5rem;
+		transition: transform 0.3s ease;
+	}
+
+	.upload-config-btn:hover .upload-icon {
 		transform: translateY(-2px);
 	}
 
@@ -869,7 +909,8 @@ const themeManager = {
 		}
 
 		.download-config-btn,
-		.theme-toggle-btn {
+		.theme-toggle-btn,
+		.upload-config-btn {
 			width: 50px;
 			height: 50px;
 			font-size: 1.25rem;
@@ -1051,6 +1092,8 @@ const themeManager = {
 		const resetButton = document.getElementById('color-picker-reset');
 		const cancelButton = document.getElementById('color-picker-cancel');
 		const downloadConfigBtn = document.getElementById('download-config');
+		const uploadConfigBtn = document.getElementById('upload-config');
+		const fileInput = document.getElementById('file-input') as HTMLInputElement;
 
 		let currentEditingColor: string = '';
 
@@ -1087,6 +1130,109 @@ const themeManager = {
 
 		if (downloadConfigBtn) {
 			downloadConfigBtn.addEventListener('click', downloadThemeConfig);
+		}
+
+		// Upload configuration functionality
+		function uploadThemeConfig() {
+			if (fileInput) {
+				fileInput.click();
+			}
+		}
+
+		function handleFileUpload(event: Event) {
+			const target = event.target as HTMLInputElement;
+			const file = target.files?.[0];
+			
+			if (!file) return;
+
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				try {
+					const content = e.target?.result as string;
+					const config = JSON.parse(content);
+					
+					// Validate the config structure
+					if (!config.themes || !config.themes.light || !config.themes.dark) {
+						throw new Error('Invalid theme configuration file. Missing themes.light or themes.dark.');
+					}
+
+					// Update colorValues with the imported configuration
+					Object.keys(config.themes.light).forEach(colorName => {
+						if ((colorValues as any).light[colorName] !== undefined) {
+							(colorValues as any).light[colorName] = config.themes.light[colorName];
+						}
+					});
+
+					Object.keys(config.themes.dark).forEach(colorName => {
+						if ((colorValues as any).dark[colorName] !== undefined) {
+							(colorValues as any).dark[colorName] = config.themes.dark[colorName];
+						}
+					});
+
+					// Apply the current theme with new colors
+					updateCSSVariables();
+					updateColorValues();
+
+					// Show success message
+					console.log('Theme configuration imported successfully');
+					
+					// Optional: Show a temporary success notification
+					showNotification('Theme configuration imported successfully!', 'success');
+
+				} catch (error) {
+					console.error('Error importing theme configuration:', error);
+					showNotification('Error importing theme configuration. Please check the file format.', 'error');
+				}
+			};
+			
+			reader.readAsText(file);
+			
+			// Clear the input so the same file can be selected again
+			target.value = '';
+		}
+
+		function showNotification(message: string, type: 'success' | 'error') {
+			// Create a simple notification element
+			const notification = document.createElement('div');
+			notification.textContent = message;
+			notification.style.cssText = `
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				padding: 1rem 1.5rem;
+				border-radius: 0.5rem;
+				color: white;
+				font-weight: 600;
+				z-index: 3000;
+				max-width: 300px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+				background: ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
+				transform: translateX(100%);
+				transition: transform 0.3s ease;
+			`;
+			
+			document.body.appendChild(notification);
+			
+			// Animate in
+			setTimeout(() => {
+				notification.style.transform = 'translateX(0)';
+			}, 100);
+			
+			// Remove after 3 seconds
+			setTimeout(() => {
+				notification.style.transform = 'translateX(100%)';
+				setTimeout(() => {
+					document.body.removeChild(notification);
+				}, 300);
+			}, 3000);
+		}
+
+		if (uploadConfigBtn) {
+			uploadConfigBtn.addEventListener('click', uploadThemeConfig);
+		}
+
+		if (fileInput) {
+			fileInput.addEventListener('change', handleFileUpload);
 		}
 
 		// Add click listeners to color swatches
