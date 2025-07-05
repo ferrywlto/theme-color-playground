@@ -96,14 +96,30 @@ import '../styles/theme.css';
 					</div>
 				</div>
 
-				<div class="example-card" style="background: var(--bg); color: var(--text); padding: 1.5rem; border: 2px solid var(--surface); border-radius: 0.75rem; transition: border-color 0.3s ease; margin-bottom: 1.5rem;">
-					<h3 style="color: var(--primary);">Typography Examples</h3>
-					<p style="color: var(--text);">Regular text using the main text color for body content.</p>
-					<p style="color: var(--primary);">Primary colored text for important highlights and links.</p>
-					<p style="color: var(--success);">Success messages for positive feedback and confirmations.</p>
-					<p style="color: var(--danger);">Error or danger messages for warnings and critical alerts.</p>
-					<p style="color: var(--warning);">Warning messages for cautionary information.</p>
-					<p style="color: var(--info);">Informational messages for helpful tips and details.</p>
+				<div class="typography-comparison" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+					<!-- Background Color Typography -->
+					<div class="example-card" style="background: var(--bg); color: var(--text); padding: 1.5rem; border: 2px solid var(--surface); border-radius: 0.75rem; transition: border-color 0.3s ease;">
+						<h3 style="color: var(--primary);">Typography on Background</h3>
+						<p style="color: var(--text);">Regular text using the main text color for body content.</p>
+						<p style="color: var(--primary);">Primary colored text for important highlights and links.</p>
+						<p style="color: var(--secondary);">Secondary colored text for subtle accents and labels.</p>
+						<p style="color: var(--success);">Success messages for positive feedback and confirmations.</p>
+						<p style="color: var(--danger);">Error or danger messages for warnings and critical alerts.</p>
+						<p style="color: var(--warning);">Warning messages for cautionary information.</p>
+						<p style="color: var(--info);">Informational messages for helpful tips and details.</p>
+					</div>
+
+					<!-- Surface Color Typography -->
+					<div class="example-card" style="background: var(--surface); color: var(--text); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid transparent; transition: border-color 0.3s ease;">
+						<h3 style="color: var(--primary);">Typography on Surface</h3>
+						<p style="color: var(--text);">Regular text using the main text color for body content.</p>
+						<p style="color: var(--primary);">Primary colored text for important highlights and links.</p>
+						<p style="color: var(--secondary);">Secondary colored text for subtle accents and labels.</p>
+						<p style="color: var(--success);">Success messages for positive feedback and confirmations.</p>
+						<p style="color: var(--danger);">Error or danger messages for warnings and critical alerts.</p>
+						<p style="color: var(--warning);">Warning messages for cautionary information.</p>
+						<p style="color: var(--info);">Informational messages for helpful tips and details.</p>
+					</div>
 				</div>
 
 				<div class="example-card" style="background: var(--surface); color: var(--text); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid transparent; transition: border-color 0.3s ease;">
@@ -277,6 +293,13 @@ import '../styles/theme.css';
 		margin-bottom: 2rem;
 	}
 
+	.typography-comparison {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
 	/* Dark theme specific color adjustments for better contrast */
 	[data-theme="dark"] .color-swatch[data-color="secondary"],
 	[data-theme="dark"] .btn-secondary {
@@ -330,6 +353,11 @@ import '../styles/theme.css';
 
 		.theme-toggle-section h1 {
 			font-size: 2rem;
+		}
+
+		.typography-comparison {
+			grid-template-columns: 1fr;
+			gap: 1rem;
 		}
 	}
 </style>
