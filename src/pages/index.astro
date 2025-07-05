@@ -446,10 +446,30 @@ const themeManager = {
 
 	/* Button Group */
 	.button-group {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
 		gap: 0.5rem;
-		flex-wrap: wrap;
 		margin-top: 0.5rem;
+	}
+
+	.button-group .btn {
+		min-width: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Responsive breakpoints for button grid */
+	@media (max-width: 1024px) {
+		.button-group {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.button-group {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 
 	/* Typography Classes */
