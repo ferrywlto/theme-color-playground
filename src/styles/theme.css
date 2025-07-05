@@ -268,8 +268,8 @@ body {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  background-color: var(--text);
-  color: var(--bg);
+  background-color: transparent;
+  color: var(--text);
   border: 2px solid var(--primary);
   border-radius: 50%;
   width: 3rem;
