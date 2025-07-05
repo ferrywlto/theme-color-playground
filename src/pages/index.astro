@@ -31,47 +31,47 @@ import '../styles/theme.css';
 			<section class="color-palette-section">
 				<h2>Color Palette</h2>
 				<div class="color-grid">
-					<div class="color-swatch" style="background: var(--bg); color: var(--text); border: 1px solid var(--text);">
+					<div class="color-swatch bg-color" data-bg="bg">
 						<span class="color-name">--bg</span>
 						<span class="color-value">Background</span>
 					</div>
-					<div class="color-swatch" style="background: var(--surface); color: var(--text);">
+					<div class="color-swatch bg-surface">
 						<span class="color-name">--surface</span>
 						<span class="color-value">Surface</span>
 					</div>
-					<div class="color-swatch" style="background: var(--text); color: var(--bg);">
+					<div class="color-swatch bg-text">
 						<span class="color-name">--text</span>
 						<span class="color-value">Text</span>
 					</div>
-					<div class="color-swatch" style="background: var(--primary); color: var(--bg);">
+					<div class="color-swatch bg-primary">
 						<span class="color-name">--primary</span>
 						<span class="color-value">Primary</span>
 					</div>
-					<div class="color-swatch" style="background: var(--secondary); color: var(--bg);" data-color="secondary">
+					<div class="color-swatch bg-secondary" data-color="secondary">
 						<span class="color-name">--secondary</span>
 						<span class="color-value">Secondary</span>
 					</div>
-					<div class="color-swatch" style="background: var(--success); color: var(--bg);" data-color="success">
+					<div class="color-swatch bg-success" data-color="success">
 						<span class="color-name">--success</span>
 						<span class="color-value">Success</span>
 					</div>
-					<div class="color-swatch" style="background: var(--danger); color: var(--bg);" data-color="danger">
+					<div class="color-swatch bg-danger" data-color="danger">
 						<span class="color-name">--danger</span>
 						<span class="color-value">Danger</span>
 					</div>
-					<div class="color-swatch" style="background: var(--warning); color: var(--text);" data-color="warning">
+					<div class="color-swatch bg-warning" data-color="warning">
 						<span class="color-name">--warning</span>
 						<span class="color-value">Warning</span>
 					</div>
-					<div class="color-swatch" style="background: var(--info); color: var(--bg);">
+					<div class="color-swatch bg-info">
 						<span class="color-name">--info</span>
 						<span class="color-value">Info</span>
 					</div>
-					<div class="color-swatch" style="background: var(--light); color: var(--text);">
+					<div class="color-swatch bg-light">
 						<span class="color-name">--light</span>
 						<span class="color-value">Light</span>
 					</div>
-					<div class="color-swatch" style="background: var(--dark); color: var(--bg);">
+					<div class="color-swatch bg-dark">
 						<span class="color-name">--dark</span>
 						<span class="color-value">Dark</span>
 					</div>
@@ -82,68 +82,68 @@ import '../styles/theme.css';
 			<section class="component-examples">
 				<h2>Component Examples</h2>
 				
-				<div class="example-card" style="background: var(--surface); color: var(--text); padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem; border: 2px solid transparent; transition: border-color 0.3s ease;">
-					<h3 style="color: var(--primary);">Interactive Buttons</h3>
+				<div class="example-card interactive-buttons">
+					<h3>Interactive Buttons</h3>
 					<p>These buttons demonstrate the different color variants available in both themes.</p>
 					
-					<div class="button-group" style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-						<button style="background: var(--primary); color: var(--bg); border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer;">Primary</button>
-						<button style="background: var(--secondary); color: var(--bg);" data-color="secondary" class="btn-secondary">Secondary</button>
-						<button style="background: var(--success); color: var(--bg);" data-color="success" class="btn-success">Success</button>
-						<button style="background: var(--danger); color: var(--bg);" data-color="danger" class="btn-danger">Danger</button>
-						<button style="background: var(--warning); color: var(--text);" data-color="warning" class="btn-warning">Warning</button>
-						<button style="background: var(--info); color: var(--bg);" data-color="info" class="btn-info">Info</button>
+					<div class="button-group">
+						<button class="btn btn-primary">Primary</button>
+						<button class="btn btn-secondary" data-color="secondary">Secondary</button>
+						<button class="btn btn-success" data-color="success">Success</button>
+						<button class="btn btn-danger" data-color="danger">Danger</button>
+						<button class="btn btn-warning" data-color="warning">Warning</button>
+						<button class="btn btn-info" data-color="info">Info</button>
 					</div>
 				</div>
 
-				<div class="typography-comparison" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+				<div class="typography-comparison">
 					<!-- Background Color Typography -->
-					<div class="example-card" style="background: var(--bg); color: var(--text); padding: 1.5rem; border: 2px solid var(--surface); border-radius: 0.75rem; transition: border-color 0.3s ease;">
-						<h3 style="color: var(--primary);">Typography on Background</h3>
-						<p style="color: var(--text);">Regular text using the main text color for body content.</p>
-						<p style="color: var(--primary);">Primary colored text for important highlights and links.</p>
-						<p style="color: var(--secondary);">Secondary colored text for subtle accents and labels.</p>
-						<p style="color: var(--success);">Success messages for positive feedback and confirmations.</p>
-						<p style="color: var(--danger);">Error or danger messages for warnings and critical alerts.</p>
-						<p style="color: var(--warning);">Warning messages for cautionary information.</p>
-						<p style="color: var(--info);">Informational messages for helpful tips and details.</p>
+					<div class="example-card typography-bg">
+						<h3>Typography on Background</h3>
+						<p class="text-regular">Regular text using the main text color for body content.</p>
+						<p class="text-primary">Primary colored text for important highlights and links.</p>
+						<p class="text-secondary">Secondary colored text for subtle accents and labels.</p>
+						<p class="text-success">Success messages for positive feedback and confirmations.</p>
+						<p class="text-danger">Error or danger messages for warnings and critical alerts.</p>
+						<p class="text-warning">Warning messages for cautionary information.</p>
+						<p class="text-info">Informational messages for helpful tips and details.</p>
 					</div>
 
 					<!-- Surface Color Typography -->
-					<div class="example-card" style="background: var(--surface); color: var(--text); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid transparent; transition: border-color 0.3s ease;">
-						<h3 style="color: var(--primary);">Typography on Surface</h3>
-						<p style="color: var(--text);">Regular text using the main text color for body content.</p>
-						<p style="color: var(--primary);">Primary colored text for important highlights and links.</p>
-						<p style="color: var(--secondary);">Secondary colored text for subtle accents and labels.</p>
-						<p style="color: var(--success);">Success messages for positive feedback and confirmations.</p>
-						<p style="color: var(--danger);">Error or danger messages for warnings and critical alerts.</p>
-						<p style="color: var(--warning);">Warning messages for cautionary information.</p>
-						<p style="color: var(--info);">Informational messages for helpful tips and details.</p>
+					<div class="example-card typography-surface">
+						<h3>Typography on Surface</h3>
+						<p class="text-regular">Regular text using the main text color for body content.</p>
+						<p class="text-primary">Primary colored text for important highlights and links.</p>
+						<p class="text-secondary">Secondary colored text for subtle accents and labels.</p>
+						<p class="text-success">Success messages for positive feedback and confirmations.</p>
+						<p class="text-danger">Error or danger messages for warnings and critical alerts.</p>
+						<p class="text-warning">Warning messages for cautionary information.</p>
+						<p class="text-info">Informational messages for helpful tips and details.</p>
 					</div>
 				</div>
 
-				<div class="example-card" style="background: var(--surface); color: var(--text); padding: 1.5rem; border-radius: 0.75rem; border: 2px solid transparent; transition: border-color 0.3s ease;">
-					<h3 style="color: var(--primary);">Form Elements</h3>
+				<div class="example-card form-elements">
+					<h3>Form Elements</h3>
 					<p>Form inputs that adapt to the current theme automatically.</p>
 					
-					<div style="display: grid; gap: 1rem; max-width: 400px; margin-top: 1rem;">
-						<input type="text" placeholder="Enter your name" style="padding: 0.5rem; border: 1px solid var(--surface); border-radius: 0.25rem; background: var(--bg); color: var(--text);">
-						<select style="padding: 0.5rem; border: 1px solid var(--surface); border-radius: 0.25rem; background: var(--bg); color: var(--text);">
+					<div class="form-grid">
+						<input type="text" placeholder="Enter your name" class="form-input">
+						<select class="form-select">
 							<option>Choose an option</option>
 							<option>Light Theme</option>
 							<option>Dark Theme</option>
 							<option>Auto Theme</option>
 						</select>
-						<textarea placeholder="Enter your feedback" rows="4" style="padding: 0.5rem; border: 1px solid var(--surface); border-radius: 0.25rem; background: var(--bg); color: var(--text); resize: vertical;"></textarea>
-						<button style="background: var(--primary); color: var(--bg); border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer;">Submit Form</button>
+						<textarea placeholder="Enter your feedback" rows="4" class="form-textarea"></textarea>
+						<button class="btn btn-primary">Submit Form</button>
 					</div>
 				</div>
 			</section>
 
 			<!-- Instructions -->
-			<section class="instructions-section" style="background: var(--bg); color: var(--text); padding: 1.5rem; border: 2px solid var(--primary); border-radius: 0.75rem; text-align: center;">
-				<h2 style="color: var(--primary);">How to Use</h2>
-				<p>Toggle between light and dark themes using the switch above, or press <kbd style="background: var(--surface); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace;">Ctrl+T</kbd> for quick switching.</p>
+			<section class="instructions-section">
+				<h2>How to Use</h2>
+				<p>Toggle between light and dark themes using the switch above, or press <kbd>Ctrl+T</kbd> for quick switching.</p>
 				<p>Watch how all colors, components, and text automatically adapt to provide optimal contrast and readability.</p>
 			</section>
 		</div>
@@ -162,7 +162,7 @@ import '../styles/theme.css';
 
 	.theme-toggle-section {
 		text-align: center;
-		margin-bottom: 3rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.theme-toggle-section h1 {
@@ -298,6 +298,155 @@ import '../styles/theme.css';
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
 		margin-bottom: 1.5rem;
+	}
+
+	/* Example Card Styles */
+	.example-card {
+		padding: 1.5rem;
+		border-radius: 0.75rem;
+		border: 2px solid transparent;
+		transition: border-color 0.3s ease;
+		margin-bottom: 1.5rem;
+	}
+
+	.example-card h3 {
+		color: var(--primary);
+		margin-bottom: 1rem;
+	}
+
+	.interactive-buttons {
+		background: var(--surface);
+		color: var(--text);
+	}
+
+	.typography-bg {
+		background: var(--bg);
+		color: var(--text);
+		border-color: var(--surface);
+	}
+
+	.typography-surface {
+		background: var(--surface);
+		color: var(--text);
+	}
+
+	.form-elements {
+		background: var(--surface);
+		color: var(--text);
+	}
+
+	.instructions-section {
+		background: var(--bg);
+		color: var(--text);
+		padding: 1.5rem;
+		border: 2px solid var(--primary);
+		border-radius: 0.75rem;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.instructions-section h2 {
+		color: var(--primary);
+		margin-bottom: 1rem;
+	}
+
+	.instructions-section kbd {
+		background: var(--surface);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		font-family: monospace;
+	}
+
+	/* Button Group */
+	.button-group {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-top: 0.5rem;
+	}
+
+	/* Typography Classes */
+	.text-regular {
+		color: var(--text);
+	}
+
+	/* Form Elements */
+	.form-grid {
+		display: grid;
+		gap: 1rem;
+		max-width: 400px;
+		margin-top: 1rem;
+	}
+
+	.form-input,
+	.form-select,
+	.form-textarea {
+		padding: 0.5rem;
+		border: 1px solid var(--surface);
+		border-radius: 0.25rem;
+		background: var(--bg);
+		color: var(--text);
+	}
+
+	.form-textarea {
+		resize: vertical;
+	}
+
+	/* Color Swatch Background Classes */
+	.bg-color[data-bg="bg"] {
+		background: var(--bg);
+		color: var(--text);
+		border: 1px solid var(--text);
+	}
+
+	.bg-surface {
+		background: var(--surface);
+		color: var(--text);
+	}
+
+	.bg-text {
+		background: var(--text);
+		color: var(--bg);
+	}
+
+	.bg-primary {
+		background: var(--primary);
+		color: var(--bg);
+	}
+
+	.bg-secondary {
+		background: var(--secondary);
+		color: var(--bg);
+	}
+
+	.bg-success {
+		background: var(--success);
+		color: var(--bg);
+	}
+
+	.bg-danger {
+		background: var(--danger);
+		color: var(--bg);
+	}
+
+	.bg-warning {
+		background: var(--warning);
+		color: var(--text);
+	}
+
+	.bg-info {
+		background: var(--info);
+		color: var(--bg);
+	}
+
+	.bg-light {
+		background: var(--light);
+		color: var(--text);
+	}
+
+	.bg-dark {
+		background: var(--dark);
+		color: var(--bg);
 	}
 
 	/* Dark theme specific color adjustments for better contrast */
