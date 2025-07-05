@@ -5,7 +5,7 @@ This AI Theme Color Playground includes a comprehensive theme system supporting 
 ## 🎨 Color Variables
 
 ### Light Theme
-- **Background**: `#FFFFFF` - Clean white background
+- **Background**: `#FAFAFA` - Clean white background
 - **Surface**: `#E4E4E4` - Light gray for cards and surfaces
 - **Text**: `#4D4D4D` - Dark gray for readable text
 - **Primary**: `#006564` - Teal for primary actions

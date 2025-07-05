@@ -6,9 +6,11 @@ class ThemeManager {
   }
 
   init() {
+    console.log('ThemeManager initializing with theme:', this.currentTheme);
     this.applyTheme(this.currentTheme);
     this.createThemeToggle();
     this.bindEvents();
+    console.log('ThemeManager initialization complete');
   }
 
   getSystemTheme() {
@@ -24,15 +26,21 @@ class ThemeManager {
   }
 
   applyTheme(theme) {
-    document.documentElement.className = '';
+    // Remove existing theme classes
+    document.documentElement.classList.remove('theme-light', 'theme-dark');
+    // Add the new theme class
     document.documentElement.classList.add(`theme-${theme}`);
     this.currentTheme = theme;
     this.setStoredTheme(theme);
     this.updateToggleButton();
+    
+    // Debug logging
+    console.log(`Applied theme: ${theme}`, document.documentElement.className);
   }
 
   toggleTheme() {
     const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+    console.log(`Toggling from ${this.currentTheme} to ${newTheme}`);
     this.applyTheme(newTheme);
   }
 
@@ -45,6 +53,7 @@ class ThemeManager {
     
     document.body.appendChild(toggle);
     this.toggleButton = toggle;
+    console.log('Theme toggle button created and added to DOM');
   }
 
   getToggleIcon() {
@@ -63,7 +72,13 @@ class ThemeManager {
   bindEvents() {
     // Listen for toggle button clicks
     if (this.toggleButton) {
-      this.toggleButton.addEventListener('click', () => this.toggleTheme());
+      this.toggleButton.addEventListener('click', (e) => {
+        console.log('Theme toggle clicked');
+        e.preventDefault();
+        this.toggleTheme();
+      });
+    } else {
+      console.error('Theme toggle button not found');
     }
 
     // Listen for system theme changes
@@ -77,6 +92,7 @@ class ThemeManager {
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === 'T') {
         e.preventDefault();
+        console.log('Keyboard shortcut triggered');
         this.toggleTheme();
       }
     });
@@ -86,10 +102,12 @@ class ThemeManager {
 // Initialize theme manager when DOM is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager();
+    console.log('DOM loaded, initializing theme manager');
+    window.themeManager = new ThemeManager();
   });
 } else {
-  new ThemeManager();
+  console.log('DOM already loaded, initializing theme manager');
+  window.themeManager = new ThemeManager();
 }
 
 // Export for use in other modules

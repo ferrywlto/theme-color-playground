@@ -18,7 +18,7 @@
 }
 
 /* Light Theme */
-.theme-light {
+html.theme-light {
   --bg: #FFFFFF;
   --surface: #E4E4E4;
   --text: #4D4D4D;
@@ -33,7 +33,7 @@
 }
 
 /* Dark Theme */
-.theme-dark {
+html.theme-dark {
   --bg: #242424;
   --surface: #4D4D4D;
   --text: #E4E4E4;
@@ -49,7 +49,7 @@
 
 /* Auto theme based on system preference */
 @media (prefers-color-scheme: dark) {
-  :root {
+  html:not(.theme-light):not(.theme-dark) {
     --bg: #242424;
     --surface: #4D4D4D;
     --text: #E4E4E4;
