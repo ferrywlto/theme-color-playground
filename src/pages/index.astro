@@ -29,49 +29,60 @@ import '../styles/theme.css';
 			<section class="color-palette-section">
 				<h2>Color Palette</h2>
 				<div class="color-grid">
-					<div class="color-swatch bg-color" data-bg="bg">
-						<span class="color-name">--bg</span>
-						<span class="color-value">Background</span>
+					<div class="color-swatch bg-color" data-color="bg">
+						<span class="color-name">Background</span>
+						<span class="color-hex" data-color="bg"></span>
+						<span class="color-rgb" data-color="bg"></span>
 					</div>
-					<div class="color-swatch bg-surface">
-						<span class="color-name">--surface</span>
-						<span class="color-value">Surface</span>
+					<div class="color-swatch bg-surface" data-color="surface">
+						<span class="color-name">Surface</span>
+						<span class="color-hex" data-color="surface"></span>
+						<span class="color-rgb" data-color="surface"></span>
 					</div>
-					<div class="color-swatch bg-text">
-						<span class="color-name">--text</span>
-						<span class="color-value">Text</span>
+					<div class="color-swatch bg-text" data-color="text">
+						<span class="color-name">Text</span>
+						<span class="color-hex" data-color="text"></span>
+						<span class="color-rgb" data-color="text"></span>
 					</div>
-					<div class="color-swatch bg-primary">
-						<span class="color-name">--primary</span>
-						<span class="color-value">Primary</span>
+					<div class="color-swatch bg-primary" data-color="primary">
+						<span class="color-name">Primary</span>
+						<span class="color-hex" data-color="primary"></span>
+						<span class="color-rgb" data-color="primary"></span>
 					</div>
 					<div class="color-swatch bg-secondary" data-color="secondary">
-						<span class="color-name">--secondary</span>
-						<span class="color-value">Secondary</span>
+						<span class="color-name">Secondary</span>
+						<span class="color-hex" data-color="secondary"></span>
+						<span class="color-rgb" data-color="secondary"></span>
 					</div>
 					<div class="color-swatch bg-success" data-color="success">
-						<span class="color-name">--success</span>
-						<span class="color-value">Success</span>
+						<span class="color-name">Success</span>
+						<span class="color-hex" data-color="success"></span>
+						<span class="color-rgb" data-color="success"></span>
 					</div>
 					<div class="color-swatch bg-danger" data-color="danger">
-						<span class="color-name">--danger</span>
-						<span class="color-value">Danger</span>
+						<span class="color-name">Danger</span>
+						<span class="color-hex" data-color="danger"></span>
+						<span class="color-rgb" data-color="danger"></span>
 					</div>
 					<div class="color-swatch bg-warning" data-color="warning">
-						<span class="color-name">--warning</span>
-						<span class="color-value">Warning</span>
+						<span class="color-name">Warning</span>
+						<span class="color-hex" data-color="warning"></span>
+						<span class="color-rgb" data-color="warning"></span>
 					</div>
-					<div class="color-swatch bg-info">
-						<span class="color-name">--info</span>
-						<span class="color-value">Info</span>
+					<div class="color-swatch bg-info" data-color="info">
+						<span class="color-name">Info</span>
+						<span class="color-hex" data-color="info"></span>
+						<span class="color-rgb" data-color="info"></span>
 					</div>
-					<div class="color-swatch bg-light">
-						<span class="color-name">--light</span>
-						<span class="color-value">Light</span>
+					<div class="color-swatch bg-light" data-color="light">
+						<span class="color-name">Light</span>
+						<span class="color-hex" data-color="light"></span>
+						<span class="color-rgb" data-color="light"></span>
 					</div>
-					<div class="color-swatch bg-dark">
-						<span class="color-name">--dark</span>
-						<span class="color-value">Dark</span>
+					<div class="color-swatch bg-dark" data-color="dark">
+						<span class="color-name">Dark</span>
+						<span class="color-hex" data-color="dark"></span>
+						<span class="color-rgb" data-color="dark"></span>
 					</div>
 				</div>
 			</section>
@@ -91,6 +102,8 @@ import '../styles/theme.css';
 						<button class="btn btn-danger" data-color="danger">Danger</button>
 						<button class="btn btn-warning" data-color="warning">Warning</button>
 						<button class="btn btn-info" data-color="info">Info</button>
+						<button class="btn btn-light" data-color="light">Light</button>
+						<button class="btn btn-dark" data-color="dark">Dark</button>
 					</div>
 				</div>
 
@@ -270,7 +283,7 @@ const themeManager = {
 	}
 
 	.color-swatch {
-		height: 100px;
+		height: 120px;
 		border-radius: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -279,6 +292,7 @@ const themeManager = {
 		text-align: center;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 		transition: transform 0.2s ease;
+		padding: 0.5rem;
 	}
 
 	.color-swatch:hover {
@@ -291,9 +305,17 @@ const themeManager = {
 		margin-bottom: 0.25rem;
 	}
 
-	.color-value {
+	.color-hex {
 		font-size: 0.75rem;
+		font-weight: 500;
+		margin-bottom: 0.125rem;
+		font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	}
+
+	.color-rgb {
+		font-size: 0.7rem;
 		opacity: 0.8;
+		font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 	}
 
 	.component-examples {
@@ -618,6 +640,9 @@ const themeManager = {
 				if (themeIcon) {
 					themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 				}
+				
+				// Update color values
+				updateColorValues();
 			});
 		}
 
@@ -642,7 +667,70 @@ const themeManager = {
 				if (themeIcon) {
 					themeIcon.textContent = systemTheme === 'dark' ? '☀️' : '🌙';
 				}
+				updateColorValues();
 			}
 		});
+
+		// Function to update color values in the palette
+		function updateColorValues() {
+			const colorValues = {
+				light: {
+					bg: '#FAFAFA',
+					surface: '#E4E4E4',
+					text: '#4D4D4D',
+					primary: '#006564',
+					secondary: '#FFC0CB',
+					success: '#00D9A8',
+					danger: '#FF5C8A',
+					warning: '#FFD700',
+					info: '#2F6DB8',
+					light: '#F7F7F7',
+					dark: '#242424'
+				},
+				dark: {
+					bg: '#242424',
+					surface: '#4D4D4D',
+					text: '#E4E4E4',
+					primary: '#00D9A8',
+					secondary: '#FFC0CB',
+					success: '#006564',
+					danger: '#FFA0BC',
+					warning: '#FFD700',
+					info: '#4DA3FF',
+					light: '#606060',
+					dark: '#000000'
+				}
+			};
+
+			const currentTheme = html.getAttribute('data-theme') || 'light';
+			const colors = colorValues[currentTheme as keyof typeof colorValues];
+
+			// Helper function to convert hex to RGB
+			function hexToRgb(hex: string) {
+				const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+				return result ? {
+					r: parseInt(result[1], 16),
+					g: parseInt(result[2], 16),
+					b: parseInt(result[3], 16)
+				} : null;
+			}
+
+			// Update each color swatch
+			Object.keys(colors).forEach(colorName => {
+				const hex = colors[colorName as keyof typeof colors];
+				const rgb = hexToRgb(hex);
+				
+				const hexElements = document.querySelectorAll(`[data-color="${colorName}"].color-hex`);
+				const rgbElements = document.querySelectorAll(`[data-color="${colorName}"].color-rgb`);
+				
+				hexElements.forEach(el => el.textContent = hex);
+				if (rgb) {
+					rgbElements.forEach(el => el.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+				}
+			});
+		}
+
+		// Initial color values update
+		updateColorValues();
 	});
 </script>
