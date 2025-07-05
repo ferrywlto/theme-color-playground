@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ferrywlto.github.io',
+  site: 'https://verdantsparks.io',
   base: '/ai-theme-color-playground',
   output: 'static'
 });

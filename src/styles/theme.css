@@ -268,7 +268,8 @@ body {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  background-color: var(--surface);
+  background-color: var(--text);
+  color: var(--bg);
   border: 2px solid var(--primary);
   border-radius: 50%;
   width: 3rem;
@@ -285,6 +286,7 @@ body {
 .theme-toggle:hover {
   background-color: var(--primary);
   color: white;
+  transform: scale(1.05);
 }
 
 /* Utility Classes */
