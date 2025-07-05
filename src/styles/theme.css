@@ -1,7 +1,7 @@
 /* Theme Variables */
 :root {
   /* Default to light theme */
-  --bg: #FFFFFF;
+  --bg: #FAFAFA;
   --surface: #E4E4E4;
   --text: #4D4D4D;
   --primary: #006564;
@@ -39,7 +39,7 @@
 
 /* Light Theme */
 html.theme-light {
-  --bg: #FFFFFF;
+  --bg: #FAFAFA;
   --surface: #E4E4E4;
   --text: #4D4D4D;
   --primary: #006564;
