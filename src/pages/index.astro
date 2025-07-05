@@ -25,6 +25,33 @@ import '../styles/theme.css';
 				</div>
 			</div>
 
+			<!-- Color Picker Modal -->
+			<div id="color-picker-modal" class="color-picker-modal">
+				<div class="color-picker-overlay"></div>
+				<div class="color-picker-content">
+					<div class="color-picker-header">
+						<h3 id="color-picker-title">Edit Color</h3>
+						<button id="color-picker-close" class="color-picker-close">&times;</button>
+					</div>
+					<div class="color-picker-body">
+						<div class="color-preview">
+							<div class="color-preview-current" id="color-preview-current"></div>
+							<div class="color-preview-new" id="color-preview-new"></div>
+						</div>
+						<div class="color-input-group">
+							<label for="color-picker-input">Choose Color:</label>
+							<input type="color" id="color-picker-input" class="color-picker-input">
+							<input type="text" id="color-hex-input" class="color-hex-input" placeholder="#000000">
+						</div>
+						<div class="color-picker-actions">
+							<button id="color-picker-apply" class="btn btn-primary">Apply</button>
+							<button id="color-picker-reset" class="btn btn-secondary">Reset</button>
+							<button id="color-picker-cancel" class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Color Palette Display -->
 			<section class="color-palette-section">
 				<h2>Color Palette</h2>
@@ -594,6 +621,199 @@ const themeManager = {
 		transition: all 0.2s ease;
 	}
 
+	/* Color Picker Modal */
+	.color-picker-modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2000;
+		display: none;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.color-picker-modal.active {
+		display: flex;
+		opacity: 1;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.color-picker-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		cursor: pointer;
+	}
+
+	.color-picker-content {
+		position: relative;
+		background: var(--surface);
+		border-radius: 0.75rem;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+		max-width: 400px;
+		width: 90%;
+		max-height: 90vh;
+		overflow-y: auto;
+		z-index: 2001;
+	}
+
+	.color-picker-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.5rem;
+		border-bottom: 1px solid var(--light);
+	}
+
+	.color-picker-header h3 {
+		margin: 0;
+		color: var(--primary);
+		font-size: 1.25rem;
+	}
+
+	.color-picker-close {
+		background: none;
+		border: none;
+		font-size: 2rem;
+		cursor: pointer;
+		color: var(--text);
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		transition: background-color 0.2s ease;
+	}
+
+	.color-picker-close:hover {
+		background: var(--light);
+	}
+
+	.color-picker-body {
+		padding: 1.5rem;
+	}
+
+	.color-preview {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.color-preview-current,
+	.color-preview-new {
+		flex: 1;
+		height: 60px;
+		border-radius: 0.5rem;
+		border: 2px solid var(--light);
+		position: relative;
+		display: flex;
+		align-items: end;
+		justify-content: center;
+		padding: 0.5rem;
+		font-size: 0.75rem;
+		color: white;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	}
+
+	.color-preview-current::after {
+		content: 'Current';
+		position: absolute;
+		bottom: 0.25rem;
+	}
+
+	.color-preview-new::after {
+		content: 'New';
+		position: absolute;
+		bottom: 0.25rem;
+	}
+
+	.color-input-group {
+		margin-bottom: 1.5rem;
+	}
+
+	.color-input-group label {
+		display: block;
+		margin-bottom: 0.5rem;
+		color: var(--text);
+		font-weight: 600;
+	}
+
+	.color-picker-input {
+		width: 100%;
+		height: 50px;
+		border: 2px solid var(--light);
+		border-radius: 0.5rem;
+		cursor: pointer;
+		margin-bottom: 0.5rem;
+	}
+
+	.color-hex-input {
+		width: 100%;
+		padding: 0.75rem;
+		border: 2px solid var(--light);
+		border-radius: 0.5rem;
+		background: var(--bg);
+		color: var(--text);
+		font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+		font-size: 1rem;
+	}
+
+	.color-hex-input:focus {
+		outline: none;
+		border-color: var(--primary);
+		box-shadow: 0 0 0 2px rgba(0, 101, 100, 0.2);
+	}
+
+	.color-picker-actions {
+		display: flex;
+		gap: 0.75rem;
+		justify-content: flex-end;
+	}
+
+	.color-picker-actions .btn {
+		padding: 0.5rem 1rem;
+		font-size: 0.875rem;
+	}
+
+	/* Make color swatches clickable */
+	.color-swatch {
+		cursor: pointer;
+		position: relative;
+	}
+
+	.color-swatch::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.9);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 14px;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+		pointer-events: none;
+		color: var(--text);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	.color-swatch:hover::before {
+		opacity: 1;
+		content: '✎';
+	}
+
 	@media (max-width: 768px) {
 		.theme-container {
 			padding: 1rem;
@@ -663,6 +883,9 @@ const themeManager = {
 				
 				// Update color values
 				updateColorValues();
+				
+				// Update CSS variables for any custom colors
+				updateCSSVariables();
 			});
 		}
 
@@ -693,35 +916,6 @@ const themeManager = {
 
 		// Function to update color values in the palette
 		function updateColorValues() {
-			const colorValues = {
-				light: {
-					bg: '#FAFAFA',
-					surface: '#E4E4E4',
-					text: '#4D4D4D',
-					primary: '#006564',
-					secondary: '#FFC0CB',
-					success: '#00D9A8',
-					danger: '#FF5C8A',
-					warning: '#FFD700',
-					info: '#2F6DB8',
-					light: '#F7F7F7',
-					dark: '#242424'
-				},
-				dark: {
-					bg: '#242424',
-					surface: '#4D4D4D',
-					text: '#E4E4E4',
-					primary: '#00D9A8',
-					secondary: '#FFC0CB',
-					success: '#006564',
-					danger: '#FFA0BC',
-					warning: '#FFD700',
-					info: '#4DA3FF',
-					light: '#606060',
-					dark: '#000000'
-				}
-			};
-
 			const currentTheme = html.getAttribute('data-theme') || 'light';
 			const colors = colorValues[currentTheme as keyof typeof colorValues];
 
@@ -752,5 +946,185 @@ const themeManager = {
 
 		// Initial color values update
 		updateColorValues();
+
+		// Color Picker functionality
+		const colorPickerModal = document.getElementById('color-picker-modal');
+		const colorPickerTitle = document.getElementById('color-picker-title');
+		const colorPickerInput = document.getElementById('color-picker-input') as HTMLInputElement;
+		const colorHexInput = document.getElementById('color-hex-input') as HTMLInputElement;
+		const colorPreviewCurrent = document.getElementById('color-preview-current');
+		const colorPreviewNew = document.getElementById('color-preview-new');
+		const colorPickerClose = document.getElementById('color-picker-close');
+		const colorPickerOverlay = document.querySelector('.color-picker-overlay');
+		const applyButton = document.getElementById('color-picker-apply');
+		const resetButton = document.getElementById('color-picker-reset');
+		const cancelButton = document.getElementById('color-picker-cancel');
+
+		let currentEditingColor = '';
+		let originalColorValues: typeof colorValues = {
+			light: {},
+			dark: {}
+		} as any;
+
+		// Store original color values for reset functionality
+		function storeOriginalValues() {
+			originalColorValues = {
+				light: { ...colorValues.light },
+				dark: { ...colorValues.dark }
+			};
+		}
+
+		// Initialize original values
+		const colorValues = {
+			light: {
+				bg: '#FAFAFA',
+				surface: '#E4E4E4',
+				text: '#4D4D4D',
+				primary: '#006564',
+				secondary: '#FFC0CB',
+				success: '#00D9A8',
+				danger: '#FF5C8A',
+				warning: '#FFD700',
+				info: '#2F6DB8',
+				light: '#F7F7F7',
+				dark: '#242424'
+			},
+			dark: {
+				bg: '#242424',
+				surface: '#4D4D4D',
+				text: '#E4E4E4',
+				primary: '#00D9A8',
+				secondary: '#FFC0CB',
+				success: '#006564',
+				danger: '#FFA0BC',
+				warning: '#FFD700',
+				info: '#4DA3FF',
+				light: '#606060',
+				dark: '#000000'
+			}
+		};
+
+		storeOriginalValues();
+
+		// Add click listeners to color swatches
+		document.querySelectorAll('.color-swatch[data-color]').forEach(swatch => {
+			swatch.addEventListener('click', (e) => {
+				e.preventDefault();
+				const colorName = swatch.getAttribute('data-color');
+				if (colorName) {
+					openColorPicker(colorName);
+				}
+			});
+		});
+
+		function openColorPicker(colorName: string) {
+			if (!colorPickerModal || !colorPickerTitle || !colorPickerInput || !colorHexInput || 
+				!colorPreviewCurrent || !colorPreviewNew) return;
+				
+			currentEditingColor = colorName;
+			const currentTheme = html.getAttribute('data-theme') || 'light';
+			const currentColor = colorValues[currentTheme as keyof typeof colorValues][colorName as keyof typeof colorValues.light];
+			
+			// Update modal content
+			colorPickerTitle.textContent = `Edit ${colorName.charAt(0).toUpperCase() + colorName.slice(1)} Color`;
+			colorPickerInput.value = currentColor;
+			colorHexInput.value = currentColor;
+			colorPreviewCurrent.style.backgroundColor = currentColor;
+			colorPreviewNew.style.backgroundColor = currentColor;
+			
+			// Show modal
+			colorPickerModal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeColorPicker() {
+			if (!colorPickerModal) return;
+			colorPickerModal.classList.remove('active');
+			document.body.style.overflow = '';
+			currentEditingColor = '';
+		}
+
+		function updateColorPreview() {
+			if (!colorPickerInput || !colorHexInput || !colorPreviewNew) return;
+			const newColor = colorPickerInput.value;
+			colorHexInput.value = newColor;
+			colorPreviewNew.style.backgroundColor = newColor;
+		}
+
+		function updateColorFromHex() {
+			if (!colorHexInput || !colorPickerInput || !colorPreviewNew) return;
+			const hexValue = colorHexInput.value;
+			if (/^#[0-9A-F]{6}$/i.test(hexValue)) {
+				colorPickerInput.value = hexValue;
+				colorPreviewNew.style.backgroundColor = hexValue;
+			}
+		}
+
+		function applyColorChange() {
+			if (!currentEditingColor || !colorPickerInput) return;
+			
+			const newColor = colorPickerInput.value;
+			const currentTheme = html.getAttribute('data-theme') || 'light';
+			
+			// Update color values
+			colorValues[currentTheme as keyof typeof colorValues][currentEditingColor as keyof typeof colorValues.light] = newColor;
+			
+			// Update CSS custom properties
+			updateCSSVariables();
+			
+			// Update color value displays
+			updateColorValues();
+			
+			// Close modal
+			closeColorPicker();
+		}
+
+		function resetColorToOriginal() {
+			if (!currentEditingColor) return;
+			
+			const currentTheme = html.getAttribute('data-theme') || 'light';
+			const originalColor = originalColorValues[currentTheme as keyof typeof originalColorValues][currentEditingColor as keyof typeof colorValues.light];
+			
+			// Update color values back to original
+			colorValues[currentTheme as keyof typeof colorValues][currentEditingColor as keyof typeof colorValues.light] = originalColor;
+			
+			// Update CSS custom properties
+			updateCSSVariables();
+			
+			// Update color value displays
+			updateColorValues();
+			
+			// Close modal
+			closeColorPicker();
+		}
+
+		function updateCSSVariables() {
+			const currentTheme = html.getAttribute('data-theme') || 'light';
+			const colors = colorValues[currentTheme as keyof typeof colorValues];
+			
+			// Update CSS custom properties dynamically
+			Object.keys(colors).forEach(colorName => {
+				const colorValue = colors[colorName as keyof typeof colors];
+				document.documentElement.style.setProperty(`--${colorName}`, colorValue);
+			});
+		}
+
+		// Event listeners for color picker
+		if (colorPickerInput) colorPickerInput.addEventListener('input', updateColorPreview);
+		if (colorHexInput) colorHexInput.addEventListener('input', updateColorFromHex);
+		if (colorPickerClose) colorPickerClose.addEventListener('click', closeColorPicker);
+		if (colorPickerOverlay) colorPickerOverlay.addEventListener('click', closeColorPicker);
+		if (applyButton) applyButton.addEventListener('click', applyColorChange);
+		if (resetButton) resetButton.addEventListener('click', resetColorToOriginal);
+		if (cancelButton) cancelButton.addEventListener('click', closeColorPicker);
+
+		// Close modal with Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && colorPickerModal && colorPickerModal.classList.contains('active')) {
+				closeColorPicker();
+			}
+		});
+
+		// Update the original updateColorValues function to use the dynamic colorValues
 	});
 </script>
