@@ -19,11 +19,9 @@ import '../styles/theme.css';
 				<h1>{title}</h1>
 				<p class="description">{description}</p>
 				<div class="toggle-container">
-					<label class="theme-toggle">
-						<input type="checkbox" id="theme-toggle" />
-						<span class="toggle-slider"></span>
-						<span class="toggle-label">Dark Mode</span>
-					</label>
+					<button class="theme-toggle-btn" id="theme-toggle" type="button">
+						<span class="theme-icon">🌙</span>
+					</button>
 				</div>
 			</div>
 
@@ -216,54 +214,43 @@ const themeManager = {
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
+		margin-bottom: 2rem;
 	}
 
-	.theme-toggle {
+	.theme-toggle-btn {
+		position: relative;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		border: 2px solid var(--primary);
+		background: var(--surface);
+		color: var(--text);
+		cursor: pointer;
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		cursor: pointer;
-		user-select: none;
-	}
-
-	.theme-toggle input {
-		display: none;
-	}
-
-	.toggle-slider {
-		position: relative;
-		width: 50px;
-		height: 24px;
-		background: var(--surface);
-		border-radius: 24px;
+		justify-content: center;
+		font-size: 1.5rem;
 		transition: all 0.3s ease;
-		border: 2px solid var(--primary);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 
-	.toggle-slider::before {
-		content: '';
-		position: absolute;
-		top: 2px;
-		left: 2px;
-		width: 16px;
-		height: 16px;
+	.theme-toggle-btn:hover {
 		background: var(--primary);
-		border-radius: 50%;
-		transition: all 0.3s ease;
+		color: var(--bg);
+		transform: scale(1.05);
 	}
 
-	.theme-toggle input:checked + .toggle-slider {
-		background: var(--primary);
+	.theme-toggle-btn:active {
+		transform: scale(0.95);
 	}
 
-	.theme-toggle input:checked + .toggle-slider::before {
-		transform: translateX(26px);
-		background: var(--bg);
+	.theme-icon {
+		font-size: 1.5rem;
+		transition: transform 0.3s ease;
 	}
 
-	.toggle-label {
-		font-weight: 500;
-		color: var(--text);
+	.theme-toggle-btn:hover .theme-icon {
+		transform: rotate(180deg);
 	}
 
 	.color-palette-section {
@@ -598,6 +585,7 @@ const themeManager = {
 	// Theme toggle functionality - ensure DOM is loaded
 	document.addEventListener('DOMContentLoaded', function() {
 		const themeToggle = document.getElementById('theme-toggle');
+		const themeIcon = document.querySelector('.theme-icon');
 		const html = document.documentElement;
 
 		// Check for saved theme preference or default to light mode
@@ -606,22 +594,30 @@ const themeManager = {
 		console.log('Current theme:', currentTheme);
 		console.log('Theme toggle element:', themeToggle);
 		
-		// Set initial theme
+		// Set initial theme and icon
 		html.setAttribute('data-theme', currentTheme);
 		html.classList.remove('theme-light', 'theme-dark');
 		html.classList.add(`theme-${currentTheme}`);
 		
-		if (themeToggle && themeToggle instanceof HTMLInputElement) {
-			themeToggle.checked = currentTheme === 'dark';
-
-			// Toggle theme on checkbox change
-			themeToggle.addEventListener('change', function() {
-				const newTheme = themeToggle.checked ? 'dark' : 'light';
+		// Update icon based on current theme
+		if (themeIcon) {
+			themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+		}
+		
+		if (themeToggle) {
+			// Toggle theme on button click
+			themeToggle.addEventListener('click', function() {
+				const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
 				console.log('Switching to theme:', newTheme);
 				html.setAttribute('data-theme', newTheme);
 				html.classList.remove('theme-light', 'theme-dark');
 				html.classList.add(`theme-${newTheme}`);
 				localStorage.setItem('theme', newTheme);
+				
+				// Update icon
+				if (themeIcon) {
+					themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+				}
 			});
 		}
 
@@ -630,9 +626,8 @@ const themeManager = {
 			if (e.ctrlKey && e.key.toLowerCase() === 't') {
 				e.preventDefault();
 				console.log('Keyboard shortcut triggered');
-				if (themeToggle instanceof HTMLInputElement) {
-					themeToggle.checked = !themeToggle.checked;
-					themeToggle.dispatchEvent(new Event('change'));
+				if (themeToggle) {
+					themeToggle.click();
 				}
 			}
 		});
@@ -644,8 +639,8 @@ const themeManager = {
 				html.setAttribute('data-theme', systemTheme);
 				html.classList.remove('theme-light', 'theme-dark');
 				html.classList.add(`theme-${systemTheme}`);
-				if (themeToggle instanceof HTMLInputElement) {
-					themeToggle.checked = systemTheme === 'dark';
+				if (themeIcon) {
+					themeIcon.textContent = systemTheme === 'dark' ? '☀️' : '🌙';
 				}
 			}
 		});
