@@ -122,20 +122,54 @@ import '../styles/theme.css';
 					</div>
 				</div>
 
-				<div class="example-card form-elements">
-					<h3>Form Elements</h3>
-					<p>Form inputs that adapt to the current theme automatically.</p>
-					
-					<div class="form-grid">
-						<input type="text" placeholder="Enter your name" class="form-input">
-						<select class="form-select">
-							<option>Choose an option</option>
-							<option>Light Theme</option>
-							<option>Dark Theme</option>
-							<option>Auto Theme</option>
-						</select>
-						<textarea placeholder="Enter your feedback" rows="4" class="form-textarea"></textarea>
-						<button class="btn btn-primary">Submit Form</button>
+				<div class="forms-code-comparison">
+					<!-- Form Elements -->
+					<div class="example-card form-elements">
+						<h3>Form Elements</h3>
+						<p>Form inputs that adapt to the current theme automatically.</p>
+						
+						<div class="form-grid">
+							<input type="text" placeholder="Enter your name" class="form-input">
+							<select class="form-select">
+								<option>Choose an option</option>
+								<option>Light Theme</option>
+								<option>Dark Theme</option>
+								<option>Auto Theme</option>
+							</select>
+							<textarea placeholder="Enter your feedback" rows="4" class="form-textarea"></textarea>
+							<button class="btn btn-primary">Submit Form</button>
+						</div>
+					</div>
+
+					<!-- Code Block Demonstration -->
+					<div class="example-card code-elements">
+						<h3>Code Examples</h3>
+						<p>Code blocks and inline code that adapt to the theme colors.</p>
+						
+						<div class="code-grid">
+							<p>Here's some <code>inline code</code> that adapts to the theme.</p>
+							
+							<pre><code>{`// JavaScript example
+const themeManager = {
+  currentTheme: 'light',
+  
+  toggleTheme() {
+    this.currentTheme = 
+      this.currentTheme === 'light' 
+        ? 'dark' 
+        : 'light';
+  }
+};`}</code></pre>
+
+							<pre><code>{`/* CSS Variables */
+:root {
+  --primary: #006564;
+  --secondary: #FFC0CB;
+  --bg: #FAFAFA;
+}`}</code></pre>
+
+							<p>Use <code>var(--primary)</code> for theme colors.</p>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -300,6 +334,13 @@ import '../styles/theme.css';
 		margin-bottom: 1.5rem;
 	}
 
+	.forms-code-comparison {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
 	/* Example Card Styles */
 	.example-card {
 		padding: 1.5rem;
@@ -333,6 +374,43 @@ import '../styles/theme.css';
 	.form-elements {
 		background: var(--surface);
 		color: var(--text);
+	}
+
+	.code-elements {
+		background: var(--surface);
+		color: var(--text);
+	}
+
+	.code-grid {
+		display: grid;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.code-grid code {
+		background: var(--bg);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		font-family: 'Courier New', monospace;
+		font-size: 0.9em;
+		border: 1px solid var(--primary);
+	}
+
+	.code-grid pre {
+		background: var(--bg);
+		padding: 1rem;
+		border-radius: 0.5rem;
+		overflow-x: auto;
+		border: 1px solid var(--primary);
+		margin: 0.5rem 0;
+	}
+
+	.code-grid pre code {
+		background: transparent;
+		padding: 0;
+		border: none;
+		font-size: 0.85em;
+		line-height: 1.4;
 	}
 
 	.instructions-section {
@@ -505,6 +583,11 @@ import '../styles/theme.css';
 		}
 
 		.typography-comparison {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.forms-code-comparison {
 			grid-template-columns: 1fr;
 			gap: 1rem;
 		}

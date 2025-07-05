@@ -296,6 +296,7 @@ body {
 .text-info { color: var(--info); }
 .text-light { color: var(--light); }
 .text-dark { color: var(--dark); }
+.text-surface { color: var(--surface); }
 
 .bg-primary { background-color: var(--primary); }
 .bg-secondary { background-color: var(--secondary); }
