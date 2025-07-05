@@ -31,3 +31,6 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+# Astro
+.astro/
