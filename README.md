@@ -45,12 +45,7 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 Contributions are welcome! Please read our contributing guidelines and ensure your contributions comply with the AGPL-3.0 license.
 
-## 📞 Support
-
-- 🐛 [Report Issues](https://github.com/VerdantSparks/theme-color-playground/issues)
-- 💬 [Discussions](https://github.com/VerdantSparks/theme-color-playground/discussions)
-
 ## 🌐 Live Site
 
 Once deployed, your site will be available at:
-`https://www.github.com/[username]/theme-color-playground`
+[`https://www.github.com/[username]/theme-color-playground`](https://www.github.com/[username]/theme-color-playground)
