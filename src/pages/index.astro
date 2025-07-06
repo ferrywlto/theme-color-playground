@@ -323,24 +323,20 @@ const themeManager = {
       <!-- Instructions -->
       <section class="instructions-section">
         <h2>How to Use</h2>
-        <p>
-          Toggle between light and dark themes using the switch above, or press <kbd
-            >Ctrl+T</kbd
-          > for quick switching.
-        </p>
-        <p>
-          Click on any color swatch to open the color picker and customize
-          colors in real time.
-        </p>
-        <p>
-          Download your customized theme configuration using the download button
-          (📥) or upload a theme configuration file using the upload button
-          (📤).
-        </p>
-        <p>
-          Watch how all colors, components, and text automatically adapt to
-          provide optimal contrast and readability.
-        </p>
+        <ul>
+          <li>
+            Toggle between light and dark themes using the switch above, or press <kbd>Ctrl+T</kbd> for quick switching.
+          </li>
+          <li>
+            Click on any color swatch to open the color picker and customize colors in real time.
+          </li>
+          <li>
+            Download your customized theme configuration using the download button (📥) or upload a theme configuration file using the upload button (📤).
+          </li>
+          <li>
+            Watch how all colors, components, and text automatically adapt to provide optimal contrast and readability.
+          </li>
+        </ul>
       </section>
     </div>
     <!-- 100% privacy-first analytics -->
@@ -466,7 +462,7 @@ const themeManager = {
   }
 
   .description-section {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
   }
 
@@ -746,13 +742,28 @@ const themeManager = {
     padding: 1.5rem;
     border: 2px solid var(--primary);
     border-radius: 0.75rem;
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
   }
 
   .instructions-section h2 {
     color: var(--primary);
     margin-bottom: 1rem;
+  }
+
+  .instructions-section ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .instructions-section li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .instructions-section li:last-child {
+    margin-bottom: 0;
   }
 
   .instructions-section kbd {
