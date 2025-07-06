@@ -24,42 +24,45 @@ import "../styles/theme.css";
           <h1 class="header-title">{title}</h1>
         </div>
         
-        <!-- Links: Privacy and GitHub -->
-        <div class="header-links-section">
-          <nav class="header-links">
-            <a href={`${import.meta.env.BASE_URL}/privacy`} class="header-link">Privacy</a>
-            <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
-          </nav>
-        </div>
-        
-        <!-- Function buttons -->
-        <div class="header-buttons-section">
-          <div class="header-buttons">
-            <button class="theme-toggle-btn" id="theme-toggle" type="button" title="Toggle Theme">
-              <span class="theme-icon">🌙</span>
-            </button>
-            <button
-              class="download-config-btn"
-              id="download-config"
-              type="button"
-              title="Download Theme Config"
-            >
-              <span class="download-icon">📥</span>
-            </button>
-            <button
-              class="upload-config-btn"
-              id="upload-config"
-              type="button"
-              title="Upload Theme Config"
-            >
-              <span class="upload-icon">📤</span>
-            </button>
-            <input
-              type="file"
-              id="file-input"
-              accept=".json"
-              style="display: none;"
-            />
+        <!-- Mobile: Combined links and buttons row -->
+        <div class="header-combined-mobile">
+          <!-- Links: Privacy and GitHub -->
+          <div class="header-links-section">
+            <nav class="header-links">
+              <a href={`${import.meta.env.BASE_URL}/privacy`} class="header-link">Privacy</a>
+              <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
+            </nav>
+          </div>
+          
+          <!-- Function buttons -->
+          <div class="header-buttons-section">
+            <div class="header-buttons">
+              <button class="theme-toggle-btn" id="theme-toggle" type="button" title="Toggle Theme">
+                <span class="theme-icon">🌙</span>
+              </button>
+              <button
+                class="download-config-btn"
+                id="download-config"
+                type="button"
+                title="Download Theme Config"
+              >
+                <span class="download-icon">📥</span>
+              </button>
+              <button
+                class="upload-config-btn"
+                id="upload-config"
+                type="button"
+                title="Upload Theme Config"
+              >
+                <span class="upload-icon">📤</span>
+              </button>
+              <input
+                type="file"
+                id="file-input"
+                accept=".json"
+                style="display: none;"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -389,6 +392,13 @@ const themeManager = {
     font-size: 1.5rem;
     font-weight: 700;
     white-space: nowrap;
+  }
+
+  .header-combined-mobile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
   .header-links-section {
@@ -1097,6 +1107,8 @@ const themeManager = {
 
   /* Mobile Responsive */
   @media (max-width: 768px) {
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
     /* Header responsive */
     .header-content {
       flex-direction: column;
@@ -1105,10 +1117,9 @@ const themeManager = {
       padding: 0.5rem 1rem;
     }
 
-    .header-center,
-    .header-links-section,
-    .header-buttons-section {
-      justify-self: center;
+    .header-combined-mobile {
+      justify-content: center;
+      gap: 1.5rem;
     }
 
     .header-title {
@@ -1134,11 +1145,33 @@ const themeManager = {
     .header-link {
       font-size: 0.8rem;
       padding: 0.4rem 0.6rem;
+      border: 2px solid var(--primary);
+      background: transparent;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 35px;
+      box-sizing: border-box;
+    }
+
+    /* Remove hover effects on mobile and add active/focus states */
+    .header-link:hover {
+      transform: none;
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .header-link:active,
+    .header-link:focus {
+      background: var(--primary);
+      color: white;
+      transform: scale(0.95);
     }
 
     /* Content responsive */
     .theme-container {
-      margin-top: 140px; /* More space for stacked mobile header */
+      margin-top: 120px; /* Reduced space since header is more compact */
       padding: 1rem;
     }
 
