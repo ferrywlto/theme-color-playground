@@ -12,18 +12,50 @@ import "../styles/theme.css";
     <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="privacy policy, data collection, analytics, theme color playground, simple analytics, GDPR, privacy compliance" />
+    <meta name="author" content="Theme Color Playground" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ferrywl.to/theme-color-playground/privacy/" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://ferrywl.to/theme-color-playground/privacy/" />
+    <meta property="og:site_name" content="Theme Color Playground" />
+    <meta property="og:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta property="og:image:alt" content="Theme Color Playground Privacy Policy" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta name="twitter:image:alt" content="Theme Color Playground Privacy Policy" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Privacy Policy" />
   </head>
   <body>
-    <div class="theme-container">
-      <div class="privacy-header">
+    <main class="theme-container">
+      <header class="privacy-header">
         <h1>Privacy Policy</h1>
         <p class="last-updated">Last updated: July 6, 2025</p>
         <nav class="breadcrumb">
           <a href={import.meta.env.BASE_URL}>← Back to Theme Playground</a>
         </nav>
-      </div>
+      </header>
 
       <div class="privacy-content">
         <section class="privacy-section">
@@ -171,7 +203,7 @@ import "../styles/theme.css";
           </nav>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- 100% privacy-first analytics -->
     <script

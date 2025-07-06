@@ -13,7 +13,69 @@ import "../styles/theme.css";
     <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="theme color playground, css themes, dark mode, light mode, color picker, web design tools, css variables, color system, color scheme generator" />
+    <meta name="author" content="Theme Color Playground" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ferrywl.to/theme-color-playground/" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://ferrywl.to/theme-color-playground/" />
+    <meta property="og:site_name" content="Theme Color Playground" />
+    <meta property="og:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta property="og:image:alt" content="Theme Color Playground Logo" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta name="twitter:image:alt" content="Theme Color Playground Logo" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Theme Playground" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Theme Color Playground",
+      "description": "A playground to explore color system in both light and dark themes, using vanilla JavaScript and CSS. No framework except Astro were used.",
+      "url": "https://ferrywl.to/theme-color-playground/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "VerdantSparks"
+      },
+      "keywords": "theme color playground, css themes, dark mode, light mode, color picker, web design tools",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Theme Color Playground",
+        "applicationCategory": "WebApplication",
+        "softwareVersion": "1.1.0"
+      }
+    }
+    </script>
   </head>
   <body>
     <!-- Sticky Header -->
@@ -68,11 +130,11 @@ import "../styles/theme.css";
       </div>
     </header>
 
-    <div class="theme-container">
+    <main class="theme-container">
       <!-- Description Section -->
-      <div class="description-section">
+      <section class="description-section">
         <p class="description">{description}</p>
-      </div>
+      </section>
 
       <!-- Color Picker Modal -->
       <div id="color-picker-modal" class="color-picker-modal">
@@ -338,7 +400,7 @@ const themeManager = {
           </li>
         </ul>
       </section>
-    </div>
+    </main>
     <!-- 100% privacy-first analytics -->
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript>
