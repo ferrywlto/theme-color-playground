@@ -33,7 +33,7 @@ import "../styles/theme.css";
           </p>
         </section>
 
-        <section class="privacy-section">
+        <section class="privacy-section no-bullets">
           <h2>Data We Collect</h2>
           
           <h3>Local Storage Data</h3>
@@ -77,7 +77,7 @@ import "../styles/theme.css";
           </ul>
         </section>
 
-        <section class="privacy-section">
+        <section class="privacy-section no-bullets">
           <h2>How We Use Your Data</h2>
           
           <h3>Local Storage Usage</h3>
@@ -94,7 +94,7 @@ import "../styles/theme.css";
           </ul>
         </section>
 
-        <section class="privacy-section">
+        <section class="privacy-section no-bullets">
           <h2>Data Storage and Retention</h2>
           
           <h3>Local Storage</h3>
@@ -112,7 +112,7 @@ import "../styles/theme.css";
           </ul>
         </section>
 
-        <section class="privacy-section">
+        <section class="privacy-section no-bullets">
           <h2>Your Rights and Choices</h2>
           
           <h3>Regarding Local Storage</h3>
@@ -130,7 +130,7 @@ import "../styles/theme.css";
           </ul>
         </section>
 
-        <section class="privacy-section">
+        <section class="privacy-section no-bullets">
           <h2>Third-Party Services</h2>
           <div class="service-header">
             <h3>Simple Analytics</h3>
@@ -308,6 +308,16 @@ import "../styles/theme.css";
 
   .privacy-section ul {
     margin: 0.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .privacy-section.no-bullets ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .privacy-section.no-bullets ul ul {
+    list-style-type: disc;
     padding-left: 1.5rem;
   }
 
