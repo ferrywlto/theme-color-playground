@@ -16,38 +16,59 @@ import "../styles/theme.css";
     <title>{title}</title>
   </head>
   <body>
-    <div class="theme-container">
-      <!-- Theme Toggle -->
-      <div class="theme-toggle-section">
-        <h1>{title}</h1>
-        <p class="description">{description}</p>
-        <div class="toggle-container">
-          <button class="theme-toggle-btn" id="theme-toggle" type="button">
-            <span class="theme-icon">🌙</span>
-          </button>
-          <button
-            class="download-config-btn"
-            id="download-config"
-            type="button"
-            title="Download Theme Config"
-          >
-            <span class="download-icon">📥</span>
-          </button>
-          <button
-            class="upload-config-btn"
-            id="upload-config"
-            type="button"
-            title="Upload Theme Config"
-          >
-            <span class="upload-icon">📤</span>
-          </button>
-          <input
-            type="file"
-            id="file-input"
-            accept=".json"
-            style="display: none;"
-          />
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+      <div class="header-content">
+        <!-- Left side: Title -->
+        <div class="header-left">
+          <h1 class="header-title">{title}</h1>
         </div>
+        
+        <!-- Center: Function buttons -->
+        <div class="header-center">
+          <div class="header-buttons">
+            <button class="theme-toggle-btn" id="theme-toggle" type="button" title="Toggle Theme">
+              <span class="theme-icon">🌙</span>
+            </button>
+            <button
+              class="download-config-btn"
+              id="download-config"
+              type="button"
+              title="Download Theme Config"
+            >
+              <span class="download-icon">📥</span>
+            </button>
+            <button
+              class="upload-config-btn"
+              id="upload-config"
+              type="button"
+              title="Upload Theme Config"
+            >
+              <span class="upload-icon">📤</span>
+            </button>
+            <input
+              type="file"
+              id="file-input"
+              accept=".json"
+              style="display: none;"
+            />
+          </div>
+        </div>
+        
+        <!-- Right side: Links -->
+        <div class="header-right">
+          <nav class="header-links">
+            <a href={`${import.meta.env.BASE_URL}/privacy`} class="header-link">Privacy</a>
+            <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="theme-container">
+      <!-- Description Section -->
+      <div class="description-section">
+        <p class="description">{description}</p>
       </div>
 
       <!-- Color Picker Modal -->
@@ -318,19 +339,6 @@ const themeManager = {
           provide optimal contrast and readability.
         </p>
       </section>
-
-      <!-- Footer -->
-      <footer class="app-footer">
-        <div class="footer-content">
-          <p class="footer-text">
-            Theme Color Playground - Explore color systems with privacy in mind
-          </p>
-          <nav class="footer-links">
-            <a href={`${import.meta.env.BASE_URL}/privacy`} class="privacy-link">Privacy Policy</a>
-            <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="github-link">GitHub</a>
-          </nav>
-        </div>
-      </footer>
     </div>
     <!-- 100% privacy-first analytics -->
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
@@ -345,6 +353,97 @@ const themeManager = {
 </html>
 
 <style>
+  /* Sticky Header Styles */
+  .sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--surface);
+    border-bottom: 2px solid var(--primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-title {
+    color: var(--primary);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .header-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .header-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .header-link[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.7em;
+    opacity: 0.7;
+  }
+
+  /* Adjust header buttons for sticky header */
+  .sticky-header .theme-toggle-btn,
+  .sticky-header .download-config-btn,
+  .sticky-header .upload-config-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
   .theme-container {
     max-width: 800px;
     margin: 0 auto;
@@ -352,31 +451,18 @@ const themeManager = {
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
+    margin-top: 80px; /* Space for fixed header */
   }
 
-  .theme-toggle-section {
+  .description-section {
     text-align: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .theme-toggle-section h1 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .description {
     font-size: 1.125rem;
     opacity: 0.8;
     margin-bottom: 1.5rem;
-  }
-
-  .toggle-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
   }
 
   .theme-toggle-btn {
@@ -1008,29 +1094,55 @@ const themeManager = {
     content: "✎";
   }
 
+  /* Mobile Responsive */
   @media (max-width: 768px) {
+    /* Header responsive */
+    .header-content {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      text-align: center;
+      padding: 0.5rem 1rem;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+      justify-self: center;
+    }
+
+    .header-title {
+      font-size: 1.2rem;
+    }
+
+    .header-buttons {
+      gap: 0.5rem;
+    }
+
+    .sticky-header .theme-toggle-btn,
+    .sticky-header .download-config-btn,
+    .sticky-header .upload-config-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+
+    .header-links {
+      gap: 0.75rem;
+    }
+
+    .header-link {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.6rem;
+    }
+
+    /* Content responsive */
     .theme-container {
+      margin-top: 140px; /* More space for stacked mobile header */
       padding: 1rem;
     }
 
     .color-grid {
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-
-    .toggle-container {
-      gap: 0.5rem;
-    }
-
-    .download-config-btn,
-    .theme-toggle-btn,
-    .upload-config-btn {
-      width: 45px;
-      height: 45px;
-      font-size: 1.1rem;
-    }
-
-    .theme-toggle-section h1 {
-      font-size: 2rem;
     }
 
     .typography-comparison {
@@ -1044,64 +1156,25 @@ const themeManager = {
     }
   }
 
-  /* Footer Styles */
-  .app-footer {
-    margin-top: 3rem;
-    padding: 2rem 0 1rem 0;
-    border-top: 2px solid var(--primary);
-    background: var(--surface);
-  }
-
-  .footer-content {
-    text-align: center;
-  }
-
-  .footer-text {
-    margin-bottom: 1rem;
-    color: var(--text);
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-links a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--primary);
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .footer-links a:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  .footer-links a[target="_blank"]::after {
-    content: " ↗";
-    font-size: 0.8em;
-    opacity: 0.7;
-  }
-
-  /* Responsive footer */
-  @media (max-width: 768px) {
-    .footer-links {
-      gap: 1rem;
+  @media (max-width: 480px) {
+    .header-content {
+      padding: 0.5rem;
     }
 
-    .footer-links a {
-      font-size: 0.8rem;
-      padding: 0.4rem 0.8rem;
+    .header-title {
+      font-size: 1.1rem;
+    }
+
+    .sticky-header .theme-toggle-btn,
+    .sticky-header .download-config-btn,
+    .sticky-header .upload-config-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 0.9rem;
+    }
+
+    .theme-container {
+      margin-top: 160px; /* Even more space for very small screens */
     }
   }
 </style>
