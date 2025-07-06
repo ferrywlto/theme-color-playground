@@ -77,7 +77,7 @@ npm run preview
 
 **Try it now:** [ferrywl.to/theme-color-playground](https://ferrywl.to/theme-color-playground/)
 
-## � Use Cases
+## 💼 Use Cases
 
 - **Web Developers**: Design consistent color systems for applications
 - **UI/UX Designers**: Prototype and test theme variations
@@ -94,7 +94,7 @@ This project implements comprehensive SEO best practices:
 - 🤖 Proper robots.txt configuration
 - 📱 Mobile-optimized meta tags
 
-## �📄 License
+## 📄 License
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
