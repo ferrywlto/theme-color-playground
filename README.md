@@ -1,49 +1,56 @@
 # Theme Color Playground
 
-A playground for exploring theme colors built with Astro.
+A playground to explore color systems in both light and dark themes, using vanilla JavaScript and CSS. No framework except Astro were used.
 
-## 🚀 Project Structure
+## 🚀 Features
 
+- Interactive theme toggle between light and dark modes
+- Real-time color customization with color pickers
+- Download/upload theme configurations
+- Privacy-first analytics with Simple Analytics
+- Fully responsive design
+- WCAG accessibility compliant
+
+## 🛠️ Tech Stack
+
+- **Astro** - Static site generator
+- **Vanilla JavaScript** - No additional frameworks
+- **CSS Custom Properties** - Theme system
+- **Simple Analytics** - Privacy-first analytics
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   └── pages/
-│       └── index.astro
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-└── package.json
-```
 
-## 🧞 Commands
+## 📄 License
 
-All commands are run from the root of the project, from a terminal:
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Open Source Use
+- ✅ Personal projects
+- ✅ Educational use
+- ✅ Non-commercial projects
+- ✅ Contributing back to open source
 
-## 📚 Deployment
+## 🤝 Contributing
 
-This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+Contributions are welcome! Please read our contributing guidelines and ensure your contributions comply with the AGPL-3.0 license.
 
-### Setup Instructions
+## 📞 Support
 
-1. Go to your repository settings on GitHub
-2. Navigate to Pages section
-3. Set Source to "GitHub Actions"
-4. Push your code to the `main` branch
-
-The GitHub Actions workflow will automatically build and deploy your site.
+- 🐛 [Report Issues](https://github.com/VerdantSparks/theme-color-playground/issues)
+- 💬 [Discussions](https://github.com/VerdantSparks/theme-color-playground/discussions)
 
 ## 🌐 Live Site
 
 Once deployed, your site will be available at:
-`https://[username].github.io/theme-color-playground`
+`https://www.github.com/[username]/theme-color-playground`
