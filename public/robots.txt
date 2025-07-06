@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ferrywl.to/theme-color-playground/sitemap-index.xml
+
+# Allow all search engines to crawl the site
+# This is a public web application for theme color exploration
