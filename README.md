@@ -1,6 +1,6 @@
 # Theme Color Playground
 
-> 🎨 **Interactive Color System Explorer** - A modern web application for designing, testing, and exporting light/dark theme color schemes with real-time preview and accessibility-first design.
+> 🎨 **Interactive Color System Explorer** - A modern web application for designing, testing, and exporting light/dark theme color schemes with real-time preview and accessibility-first design. Originally a tool created for personal use. If you find it useful, you may consider [buy me a bubble-tea. 🧋](https://www.paypal.com/paypalme/ferrywlto) 
 
 [![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-ferrywl.to-blue?style=for-the-badge)](https://ferrywl.to/theme-color-playground/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
@@ -104,11 +104,6 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 - Non-commercial open source projects
 - Contributing improvements back to this project
 
-### ⚠️ **Commercial Use**
-- Requires source code disclosure if distributed
-- Must maintain AGPL-3.0 license for derivatives
-- Contact for alternative licensing options
-
 ## 🤝 Contributing
 
 We welcome contributions! Here's how you can help:
@@ -132,4 +127,4 @@ We welcome contributions! Here's how you can help:
 
 ---
 
-**Made with ❤️ by [VerdantSparks](https://github.com/ferrywlto) | [Live Demo](https://ferrywl.to/theme-color-playground/) | [Report Issues](https://github.com/ferrywlto/theme-color-playground/issues)**
+**Made with ❤️ by [Ferry To](https://github.com/ferrywlto) | [Live Demo](https://ferrywl.to/theme-color-playground/) | [Report Issues](https://github.com/ferrywlto/theme-color-playground/issues)**
