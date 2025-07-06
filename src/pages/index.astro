@@ -19,13 +19,21 @@ import "../styles/theme.css";
     <!-- Sticky Header -->
     <header class="sticky-header">
       <div class="header-content">
-        <!-- Left side: Title -->
-        <div class="header-left">
+        <!-- Center: Title -->
+        <div class="header-center">
           <h1 class="header-title">{title}</h1>
         </div>
         
-        <!-- Center: Function buttons -->
-        <div class="header-center">
+        <!-- Links: Privacy and GitHub -->
+        <div class="header-links-section">
+          <nav class="header-links">
+            <a href={`${import.meta.env.BASE_URL}/privacy`} class="header-link">Privacy</a>
+            <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
+          </nav>
+        </div>
+        
+        <!-- Function buttons -->
+        <div class="header-buttons-section">
           <div class="header-buttons">
             <button class="theme-toggle-btn" id="theme-toggle" type="button" title="Toggle Theme">
               <span class="theme-icon">🌙</span>
@@ -53,14 +61,6 @@ import "../styles/theme.css";
               style="display: none;"
             />
           </div>
-        </div>
-        
-        <!-- Right side: Links -->
-        <div class="header-right">
-          <nav class="header-links">
-            <a href={`${import.meta.env.BASE_URL}/privacy`} class="header-link">Privacy</a>
-            <a href="https://github.com/VerdantSparks/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
-          </nav>
         </div>
       </div>
     </header>
@@ -371,13 +371,14 @@ const themeManager = {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0.75rem 1.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
-  .header-left {
+  .header-center {
     display: flex;
     align-items: center;
   }
@@ -390,20 +391,20 @@ const themeManager = {
     white-space: nowrap;
   }
 
-  .header-center {
+  .header-links-section {
     display: flex;
-    justify-content: center;
+    align-items: center;
+  }
+
+  .header-buttons-section {
+    display: flex;
+    align-items: center;
   }
 
   .header-buttons {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-  }
-
-  .header-right {
-    display: flex;
-    justify-content: flex-end;
   }
 
   .header-links {
@@ -1098,15 +1099,15 @@ const themeManager = {
   @media (max-width: 768px) {
     /* Header responsive */
     .header-content {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 0.75rem;
       text-align: center;
       padding: 0.5rem 1rem;
     }
 
-    .header-left,
     .header-center,
-    .header-right {
+    .header-links-section,
+    .header-buttons-section {
       justify-self: center;
     }
 
