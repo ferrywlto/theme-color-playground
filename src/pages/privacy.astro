@@ -132,8 +132,15 @@ import "../styles/theme.css";
 
         <section class="privacy-section">
           <h2>Third-Party Services</h2>
-          
-          <h3>Simple Analytics</h3>
+          <div class="service-header">
+            <h3>Simple Analytics</h3>
+            <a href="https://dashboard.simpleanalytics.com/?utm_source=ferrywl.to&utm_content=badge&affiliate=sobuf" referrerpolicy="origin" target="_blank" class="analytics-badge">
+              <picture>
+                <source srcset="https://simpleanalyticsbadges.com/ferrywl.to?mode=dark" media="(prefers-color-scheme: dark)" />
+                <img src="https://simpleanalyticsbadges.com/ferrywl.to?mode=light" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous" />
+              </picture>
+            </a>
+          </div>
           <ul>
             <li><strong>Purpose:</strong> Privacy-first website analytics</li>
             <li><strong>Data shared:</strong> Anonymized page views and basic usage statistics</li>
@@ -259,6 +266,31 @@ import "../styles/theme.css";
     font-size: 1.2rem;
   }
 
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  .service-header h3 {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 1.2rem;
+  }
+
+  .analytics-badge {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .analytics-badge img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
+
   .privacy-section h4 {
     color: var(--text);
     margin: 1rem 0 0.5rem 0;
@@ -352,6 +384,16 @@ import "../styles/theme.css";
 
     .privacy-section h2 {
       font-size: 1.3rem;
+    }
+
+    .service-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .analytics-badge img {
+      height: 18px;
     }
   }
 
