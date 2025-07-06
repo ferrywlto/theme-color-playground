@@ -3,14 +3,20 @@ const title = "Theme Color Playground";
 const description =
   "A playground to explore color system in both light and dark themes, using vanilla JavaScript and CSS. No framework except Astro were used.";
 import "../styles/theme.css";
+
+// Generate URLs using config values
+const siteUrl = import.meta.env.SITE.replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL;
+const canonicalUrl = `${siteUrl}${basePath}`;
+const imageUrl = `${siteUrl}${basePath}favicon.svg`;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={imageUrl} />
+    <link rel="icon" type="image/png" href={imageUrl} />
+    <link rel="apple-touch-icon" href={imageUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     
@@ -20,15 +26,15 @@ import "../styles/theme.css";
     <meta name="keywords" content="theme color playground, css themes, dark mode, light mode, color picker, web design tools, css variables, color system, color scheme generator" />
     <meta name="author" content="Theme Color Playground" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://ferrywl.to/theme-color-playground/" />
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://ferrywl.to/theme-color-playground/" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Theme Color Playground" />
-    <meta property="og:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content="Theme Color Playground Logo" />
     <meta property="og:locale" content="en_US" />
     
@@ -36,7 +42,7 @@ import "../styles/theme.css";
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content="Theme Color Playground Logo" />
     
     <!-- Additional Meta Tags -->
@@ -49,13 +55,12 @@ import "../styles/theme.css";
     <meta name="apple-mobile-web-app-title" content="Theme Playground" />
     
     <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Theme Color Playground",
       "description": "A playground to explore color system in both light and dark themes, using vanilla JavaScript and CSS. No framework except Astro were used.",
-      "url": "https://ferrywl.to/theme-color-playground/",
+      "url": canonicalUrl,
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web Browser",
       "offers": {
@@ -74,8 +79,7 @@ import "../styles/theme.css";
         "applicationCategory": "WebApplication",
         "softwareVersion": "1.1.0"
       }
-    }
-    </script>
+    })}></script>
   </head>
   <body>
     <!-- Sticky Header -->

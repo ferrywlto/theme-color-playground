@@ -2,14 +2,20 @@
 const title = "Privacy Policy - Theme Color Playground";
 const description = "Privacy policy explaining data collection, storage, and usage for the Theme Color Playground application.";
 import "../styles/theme.css";
+
+// Generate URLs using config values
+const siteUrl = import.meta.env.SITE.replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL;
+const canonicalUrl = `${siteUrl}${basePath}privacy/`;
+const imageUrl = `${siteUrl}${basePath}favicon.svg`;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={imageUrl} />
+    <link rel="icon" type="image/png" href={imageUrl} />
+    <link rel="apple-touch-icon" href={imageUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     
@@ -19,15 +25,15 @@ import "../styles/theme.css";
     <meta name="keywords" content="privacy policy, data collection, analytics, theme color playground, simple analytics, GDPR, privacy compliance" />
     <meta name="author" content="Theme Color Playground" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://ferrywl.to/theme-color-playground/privacy/" />
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://ferrywl.to/theme-color-playground/privacy/" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Theme Color Playground" />
-    <meta property="og:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content="Theme Color Playground Privacy Policy" />
     <meta property="og:locale" content="en_US" />
     
@@ -35,7 +41,7 @@ import "../styles/theme.css";
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://ferrywl.to/theme-color-playground/favicon.svg" />
+    <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content="Theme Color Playground Privacy Policy" />
     
     <!-- Additional Meta Tags -->
