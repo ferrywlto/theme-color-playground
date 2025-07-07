@@ -258,6 +258,31 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             both themes.
           </p>
 
+          <!-- Text Color Control -->
+          <div class="text-color-control">
+            <div class="control-row main-control-row">
+              <div class="radio-section">
+                <label class="control-label">Button Text Color:</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="button-text-color" value="light">
+                    <span>Light Text</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="button-text-color" value="dark">
+                    <span>Dark Text</span>
+                  </label>
+                </div>
+              </div>
+              <div class="checkbox-section">
+                <label class="checkbox-option">
+                  <input type="checkbox" id="bold-text-checkbox">
+                  <span>Bold text</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
           <div class="button-group">
             <button class="btn btn-primary">Primary</button>
             <button class="btn btn-secondary" data-color="secondary"
@@ -1288,6 +1313,146 @@ const themeManager = {
       margin-top: 100px; /* Reduced gap for very small screens */
     }
   }
+
+</style>
+
+<style is:global>
+  /* Text Color Control Styles - Global to avoid scoping issues */
+  .text-color-control {
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+    background: var(--surface) !important;
+    border-radius: 0.5rem !important;
+    border: 2px solid var(--primary) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: var(--transition) !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .control-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .main-control-row {
+    justify-content: space-between !important;
+  }
+
+  .radio-section {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .checkbox-section {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .control-label {
+    font-weight: 600 !important;
+    color: var(--text) !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .radio-group {
+    display: flex !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  .radio-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    cursor: pointer !important;
+    color: var(--text) !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+  }
+
+  .radio-option input[type="radio"] {
+    margin: 0 !important;
+    accent-color: var(--primary) !important;
+  }
+
+  /* Checkbox option styles */
+  .checkbox-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    cursor: pointer !important;
+    color: var(--text) !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+  }
+
+  .checkbox-option input[type="checkbox"] {
+    margin: 0 !important;
+    accent-color: var(--primary) !important;
+  }
+
+  /* Responsive layout */
+  @media (min-width: 768px) {
+    .main-control-row {
+      flex-wrap: nowrap !important;
+    }
+    
+    .radio-section {
+      flex: 1 !important;
+    }
+    
+    .checkbox-section {
+      margin-left: auto !important;
+    }
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 767px) {
+    .main-control-row {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 0.75rem !important;
+    }
+    
+    .radio-section {
+      width: 100% !important;
+    }
+    
+    .checkbox-section {
+      width: 100% !important;
+      justify-content: flex-start !important;
+    }
+  }
+
+  /* Button Text Color Variants */
+  .btn.text-light {
+    color: var(--light) !important;
+  }
+
+  .btn.text-dark {
+    color: var(--dark) !important;
+  }
+
+  /* Both mode text styling */
+  .btn.text-both {
+    background: linear-gradient(90deg, var(--light) 50%, var(--dark) 50%) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<style>
 </style>
 
 <script>
@@ -1421,6 +1586,9 @@ const themeManager = {
 
         // Update CSS variables for any custom colors
         updateCSSVariables();
+
+        // Update button text color based on new theme
+        setTextColorBasedOnTheme();
       });
     }
 
@@ -1767,6 +1935,64 @@ const themeManager = {
 
     // Initial color values update
     updateColorValues();
+
+    // Button text color control
+    const textColorRadios = document.querySelectorAll('input[name="button-text-color"]');
+    const buttons = document.querySelectorAll('.button-group .btn');
+
+    function updateButtonTextColors() {
+      const selectedRadio = document.querySelector('input[name="button-text-color"]:checked') as HTMLInputElement;
+      const selectedTextColor = selectedRadio?.value || 'light';
+      
+      buttons.forEach(button => {
+        // Remove existing text color classes
+        button.classList.remove('text-light', 'text-dark');
+        // Add the selected text color class
+        button.classList.add(`text-${selectedTextColor}`);
+      });
+    }
+
+    function setTextColorBasedOnTheme() {
+      const currentTheme = html.getAttribute("data-theme") || "light";
+      // For dark theme, use light text; for light theme, use dark text for better contrast
+      const recommendedTextColor = currentTheme === "dark" ? "light" : "dark";
+      
+      // Update radio button selection
+      const radioToSelect = document.querySelector(`input[name="button-text-color"][value="${recommendedTextColor}"]`) as HTMLInputElement;
+      if (radioToSelect) {
+        radioToSelect.checked = true;
+        updateButtonTextColors();
+      }
+    }
+
+    // Add event listeners to radio buttons
+    textColorRadios.forEach(radio => {
+      radio.addEventListener('change', updateButtonTextColors);
+    });
+
+    // Initialize with theme-based selection
+    setTextColorBasedOnTheme();
+
+    // Bold text toggle functionality
+    const boldTextCheckbox = document.getElementById('bold-text-checkbox') as HTMLInputElement;
+
+    function updateButtonTextWeight() {
+      const isBold = boldTextCheckbox?.checked || false;
+      
+      buttons.forEach(button => {
+        const btnElement = button as HTMLElement;
+        if (isBold) {
+          btnElement.style.fontWeight = 'bold';
+        } else {
+          btnElement.style.fontWeight = '';
+        }
+      });
+    }
+
+    // Add event listener to bold text checkbox
+    if (boldTextCheckbox) {
+      boldTextCheckbox.addEventListener('change', updateButtonTextWeight);
+    }
 
     console.log("Color picker setup complete");
   });
