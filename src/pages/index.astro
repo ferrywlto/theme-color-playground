@@ -977,26 +977,22 @@ const themeManager = {
   }
 
   /* Dark theme specific color adjustments for better contrast */
-  [data-theme="dark"] .color-swatch[data-color="secondary"],
-  [data-theme="dark"] .btn-secondary {
+  [data-theme="dark"] .color-swatch[data-color="secondary"] {
     background: var(--secondary) !important;
     color: var(--bg) !important;
   }
 
-  [data-theme="dark"] .color-swatch[data-color="success"],
-  [data-theme="dark"] .btn-success {
+  [data-theme="dark"] .color-swatch[data-color="success"] {
     background: var(--success) !important;
     color: var(--bg) !important;
   }
 
-  [data-theme="dark"] .color-swatch[data-color="warning"],
-  [data-theme="dark"] .btn-warning {
+  [data-theme="dark"] .color-swatch[data-color="warning"] {
     background: var(--warning) !important;
     color: var(--bg) !important;
   }
 
-  [data-theme="dark"] .color-swatch[data-color="danger"],
-  [data-theme="dark"] .btn-danger {
+  [data-theme="dark"] .color-swatch[data-color="danger"] {
     background: var(--danger) !important;
     color: var(--bg) !important;
   }
@@ -1439,6 +1435,15 @@ const themeManager = {
 
   .btn.text-dark {
     color: var(--dark) !important;
+  }
+
+  /* Dark theme improvements for better contrast */
+  [data-theme="dark"] .btn.text-light {
+    color: #ffffff !important;
+  }
+
+  [data-theme="dark"] .btn.text-dark {
+    color: var(--text) !important;
   }
 
   /* Both mode text styling */

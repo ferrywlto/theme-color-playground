@@ -123,7 +123,6 @@ body {
 
 .btn-primary {
   background-color: var(--primary);
-  color: white;
 }
 
 .btn-primary:hover {
@@ -132,7 +131,6 @@ body {
 
 .btn-secondary {
   background-color: var(--secondary);
-  color: var(--dark);
 }
 
 .btn-secondary:hover {
@@ -141,7 +139,6 @@ body {
 
 .btn-success {
   background-color: var(--success);
-  color: white;
 }
 
 .btn-success:hover {
@@ -150,7 +147,6 @@ body {
 
 .btn-danger {
   background-color: var(--danger);
-  color: white;
 }
 
 .btn-danger:hover {
@@ -159,7 +155,6 @@ body {
 
 .btn-warning {
   background-color: var(--warning);
-  color: var(--dark);
 }
 
 .btn-warning:hover {
@@ -168,7 +163,6 @@ body {
 
 .btn-info {
   background-color: var(--info);
-  color: white;
 }
 
 .btn-info:hover {
@@ -177,7 +171,6 @@ body {
 
 .btn-light {
   background-color: var(--light);
-  color: var(--dark);
 }
 
 .btn-light:hover {
@@ -186,7 +179,6 @@ body {
 
 .btn-dark {
   background-color: var(--dark);
-  color: var(--light);
 }
 
 .btn-dark:hover {
