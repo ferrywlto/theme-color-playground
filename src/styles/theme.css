@@ -3,7 +3,7 @@
   /* Default to light theme */
   --bg: #FAFAFA;
   --surface: #E4E4E4;
-  --text: #4D4D4D;
+  --body: #4D4D4D;
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
@@ -41,7 +41,7 @@
 html.theme-light {
   --bg: #FAFAFA;
   --surface: #E4E4E4;
-  --text: #4D4D4D;
+  --body: #4D4D4D;
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
@@ -56,7 +56,7 @@ html.theme-light {
 html.theme-dark {
   --bg: #242424;
   --surface: #4D4D4D;
-  --text: #E4E4E4;
+  --body: #E4E4E4;
   --primary: #00D9A8;
   --secondary: #FFC0CB;
   --success: #006564;
@@ -72,7 +72,7 @@ html.theme-dark {
   html:not(.theme-light):not(.theme-dark) {
     --bg: #242424;
     --surface: #4D4D4D;
-    --text: #E4E4E4;
+    --body: #E4E4E4;
     --primary: #00D9A8;
     --secondary: #FFC0CB;
     --success: #006564;
@@ -91,7 +91,7 @@ html.theme-dark {
 
 body {
   background-color: var(--bg);
-  color: var(--text);
+  color: var(--body);
   transition: var(--transition);
   margin: 0;
   padding: 0;
@@ -102,7 +102,7 @@ body {
 /* Surface Elements */
 .surface {
   background-color: var(--surface);
-  color: var(--text);
+  color: var(--body);
   transition: var(--transition);
 }
 
@@ -204,11 +204,11 @@ body {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--body);
 }
 
 .card-body {
-  color: var(--text);
+  color: var(--body);
 }
 
 /* Alert Components */
@@ -228,7 +228,7 @@ body {
 .alert-secondary {
   background-color: rgba(255, 192, 203, 0.1);
   border-color: var(--secondary);
-  color: var(--text);
+  color: var(--body);
 }
 
 .alert-success {
@@ -261,7 +261,7 @@ body {
   top: 1rem;
   right: 1rem;
   background-color: transparent;
-  color: var(--text);
+  color: var(--body);
   border: 2px solid var(--primary);
   border-radius: 50%;
   width: 3rem;
@@ -290,7 +290,7 @@ body {
 .text-info { color: var(--info); }
 .text-light { color: var(--light); }
 .text-dark { color: var(--dark); }
-.text-text { color: var(--text); }
+.text-body { color: var(--body); }
 .text-surface { color: var(--surface); }
 
 .bg-primary { background-color: var(--primary); }
@@ -306,7 +306,7 @@ body {
 /* Form Elements */
 input, textarea, select {
   background-color: var(--surface);
-  color: var(--text);
+  color: var(--body);
   border: 1px solid var(--light);
   padding: 0.5rem;
   border-radius: 0.25rem;
@@ -332,14 +332,14 @@ a:hover {
 
 /* Headers */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text);
+  color: var(--body);
   margin-top: 0;
 }
 
 /* Code blocks */
 code {
   background-color: var(--surface);
-  color: var(--text);
+  color: var(--body);
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -347,7 +347,7 @@ code {
 
 pre {
   background-color: var(--surface);
-  color: var(--text);
+  color: var(--body);
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;

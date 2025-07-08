@@ -189,21 +189,6 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
       <section class="color-palette-section">
         <h2>Color Palette</h2>
         <div class="color-grid">
-          <div class="color-swatch bg-color" data-color="bg">
-            <span class="color-name">Background</span>
-            <span class="color-hex" data-color="bg"></span>
-            <span class="color-rgb" data-color="bg"></span>
-          </div>
-          <div class="color-swatch bg-surface" data-color="surface">
-            <span class="color-name">Surface</span>
-            <span class="color-hex" data-color="surface"></span>
-            <span class="color-rgb" data-color="surface"></span>
-          </div>
-          <div class="color-swatch bg-text" data-color="text">
-            <span class="color-name">Text</span>
-            <span class="color-hex" data-color="text"></span>
-            <span class="color-rgb" data-color="text"></span>
-          </div>
           <div class="color-swatch bg-primary" data-color="primary">
             <span class="color-name">Primary</span>
             <span class="color-hex" data-color="primary"></span>
@@ -244,6 +229,21 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <span class="color-hex" data-color="dark"></span>
             <span class="color-rgb" data-color="dark"></span>
           </div>
+          <div class="color-swatch bg-color" data-color="bg">
+            <span class="color-name">Background</span>
+            <span class="color-hex" data-color="bg"></span>
+            <span class="color-rgb" data-color="bg"></span>
+          </div>
+          <div class="color-swatch bg-surface" data-color="surface">
+            <span class="color-name">Surface</span>
+            <span class="color-hex" data-color="surface"></span>
+            <span class="color-rgb" data-color="surface"></span>
+          </div>
+          <div class="color-swatch bg-body" data-color="body">
+            <span class="color-name">Body</span>
+            <span class="color-hex" data-color="body"></span>
+            <span class="color-rgb" data-color="body"></span>
+          </div>		  
         </div>
       </section>
 
@@ -273,8 +273,8 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                     <span>Dark</span>
                   </label>
                   <label class="radio-option">
-                    <input type="radio" name="button-text-color" value="text">
-                    <span>Text</span>
+                    <input type="radio" name="button-text-color" value="body">
+                    <span>Body</span>
                   </label>
                 </div>
               </div>
@@ -328,6 +328,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <p class="text-info">
               Informational messages for helpful tips and details.
             </p>
+			<p class="text-light">
+              Informational messages for helpful tips and details.
+            </p>			
           </div>
 
           <!-- Surface Color Typography -->
@@ -352,6 +355,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               Warning messages for cautionary information.
             </p>
             <p class="text-info">
+              Informational messages for helpful tips and details.
+            </p>
+			<p class="text-light">
               Informational messages for helpful tips and details.
             </p>
           </div>
@@ -551,7 +557,7 @@ const themeManager = {
     margin: 0 auto;
     padding: 1.5rem;
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
     min-height: 100vh;
     margin-top: 80px; /* Space for fixed header */
   }
@@ -574,7 +580,7 @@ const themeManager = {
     border-radius: 50%;
     border: 2px solid var(--primary);
     background: transparent;
-    color: var(--text);
+    color: var(--body);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -610,7 +616,7 @@ const themeManager = {
     border-radius: 50%;
     border: 2px solid var(--secondary);
     background: transparent;
-    color: var(--text);
+    color: var(--body);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -646,7 +652,7 @@ const themeManager = {
     border-radius: 50%;
     border: 2px solid var(--info);
     background: transparent;
-    color: var(--text);
+    color: var(--body);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -775,28 +781,28 @@ const themeManager = {
 
   .interactive-buttons {
     background: var(--surface);
-    color: var(--text);
+    color: var(--body);
   }
 
   .typography-bg {
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
     border-color: var(--surface);
   }
 
   .typography-surface {
     background: var(--surface);
-    color: var(--text);
+    color: var(--body);
   }
 
   .form-elements {
     background: var(--surface);
-    color: var(--text);
+    color: var(--body);
   }
 
   .code-elements {
     background: var(--surface);
-    color: var(--text);
+    color: var(--body);
   }
 
   .code-grid {
@@ -833,7 +839,7 @@ const themeManager = {
 
   .instructions-section {
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
     padding: 1.5rem;
     border: 2px solid var(--primary);
     border-radius: 0.75rem;
@@ -898,7 +904,7 @@ const themeManager = {
 
   /* Typography Classes */
   .text-regular {
-    color: var(--text);
+    color: var(--body);
   }
 
   /* Form Elements */
@@ -916,7 +922,7 @@ const themeManager = {
     border: 1px solid var(--surface);
     border-radius: 0.25rem;
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
   }
 
   .form-textarea {
@@ -926,17 +932,17 @@ const themeManager = {
   /* Color Swatch Background Classes */
   .bg-color[data-bg="bg"] {
     background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--text);
+    color: var(--body);
+    border: 1px solid var(--body);
   }
 
   .bg-surface {
     background: var(--surface);
-    color: var(--text);
+    color: var(--body);
   }
 
-  .bg-text {
-    background: var(--text);
+  .bg-body {
+    background: var(--body);
     color: var(--bg);
   }
 
@@ -962,7 +968,7 @@ const themeManager = {
 
   .bg-warning {
     background: var(--warning);
-    color: var(--text);
+    color: var(--body);
   }
 
   .bg-info {
@@ -972,7 +978,7 @@ const themeManager = {
 
   .bg-light {
     background: var(--light);
-    color: var(--text);
+    color: var(--body);
   }
 
   .bg-dark {
@@ -1075,7 +1081,7 @@ const themeManager = {
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: var(--text);
+    color: var(--body);
     width: 2rem;
     height: 2rem;
     display: flex;
@@ -1134,7 +1140,7 @@ const themeManager = {
   .color-input-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--text);
+    color: var(--body);
     font-weight: 600;
   }
 
@@ -1153,7 +1159,7 @@ const themeManager = {
     border: 2px solid var(--light);
     border-radius: 0.5rem;
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
     font-size: 1rem;
   }
@@ -1198,7 +1204,7 @@ const themeManager = {
     opacity: 0;
     transition: opacity 0.2s ease;
     pointer-events: none;
-    color: var(--text);
+    color: var(--body);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
@@ -1356,7 +1362,7 @@ const themeManager = {
 
   .control-label {
     font-weight: 600 !important;
-    color: var(--text) !important;
+    color: var(--body) !important;
     margin: 0 !important;
     white-space: nowrap !important;
   }
@@ -1373,7 +1379,7 @@ const themeManager = {
     align-items: center !important;
     gap: 0.5rem !important;
     cursor: pointer !important;
-    color: var(--text) !important;
+    color: var(--body) !important;
     font-weight: 500 !important;
     white-space: nowrap !important;
   }
@@ -1389,7 +1395,7 @@ const themeManager = {
     align-items: center !important;
     gap: 0.5rem !important;
     cursor: pointer !important;
-    color: var(--text) !important;
+    color: var(--body) !important;
     font-weight: 500 !important;
     white-space: nowrap !important;
   }
@@ -1441,8 +1447,8 @@ const themeManager = {
     color: var(--dark) !important;
   }
 
-  .btn.text-text {
-    color: var(--text) !important;
+  .btn.text-body {
+    color: var(--body) !important;
   }
 
 
@@ -1951,7 +1957,7 @@ const themeManager = {
       
       buttons.forEach(button => {
         // Remove existing text color classes
-        button.classList.remove('text-light', 'text-dark', 'text-text');
+        button.classList.remove('text-light', 'text-dark', 'text-body');
         // Add the selected text color class
         button.classList.add(`text-${selectedTextColor}`);
       });
