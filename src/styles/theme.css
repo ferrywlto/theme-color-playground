@@ -7,8 +7,8 @@
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
-  --danger: #FF5C8A;
-  --warning: #FFD700;
+  --danger: #8A1C33;
+  --warning: #796400;
   --info: #2F6DB8;
   --light: #F7F7F7;
   --dark: #242424;
@@ -45,8 +45,8 @@ html.theme-light {
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
-  --danger: #FF5C8A;
-  --warning: #FFD700;
+  --danger: #8A1C33;
+  --warning: #796400;
   --info: #2F6DB8;
   --light: #F7F7F7;
   --dark: #242424;
@@ -60,7 +60,7 @@ html.theme-dark {
   --primary: #00D9A8;
   --secondary: #FFC0CB;
   --success: #006564;
-  --danger: #FFA0BC;
+  --danger: #8A1C33;
   --warning: #FFD700;
   --info: #4DA3FF;
   --light: #606060;
