@@ -266,11 +266,15 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                 <div class="radio-group">
                   <label class="radio-option">
                     <input type="radio" name="button-text-color" value="light">
-                    <span>Light Text</span>
+                    <span>Light</span>
                   </label>
                   <label class="radio-option">
                     <input type="radio" name="button-text-color" value="dark">
-                    <span>Dark Text</span>
+                    <span>Dark</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="button-text-color" value="text">
+                    <span>Text</span>
                   </label>
                 </div>
               </div>
@@ -1437,14 +1441,10 @@ const themeManager = {
     color: var(--dark) !important;
   }
 
-  /* Dark theme improvements for better contrast */
-  [data-theme="dark"] .btn.text-light {
-    color: #ffffff !important;
-  }
-
-  [data-theme="dark"] .btn.text-dark {
+  .btn.text-text {
     color: var(--text) !important;
   }
+
 
   /* Both mode text styling */
   .btn.text-both {
@@ -1951,7 +1951,7 @@ const themeManager = {
       
       buttons.forEach(button => {
         // Remove existing text color classes
-        button.classList.remove('text-light', 'text-dark');
+        button.classList.remove('text-light', 'text-dark', 'text-text');
         // Add the selected text color class
         button.classList.add(`text-${selectedTextColor}`);
       });
