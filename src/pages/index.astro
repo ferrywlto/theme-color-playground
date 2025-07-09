@@ -1549,6 +1549,21 @@ const themeManager = {
         : null;
     }
 
+    // Helper function to calculate color brightness (luminance)
+    function getColorBrightness(hex: string): number {
+      const rgb = hexToRgb(hex);
+      if (!rgb) return 0;
+      
+      // Calculate relative luminance using the formula for perceived brightness
+      // Using sRGB coefficients: 0.299 * R + 0.587 * G + 0.114 * B
+      return (rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114) / 255;
+    }
+
+    // Helper function to determine if a color is dark
+    function isColorDark(hex: string): boolean {
+      return getColorBrightness(hex) < 0.5;
+    }
+
     // Function to update color values in the palette
     function updateColorValues() {
       const currentTheme = html.getAttribute("data-theme") || "light";
@@ -1565,12 +1580,23 @@ const themeManager = {
         const rgbElements = document.querySelectorAll(
           `[data-color="${colorName}"].color-rgb`,
         );
+        
+        // Get the color swatch element to update text color
+        const swatchElement = document.querySelector(
+          `.color-swatch[data-color="${colorName}"]`
+        ) as HTMLElement;
 
         hexElements.forEach((el) => (el.textContent = hex));
         if (rgb) {
           rgbElements.forEach(
             (el) => (el.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`),
           );
+        }
+
+        // Set text color based on background brightness
+        if (swatchElement) {
+          const textColor = isColorDark(hex) ? 'var(--light)' : 'var(--dark)';
+          swatchElement.style.color = textColor;
         }
       });
     }
