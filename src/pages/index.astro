@@ -243,6 +243,11 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <span class="color-name">Body</span>
             <span class="color-hex" data-color="body"></span>
             <span class="color-rgb" data-color="body"></span>
+          </div>
+          <div class="color-swatch bg-subtle" data-color="subtle">
+            <span class="color-name">Subtle</span>
+            <span class="color-hex" data-color="subtle"></span>
+            <span class="color-rgb" data-color="subtle"></span>
           </div>		  
         </div>
       </section>
@@ -946,6 +951,11 @@ const themeManager = {
     color: var(--bg);
   }
 
+  .bg-subtle {
+    background: var(--subtle);
+    color: var(--bg);
+  }
+
   .bg-primary {
     background: var(--primary);
     color: var(--bg);
@@ -1479,6 +1489,7 @@ const themeManager = {
         bg: "#FAFAFA",
         surface: "#E4E4E4",
         body: "#4D4D4D",
+        subtle: "#9CA3AF",
         primary: "#006564",
         secondary: "#FFC0CB",
         success: "#00D9A8",
@@ -1492,6 +1503,7 @@ const themeManager = {
         bg: "#242424",
         surface: "#4D4D4D",
         body: "#E4E4E4",
+        subtle: "#6B7280",
         primary: "#00D9A8",
         secondary: "#FFC0CB",
         success: "#006564",

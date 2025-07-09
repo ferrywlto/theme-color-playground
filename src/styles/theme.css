@@ -4,6 +4,7 @@
   --bg: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
+  --subtle: #9CA3AF;
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
@@ -42,6 +43,7 @@ html.theme-light {
   --bg: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
+  --subtle: #9CA3AF;
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
@@ -57,6 +59,7 @@ html.theme-dark {
   --bg: #242424;
   --surface: #4D4D4D;
   --body: #E4E4E4;
+  --subtle: #6B7280;
   --primary: #00D9A8;
   --secondary: #FFC0CB;
   --success: #006564;
@@ -73,6 +76,7 @@ html.theme-dark {
     --bg: #242424;
     --surface: #4D4D4D;
     --body: #E4E4E4;
+    --subtle: #6B7280;
     --primary: #00D9A8;
     --secondary: #FFC0CB;
     --success: #006564;
@@ -302,6 +306,7 @@ body {
 .bg-light { background-color: var(--light); }
 .bg-dark { background-color: var(--dark); }
 .bg-surface { background-color: var(--surface); }
+.bg-subtle { background-color: var(--subtle); }
 
 /* Form Elements */
 input, textarea, select {
