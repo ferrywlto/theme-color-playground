@@ -4,15 +4,16 @@
   --bg: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
-  --subtle: #9CA3AF;
+  --subtle: #656565;
   --primary: #006564;
   --secondary: #FFC0CB;
   --success: #00D9A8;
   --danger: #8A1C33;
-  --warning: #7c6100;
+  --warning: #7C6100;
   --info: #2F6DB8;
   --light: #EFEFEF;
   --dark: #242424;
+  --border: var(--subtle);
   
   /* Spacing Variables */
   --space-xs: 0.25rem;
@@ -43,21 +44,22 @@ html.theme-light {
   --bg: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
-  --subtle: #9CA3AF;
+  --subtle: #656565;
   --primary: #006564;
-  --secondary: #FFC0CB;
-  --success: #00D9A8;
+  --secondary: #D9A0B6;
+  --success: #007047;
   --danger: #8A1C33;
-  --warning: #7c6100;
+  --warning: #7C6100;
   --info: #2F6DB8;
   --light: #EFEFEF;
   --dark: #242424;
+  --border: var(--subtle);
 }
 
 /* Dark Theme */
 html.theme-dark {
   --bg: #242424;
-  --surface: #4D4D4D;
+  --surface: #e4e4e4;
   --body: #E4E4E4;
   --subtle: #6B7280;
   --primary: #00D9A8;
@@ -68,6 +70,7 @@ html.theme-dark {
   --info: #4DA3FF;
   --light: #606060;
   --dark: #000000;
+  --border: var(--subtle);
 }
 
 /* Auto theme based on system preference */
@@ -77,6 +80,7 @@ html.theme-dark {
     --surface: #4D4D4D;
     --body: #E4E4E4;
     --subtle: #6B7280;
+    --muted: var(--subtle);
     --primary: #00D9A8;
     --secondary: #FFC0CB;
     --success: #006564;
@@ -296,6 +300,7 @@ body {
 .text-dark { color: var(--dark); }
 .text-body { color: var(--body); }
 .text-subtle { color: var(--subtle); }
+.text-muted { color: var(--muted); }
 .text-surface { color: var(--surface); }
 
 .bg-primary { background-color: var(--primary); }
@@ -308,6 +313,7 @@ body {
 .bg-dark { background-color: var(--dark); }
 .bg-surface { background-color: var(--surface); }
 .bg-subtle { background-color: var(--subtle); }
+.bg-muted { background-color: var(--muted); }
 
 /* Form Elements */
 input, textarea, select {
