@@ -313,8 +313,11 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
           <div class="example-card typography-bg">
             <h3>Typography on Background</h3>
             <p class="text-regular">
-              Regular text using the main text color for body content.
+              Body text using the main text color for body content.
             </p>
+			<p class="text-subtle">
+			  Subtle colored text for muted content and secondary information.
+			</p>
             <p class="text-primary">
               Primary colored text for important highlights and links.
             </p>
@@ -333,17 +336,22 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <p class="text-info">
               Informational messages for helpful tips and details.
             </p>
-			<p class="text-light">
-              Informational messages for helpful tips and details.
-            </p>			
+			<div class="inner-card">
+			  <p class="text-dark">
+				This is an inner card with a light border and dark text content to demonstrate contrast and readability.
+			  </p>
+			</div>
           </div>
 
           <!-- Surface Color Typography -->
           <div class="example-card typography-surface">
             <h3>Typography on Surface</h3>
             <p class="text-regular">
-              Regular text using the main text color for body content.
+              Body text using the main text color for body content.
             </p>
+			<p class="text-subtle">
+			  Subtle colored text for muted content and secondary information.
+			</p>
             <p class="text-primary">
               Primary colored text for important highlights and links.
             </p>
@@ -362,9 +370,11 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <p class="text-info">
               Informational messages for helpful tips and details.
             </p>
-			<p class="text-light">
-              Informational messages for helpful tips and details.
-            </p>
+            <div class="inner-card">
+              <p class="text-dark">
+                This is an inner card with a light border and dark text content to demonstrate contrast and readability.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -798,6 +808,13 @@ const themeManager = {
   .typography-surface {
     background: var(--surface);
     color: var(--body);
+  }
+
+  .inner-card {
+    background: var(--light);
+    padding: var(--space-md);
+    margin: var(--space-sm) 0;
+    border-radius: var(--radius-md);
   }
 
   .form-elements {
@@ -1496,7 +1513,7 @@ const themeManager = {
         danger: "#8A1C33",
         warning: "#FFD700",
         info: "#2F6DB8",
-        light: "#F7F7F7",
+        light: "#EFEFEF",
         dark: "#262626",
       },
       dark: {

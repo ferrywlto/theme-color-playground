@@ -11,7 +11,7 @@
   --danger: #8A1C33;
   --warning: #796400;
   --info: #2F6DB8;
-  --light: #F7F7F7;
+  --light: #EFEFEF;
   --dark: #242424;
   
   /* Spacing Variables */
@@ -50,7 +50,7 @@ html.theme-light {
   --danger: #8A1C33;
   --warning: #796400;
   --info: #2F6DB8;
-  --light: #F7F7F7;
+  --light: #EFEFEF;
   --dark: #242424;
 }
 
@@ -295,6 +295,7 @@ body {
 .text-light { color: var(--light); }
 .text-dark { color: var(--dark); }
 .text-body { color: var(--body); }
+.text-subtle { color: var(--subtle); }
 .text-surface { color: var(--surface); }
 
 .bg-primary { background-color: var(--primary); }
