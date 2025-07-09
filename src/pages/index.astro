@@ -151,17 +151,50 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             >
           </div>
           <div class="color-picker-body">
+            <!-- Contrast Ratio Information -->
+            <div class="contrast-info-section">
+              <h4>Contrast Ratios</h4>
+              <div class="contrast-info-grid">
+                <div class="contrast-info-group">
+                  <h5>Current Color</h5>
+                  <div class="contrast-ratio-item">
+                    <span class="contrast-label">vs Background:</span>
+                    <span class="contrast-value" id="current-bg-contrast">-</span>
+                    <span class="contrast-rating" id="current-bg-rating"></span>
+                  </div>
+                  <div class="contrast-ratio-item">
+                    <span class="contrast-label">vs Surface:</span>
+                    <span class="contrast-value" id="current-surface-contrast">-</span>
+                    <span class="contrast-rating" id="current-surface-rating"></span>
+                  </div>
+                </div>
+                <div class="contrast-info-group">
+                  <h5>New Color</h5>
+                  <div class="contrast-ratio-item">
+                    <span class="contrast-label">vs Background:</span>
+                    <span class="contrast-value" id="new-bg-contrast">-</span>
+                    <span class="contrast-rating" id="new-bg-rating"></span>
+                  </div>
+                  <div class="contrast-ratio-item">
+                    <span class="contrast-label">vs Surface:</span>
+                    <span class="contrast-value" id="new-surface-contrast">-</span>
+                    <span class="contrast-rating" id="new-surface-rating"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Color Preview Swatches -->
             <div class="color-preview">
               <div class="color-preview-current" id="color-preview-current">
               </div>
               <div class="color-preview-new" id="color-preview-new"></div>
             </div>
             <div class="color-input-group">
-              <label for="color-picker-input">Choose Color:</label>
               <input
                 type="color"
                 id="color-picker-input"
                 class="color-picker-input"
+                style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
               />
               <div class="input-tabs">
                 <button type="button" class="input-tab active" data-tab="hex">HEX</button>
@@ -228,10 +261,10 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               <button id="color-picker-apply" class="btn btn-primary"
                 >Apply</button
               >
-              <button id="color-picker-reset" class="btn btn-secondary"
+              <button id="color-picker-reset" class="btn btn-warning"
                 >Reset</button
               >
-              <button id="color-picker-cancel" class="btn btn-light"
+              <button id="color-picker-cancel" class="btn btn-secondary"
                 >Cancel</button
               >
             </div>
@@ -1189,6 +1222,17 @@ const themeManager = {
     font-size: 0.75rem;
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+  }
+  
+  .color-preview-new {
+    cursor: pointer;
+  }
+
+  .color-preview-current:hover,
+  .color-preview-new:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 101, 100, 0.2);
   }
 
   .color-preview-current::after {
@@ -1201,6 +1245,129 @@ const themeManager = {
     content: "New";
     position: absolute;
     bottom: 0.25rem;
+  }
+
+  .contrast-info-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: 0.5rem;
+    border: 1px solid var(--light);
+  }
+
+  .contrast-info-section h4 {
+    margin: 0 0 1rem 0;
+    color: var(--primary);
+    font-size: 1.125rem;
+  }
+
+  .contrast-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contrast-info-group {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--light);
+  }
+
+  .contrast-info-group h5 {
+    margin: 0 0 0.75rem 0;
+    color: var(--body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .contrast-ratio-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .contrast-ratio-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  .contrast-label {
+    font-weight: 500;
+    color: var(--body);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .contrast-value {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .contrast-rating {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    text-align: center;
+    justify-self: end;
+  }
+
+  .contrast-rating.excellent {
+    color: white;
+    background: var(--success);
+  }
+
+  .contrast-rating.good {
+    color: white;
+    background: var(--primary);
+  }
+
+  .contrast-rating.poor {
+    color: var(--dark);
+    background: var(--warning);
+  }
+
+  .contrast-rating.fail {
+    color: white;
+    background: var(--danger);
+  }
+
+  /* Responsive contrast info for mobile */
+  @media (max-width: 640px) {
+    .contrast-info-grid {
+      gap: 0.75rem;
+    }
+    
+    .contrast-info-group {
+      padding: 0.75rem;
+    }
+    
+    .contrast-ratio-item {
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 0.5rem;
+      padding: 0.375rem 0;
+    }
+    
+    .contrast-label,
+    .contrast-value {
+      font-size: 0.8125rem;
+    }
+    
+    .contrast-rating {
+      font-size: 0.6875rem;
+      padding: 0.0625rem 0.25rem;
+    }
   }
 
   .color-input-group {
@@ -1344,12 +1511,12 @@ const themeManager = {
   .color-picker-actions {
     display: flex;
     gap: 0.75rem;
-    justify-content: flex-end;
+    justify-content: stretch;
   }
 
   .color-picker-actions .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    flex: 1;
+    text-align: center;
   }
 
   /* Make color swatches clickable */
@@ -1698,14 +1865,104 @@ const themeManager = {
       const rgb = hexToRgb(hex);
       if (!rgb) return 0;
       
-      // Calculate relative luminance using the formula for perceived brightness
-      // Using sRGB coefficients: 0.299 * R + 0.587 * G + 0.114 * B
-      return (rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114) / 255;
+      // Convert sRGB to linear RGB
+      const toLinear = (value: number) => {
+        const v = value / 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      };
+      
+      const r = toLinear(rgb.r);
+      const g = toLinear(rgb.g);
+      const b = toLinear(rgb.b);
+      
+      // Calculate relative luminance using ITU-R BT.709 coefficients
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
     }
 
-    // Helper function to determine if a color is dark
+    // Helper function to check if a color is dark
     function isColorDark(hex: string): boolean {
-      return getColorBrightness(hex) < 0.5;
+      const luminance = getColorBrightness(hex);
+      return luminance < 0.5;
+    }
+
+    // Calculate contrast ratio between two colors
+    function calculateContrastRatio(color1: string, color2: string): number {
+      const luminance1 = getColorBrightness(color1);
+      const luminance2 = getColorBrightness(color2);
+      
+      const lighter = Math.max(luminance1, luminance2);
+      const darker = Math.min(luminance1, luminance2);
+      
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    // Get contrast rating and accessibility info
+    function getContrastRating(ratio: number): { rating: string, className: string } {
+      if (ratio >= 7) {
+        return { rating: "AAA", className: "excellent" };
+      } else if (ratio >= 4.5) {
+        return { rating: "AA", className: "good" };
+      } else if (ratio >= 3) {
+        return { rating: "AA Large", className: "poor" };
+      } else {
+        return { rating: "Fail", className: "fail" };
+      }
+    }
+
+    // Update contrast ratio display in the color picker
+    function updateContrastRatios(currentColor: string, newColor: string) {
+      const currentTheme = html.getAttribute("data-theme") || "light";
+      const bgColor = (colorValues as any)[currentTheme].bg;
+      const surfaceColor = (colorValues as any)[currentTheme].surface;
+
+      // Calculate contrast ratios for current color
+      const currentBgRatio = calculateContrastRatio(currentColor, bgColor);
+      const currentSurfaceRatio = calculateContrastRatio(currentColor, surfaceColor);
+      
+      // Calculate contrast ratios for new color
+      const newBgRatio = calculateContrastRatio(newColor, bgColor);
+      const newSurfaceRatio = calculateContrastRatio(newColor, surfaceColor);
+
+      // Get rating info
+      const currentBgRating = getContrastRating(currentBgRatio);
+      const currentSurfaceRating = getContrastRating(currentSurfaceRatio);
+      const newBgRating = getContrastRating(newBgRatio);
+      const newSurfaceRating = getContrastRating(newSurfaceRatio);
+
+      // Update UI elements
+      const currentBgContrastEl = document.getElementById("current-bg-contrast");
+      const currentBgRatingEl = document.getElementById("current-bg-rating");
+      const currentSurfaceContrastEl = document.getElementById("current-surface-contrast");
+      const currentSurfaceRatingEl = document.getElementById("current-surface-rating");
+      
+      const newBgContrastEl = document.getElementById("new-bg-contrast");
+      const newBgRatingEl = document.getElementById("new-bg-rating");
+      const newSurfaceContrastEl = document.getElementById("new-surface-contrast");
+      const newSurfaceRatingEl = document.getElementById("new-surface-rating");
+
+      if (currentBgContrastEl) currentBgContrastEl.textContent = currentBgRatio.toFixed(2);
+      if (currentBgRatingEl) {
+        currentBgRatingEl.textContent = currentBgRating.rating;
+        currentBgRatingEl.className = `contrast-rating ${currentBgRating.className}`;
+      }
+      
+      if (currentSurfaceContrastEl) currentSurfaceContrastEl.textContent = currentSurfaceRatio.toFixed(2);
+      if (currentSurfaceRatingEl) {
+        currentSurfaceRatingEl.textContent = currentSurfaceRating.rating;
+        currentSurfaceRatingEl.className = `contrast-rating ${currentSurfaceRating.className}`;
+      }
+
+      if (newBgContrastEl) newBgContrastEl.textContent = newBgRatio.toFixed(2);
+      if (newBgRatingEl) {
+        newBgRatingEl.textContent = newBgRating.rating;
+        newBgRatingEl.className = `contrast-rating ${newBgRating.className}`;
+      }
+      
+      if (newSurfaceContrastEl) newSurfaceContrastEl.textContent = newSurfaceRatio.toFixed(2);
+      if (newSurfaceRatingEl) {
+        newSurfaceRatingEl.textContent = newSurfaceRating.rating;
+        newSurfaceRatingEl.className = `contrast-rating ${newSurfaceRating.className}`;
+      }
     }
 
     // Function to update color values in the palette
@@ -2106,6 +2363,9 @@ const themeManager = {
       colorPreviewCurrent.style.backgroundColor = currentColor;
       colorPreviewNew.style.backgroundColor = currentColor;
 
+      // Initialize contrast ratios
+      updateContrastRatios(currentColor, currentColor);
+
       // Show modal
       colorPickerModal.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -2132,6 +2392,13 @@ const themeManager = {
       }
       
       colorPreviewNew.style.backgroundColor = newColor;
+      
+      // Update contrast ratios
+      if (currentEditingColor && colorPreviewCurrent) {
+        const currentTheme = html.getAttribute("data-theme") || "light";
+        const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
+        updateContrastRatios(originalColor, newColor);
+      }
     }
 
     function updateColorFromHex() {
@@ -2149,6 +2416,13 @@ const themeManager = {
         }
         
         colorPreviewNew.style.backgroundColor = hexValue;
+        
+        // Update contrast ratios
+        if (currentEditingColor) {
+          const currentTheme = html.getAttribute("data-theme") || "light";
+          const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
+          updateContrastRatios(originalColor, hexValue);
+        }
       }
     }
 
@@ -2192,6 +2466,13 @@ const themeManager = {
         colorHexInput.value = hexValue;
         colorPickerInput.value = hexValue;
         colorPreviewNew.style.backgroundColor = hexValue;
+        
+        // Update contrast ratios
+        if (currentEditingColor) {
+          const currentTheme = html.getAttribute("data-theme") || "light";
+          const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
+          updateContrastRatios(originalColor, hexValue);
+        }
       }
     }
 
@@ -2296,6 +2577,16 @@ const themeManager = {
       colorPickerInput.addEventListener("input", updateColorPreview);
       console.log("Color picker input listener added");
     }
+    
+    // Add click event listeners to color preview swatches to open system color picker
+    if (colorPreviewNew) {
+      colorPreviewNew.addEventListener("click", () => {
+        if (colorPickerInput) {
+          colorPickerInput.click();
+        }
+      });
+    }
+    
     if (colorHexInput)
       colorHexInput.addEventListener("input", updateColorFromHex);
     
