@@ -186,6 +186,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                         class="color-rgb-input"
                         min="0"
                         max="255"
+                        step="1"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                         placeholder="0"
                       />
                     </div>
@@ -197,6 +200,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                         class="color-rgb-input"
                         min="0"
                         max="255"
+                        step="1"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                         placeholder="0"
                       />
                     </div>
@@ -208,6 +214,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                         class="color-rgb-input"
                         min="0"
                         max="255"
+                        step="1"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                         placeholder="0"
                       />
                     </div>
@@ -1302,12 +1311,23 @@ const themeManager = {
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
     font-size: 0.875rem;
     text-align: center;
+    transition: var(--transition);
   }
 
   .color-rgb-input:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 2px rgba(0, 101, 100, 0.2);
+  }
+
+  .color-rgb-input:invalid,
+  .color-rgb-input.error {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 2px rgba(138, 28, 51, 0.2);
+  }
+
+  .color-rgb-input:valid {
+    border-color: var(--success);
   }
 
   /* Remove spinner arrows from number inputs */
@@ -2135,10 +2155,38 @@ const themeManager = {
     function updateColorFromRgb() {
       if (!colorRInput || !colorGInput || !colorBInput || !colorHexInput || !colorPickerInput || !colorPreviewNew) return;
       
-      const r = parseInt(colorRInput.value) || 0;
-      const g = parseInt(colorGInput.value) || 0;
-      const b = parseInt(colorBInput.value) || 0;
+      // Parse and validate input values
+      let r = parseInt(colorRInput.value) || 0;
+      let g = parseInt(colorGInput.value) || 0;
+      let b = parseInt(colorBInput.value) || 0;
       
+      // Clamp values to valid range
+      r = Math.max(0, Math.min(255, r));
+      g = Math.max(0, Math.min(255, g));
+      b = Math.max(0, Math.min(255, b));
+      
+      // Update input values with clamped values
+      colorRInput.value = r.toString();
+      colorGInput.value = g.toString();
+      colorBInput.value = b.toString();
+      
+      // Remove error classes
+      colorRInput.classList.remove('error');
+      colorGInput.classList.remove('error');
+      colorBInput.classList.remove('error');
+      
+      // Validate each input and add error class if needed
+      if (r < 0 || r > 255 || isNaN(r)) {
+        colorRInput.classList.add('error');
+      }
+      if (g < 0 || g > 255 || isNaN(g)) {
+        colorGInput.classList.add('error');
+      }
+      if (b < 0 || b > 255 || isNaN(b)) {
+        colorBInput.classList.add('error');
+      }
+      
+      // Update color if all values are valid
       if (isValidRgb(r, g, b)) {
         const hexValue = rgbToHex(r, g, b);
         colorHexInput.value = hexValue;
@@ -2189,6 +2237,60 @@ const themeManager = {
       closeColorPicker();
     }
 
+    // Enhanced RGB input handlers
+    function handleRgbBlur(event: Event) {
+      const input = event.target as HTMLInputElement;
+      let value = parseInt(input.value);
+      
+      if (isNaN(value)) {
+        value = 0;
+      } else {
+        value = Math.max(0, Math.min(255, value));
+      }
+      
+      input.value = value.toString();
+      updateColorFromRgb();
+    }
+
+    function handleRgbKeydown(event: KeyboardEvent) {
+      const input = event.target as HTMLInputElement;
+      const key = event.key;
+      
+      // Allow navigation keys, backspace, delete, tab, escape, enter
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'Tab', 'Escape', 'Enter', 'Backspace', 'Delete'].includes(key)) {
+        // Handle arrow up/down for incrementing/decrementing
+        if (key === 'ArrowUp') {
+          event.preventDefault();
+          let value = parseInt(input.value) || 0;
+          value = Math.min(255, value + 1);
+          input.value = value.toString();
+          updateColorFromRgb();
+        } else if (key === 'ArrowDown') {
+          event.preventDefault();
+          let value = parseInt(input.value) || 0;
+          value = Math.max(0, value - 1);
+          input.value = value.toString();
+          updateColorFromRgb();
+        }
+        return;
+      }
+      
+      // Allow control/cmd key combinations
+      if (event.ctrlKey || event.metaKey) {
+        return;
+      }
+      
+      // Only allow digits
+      if (!/^[0-9]$/.test(key)) {
+        event.preventDefault();
+      }
+    }
+
+    function preventScrollOnNumberInput(event: WheelEvent) {
+      // Prevent scroll wheel from changing number input values
+      event.preventDefault();
+    }
+
     // Event listeners for color picker
     if (colorPickerInput) {
       colorPickerInput.addEventListener("input", updateColorPreview);
@@ -2196,12 +2298,26 @@ const themeManager = {
     }
     if (colorHexInput)
       colorHexInput.addEventListener("input", updateColorFromHex);
-    if (colorRInput)
+    
+    // Enhanced RGB input event listeners
+    if (colorRInput) {
       colorRInput.addEventListener("input", updateColorFromRgb);
-    if (colorGInput)
+      colorRInput.addEventListener("blur", handleRgbBlur);
+      colorRInput.addEventListener("keydown", handleRgbKeydown);
+      colorRInput.addEventListener("wheel", preventScrollOnNumberInput);
+    }
+    if (colorGInput) {
       colorGInput.addEventListener("input", updateColorFromRgb);
-    if (colorBInput)
+      colorGInput.addEventListener("blur", handleRgbBlur);
+      colorGInput.addEventListener("keydown", handleRgbKeydown);
+      colorGInput.addEventListener("wheel", preventScrollOnNumberInput);
+    }
+    if (colorBInput) {
       colorBInput.addEventListener("input", updateColorFromRgb);
+      colorBInput.addEventListener("blur", handleRgbBlur);
+      colorBInput.addEventListener("keydown", handleRgbKeydown);
+      colorBInput.addEventListener("wheel", preventScrollOnNumberInput);
+    }
     if (colorPickerClose)
       colorPickerClose.addEventListener("click", closeColorPicker);
     if (colorPickerOverlay)
