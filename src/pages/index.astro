@@ -257,16 +257,18 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                 </div>
               </div>
             </div>
-            <div class="color-picker-actions">
-              <button id="color-picker-apply" class="btn btn-primary"
-                >Apply</button
-              >
-              <button id="color-picker-reset" class="btn btn-warning"
-                >Reset</button
-              >
-              <button id="color-picker-cancel" class="btn btn-secondary"
-                >Cancel</button
-              >
+            <div class="color-picker-actions-container">
+              <div class="color-picker-actions">
+                <button id="color-picker-apply" class="btn btn-primary"
+                  >Apply</button
+                >
+                <button id="color-picker-reset" class="btn btn-warning"
+                  >Reset</button
+                >
+                <button id="color-picker-cancel" class="btn btn-secondary"
+                  >Cancel</button
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -1200,6 +1202,14 @@ const themeManager = {
 
   .color-picker-body {
     padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color-picker-actions-container {
+    margin-top: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .color-preview {
@@ -1518,11 +1528,17 @@ const themeManager = {
     display: flex;
     gap: 0.75rem;
     justify-content: stretch;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .color-picker-actions .btn {
     flex: 1;
     text-align: center;
+    box-sizing: border-box;
+    min-width: 0;
   }
 
   /* Make color swatches clickable */
