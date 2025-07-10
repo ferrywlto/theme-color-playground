@@ -107,6 +107,11 @@ body {
   line-height: 1.6;
 }
 
+html {
+  background-color: var(--bg);
+  transition: var(--transition);
+}
+
 /* Surface Elements */
 .surface {
   background-color: var(--surface);
@@ -131,6 +136,7 @@ body {
 
 .btn-primary {
   background-color: var(--primary);
+  color: white;
 }
 
 .btn-primary:hover {
@@ -139,6 +145,7 @@ body {
 
 .btn-secondary {
   background-color: var(--secondary);
+  color: white;
 }
 
 .btn-secondary:hover {
@@ -147,6 +154,7 @@ body {
 
 .btn-success {
   background-color: var(--success);
+  color: white;
 }
 
 .btn-success:hover {
@@ -155,6 +163,7 @@ body {
 
 .btn-danger {
   background-color: var(--danger);
+  color: white;
 }
 
 .btn-danger:hover {
@@ -163,6 +172,7 @@ body {
 
 .btn-warning {
   background-color: var(--warning);
+  color: white;
 }
 
 .btn-warning:hover {
@@ -171,6 +181,7 @@ body {
 
 .btn-info {
   background-color: var(--info);
+  color: white;
 }
 
 .btn-info:hover {
