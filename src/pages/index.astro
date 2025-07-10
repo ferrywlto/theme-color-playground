@@ -196,66 +196,14 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
                 />
               </div>
             </div>
-            <div class="color-input-group">
-              <div class="input-tabs">
-                <button type="button" class="input-tab active" data-tab="hex">HEX</button>
-                <button type="button" class="input-tab" data-tab="rgb">RGB</button>
+            <div class="color-values-display">
+              <div class="color-value-item">
+                <label class="color-value-label">HEX</label>
+                <span id="color-hex-display" class="color-value-text">#000000</span>
               </div>
-              <div class="input-content">
-                <div class="input-panel active" data-panel="hex">
-                  <input
-                    type="text"
-                    id="color-hex-input"
-                    class="color-hex-input"
-                    placeholder="#000000"
-                  />
-                </div>
-                <div class="input-panel" data-panel="rgb">
-                  <div class="rgb-inputs">
-                    <div class="rgb-input-group">
-                      <label for="color-r-input">R</label>
-                      <input
-                        type="number"
-                        id="color-r-input"
-                        class="color-rgb-input"
-                        min="0"
-                        max="255"
-                        step="1"
-                        inputmode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="0"
-                      />
-                    </div>
-                    <div class="rgb-input-group">
-                      <label for="color-g-input">G</label>
-                      <input
-                        type="number"
-                        id="color-g-input"
-                        class="color-rgb-input"
-                        min="0"
-                        max="255"
-                        step="1"
-                        inputmode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="0"
-                      />
-                    </div>
-                    <div class="rgb-input-group">
-                      <label for="color-b-input">B</label>
-                      <input
-                        type="number"
-                        id="color-b-input"
-                        class="color-rgb-input"
-                        min="0"
-                        max="255"
-                        step="1"
-                        inputmode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="0"
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div class="color-value-item">
+                <label class="color-value-label">RGB</label>
+                <span id="color-rgb-display" class="color-value-text">rgb(0, 0, 0)</span>
               </div>
             </div>
             <div class="color-picker-actions-container">
@@ -1172,14 +1120,14 @@ const themeManager = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--light);
   }
 
   .color-picker-header h3 {
     margin: 0;
     color: var(--primary);
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 
   .color-picker-close {
@@ -1356,6 +1304,11 @@ const themeManager = {
     background: var(--danger);
   }
 
+  /* Light theme specific: white text for AA Large badge */
+  [data-theme="light"] .contrast-rating.poor {
+    color: white;
+  }
+
   /* Responsive contrast info for mobile */
   @media (max-width: 640px) {
     .contrast-info-grid {
@@ -1523,6 +1476,44 @@ const themeManager = {
 
   .color-rgb-input[type=number] {
     -moz-appearance: textfield;
+  }
+
+  /* Color Values Display */
+  .color-values-display {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: 0.5rem;
+    border: 1px solid var(--light);
+  }
+
+  .color-value-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .color-value-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .color-value-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--body);
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+    background: var(--bg);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--light);
   }
 
   .color-picker-actions {
@@ -2116,18 +2107,8 @@ const themeManager = {
     const colorPickerInput = document.getElementById(
       "color-picker-input",
     ) as HTMLInputElement;
-    const colorHexInput = document.getElementById(
-      "color-hex-input",
-    ) as HTMLInputElement;
-    const colorRInput = document.getElementById(
-      "color-r-input",
-    ) as HTMLInputElement;
-    const colorGInput = document.getElementById(
-      "color-g-input",
-    ) as HTMLInputElement;
-    const colorBInput = document.getElementById(
-      "color-b-input",
-    ) as HTMLInputElement;
+    const colorHexDisplay = document.getElementById("color-hex-display");
+    const colorRgbDisplay = document.getElementById("color-rgb-display");
     const colorPreviewCurrent = document.getElementById(
       "color-preview-current",
     );
@@ -2140,50 +2121,7 @@ const themeManager = {
     const downloadConfigBtn = document.getElementById("download-config");
     const uploadConfigBtn = document.getElementById("upload-config");
     const fileInput = document.getElementById("file-input") as HTMLInputElement;
-    const inputTabs = document.querySelectorAll(".input-tab");
-    const inputPanels = document.querySelectorAll(".input-panel");
-
     let currentEditingColor: string = "";
-
-    // Color conversion utilities
-    function rgbToHex(r: number, g: number, b: number): string {
-      return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-    }
-
-    function isValidHex(hex: string): boolean {
-      return /^#[0-9A-F]{6}$/i.test(hex);
-    }
-
-    function isValidRgb(r: number, g: number, b: number): boolean {
-      return r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255;
-    }
-
-    // Tab switching functionality
-    function switchTab(tabName: string) {
-      inputTabs.forEach(tab => {
-        tab.classList.remove('active');
-        if (tab.getAttribute('data-tab') === tabName) {
-          tab.classList.add('active');
-        }
-      });
-
-      inputPanels.forEach(panel => {
-        panel.classList.remove('active');
-        if (panel.getAttribute('data-panel') === tabName) {
-          panel.classList.add('active');
-        }
-      });
-    }
-
-    // Event listeners for tabs
-    inputTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const tabName = tab.getAttribute('data-tab');
-        if (tabName) {
-          switchTab(tabName);
-        }
-      });
-    });
 
     // Download configuration functionality
     function downloadThemeConfig() {
@@ -2352,7 +2290,8 @@ const themeManager = {
         !colorPickerModal ||
         !colorPickerTitle ||
         !colorPickerInput ||
-        !colorHexInput ||
+        !colorHexDisplay ||
+        !colorRgbDisplay ||
         !colorPreviewCurrent ||
         !colorPreviewNew
       ) {
@@ -2374,14 +2313,12 @@ const themeManager = {
       // Update modal content
       colorPickerTitle.textContent = `Edit ${colorName.charAt(0).toUpperCase() + colorName.slice(1)} Color`;
       colorPickerInput.value = currentColor;
-      colorHexInput.value = currentColor;
       
-      // Update RGB inputs
+      // Update display elements
+      colorHexDisplay.textContent = currentColor;
       const rgb = hexToRgb(currentColor);
-      if (rgb && colorRInput && colorGInput && colorBInput) {
-        colorRInput.value = rgb.r.toString();
-        colorGInput.value = rgb.g.toString();
-        colorBInput.value = rgb.b.toString();
+      if (rgb) {
+        colorRgbDisplay.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
       }
       
       colorPreviewCurrent.style.backgroundColor = currentColor;
@@ -2403,16 +2340,16 @@ const themeManager = {
     }
 
     function updateColorPreview() {
-      if (!colorPickerInput || !colorHexInput || !colorPreviewNew) return;
+      if (!colorPickerInput || !colorHexDisplay || !colorRgbDisplay || !colorPreviewNew) return;
       const newColor = colorPickerInput.value;
-      colorHexInput.value = newColor;
       
-      // Update RGB inputs
+      // Update display elements
+      colorHexDisplay.textContent = newColor;
+      
+      // Update RGB display
       const rgb = hexToRgb(newColor);
-      if (rgb && colorRInput && colorGInput && colorBInput) {
-        colorRInput.value = rgb.r.toString();
-        colorGInput.value = rgb.g.toString();
-        colorBInput.value = rgb.b.toString();
+      if (rgb) {
+        colorRgbDisplay.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
       }
       
       colorPreviewNew.style.backgroundColor = newColor;
@@ -2422,81 +2359,6 @@ const themeManager = {
         const currentTheme = html.getAttribute("data-theme") || "light";
         const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
         updateContrastRatios(originalColor, newColor);
-      }
-    }
-
-    function updateColorFromHex() {
-      if (!colorHexInput || !colorPickerInput || !colorPreviewNew) return;
-      const hexValue = colorHexInput.value;
-      if (isValidHex(hexValue)) {
-        colorPickerInput.value = hexValue;
-        
-        // Update RGB inputs
-        const rgb = hexToRgb(hexValue);
-        if (rgb && colorRInput && colorGInput && colorBInput) {
-          colorRInput.value = rgb.r.toString();
-          colorGInput.value = rgb.g.toString();
-          colorBInput.value = rgb.b.toString();
-        }
-        
-        colorPreviewNew.style.backgroundColor = hexValue;
-        
-        // Update contrast ratios
-        if (currentEditingColor) {
-          const currentTheme = html.getAttribute("data-theme") || "light";
-          const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
-          updateContrastRatios(originalColor, hexValue);
-        }
-      }
-    }
-
-    function updateColorFromRgb() {
-      if (!colorRInput || !colorGInput || !colorBInput || !colorHexInput || !colorPickerInput || !colorPreviewNew) return;
-      
-      // Parse and validate input values
-      let r = parseInt(colorRInput.value) || 0;
-      let g = parseInt(colorGInput.value) || 0;
-      let b = parseInt(colorBInput.value) || 0;
-      
-      // Clamp values to valid range
-      r = Math.max(0, Math.min(255, r));
-      g = Math.max(0, Math.min(255, g));
-      b = Math.max(0, Math.min(255, b));
-      
-      // Update input values with clamped values
-      colorRInput.value = r.toString();
-      colorGInput.value = g.toString();
-      colorBInput.value = b.toString();
-      
-      // Remove error classes
-      colorRInput.classList.remove('error');
-      colorGInput.classList.remove('error');
-      colorBInput.classList.remove('error');
-      
-      // Validate each input and add error class if needed
-      if (r < 0 || r > 255 || isNaN(r)) {
-        colorRInput.classList.add('error');
-      }
-      if (g < 0 || g > 255 || isNaN(g)) {
-        colorGInput.classList.add('error');
-      }
-      if (b < 0 || b > 255 || isNaN(b)) {
-        colorBInput.classList.add('error');
-      }
-      
-      // Update color if all values are valid
-      if (isValidRgb(r, g, b)) {
-        const hexValue = rgbToHex(r, g, b);
-        colorHexInput.value = hexValue;
-        colorPickerInput.value = hexValue;
-        colorPreviewNew.style.backgroundColor = hexValue;
-        
-        // Update contrast ratios
-        if (currentEditingColor) {
-          const currentTheme = html.getAttribute("data-theme") || "light";
-          const originalColor = (colorValues as any)[currentTheme][currentEditingColor];
-          updateContrastRatios(originalColor, hexValue);
-        }
       }
     }
 
@@ -2543,59 +2405,6 @@ const themeManager = {
     }
 
     // Enhanced RGB input handlers
-    function handleRgbBlur(event: Event) {
-      const input = event.target as HTMLInputElement;
-      let value = parseInt(input.value);
-      
-      if (isNaN(value)) {
-        value = 0;
-      } else {
-        value = Math.max(0, Math.min(255, value));
-      }
-      
-      input.value = value.toString();
-      updateColorFromRgb();
-    }
-
-    function handleRgbKeydown(event: KeyboardEvent) {
-      const input = event.target as HTMLInputElement;
-      const key = event.key;
-      
-      // Allow navigation keys, backspace, delete, tab, escape, enter
-      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'Tab', 'Escape', 'Enter', 'Backspace', 'Delete'].includes(key)) {
-        // Handle arrow up/down for incrementing/decrementing
-        if (key === 'ArrowUp') {
-          event.preventDefault();
-          let value = parseInt(input.value) || 0;
-          value = Math.min(255, value + 1);
-          input.value = value.toString();
-          updateColorFromRgb();
-        } else if (key === 'ArrowDown') {
-          event.preventDefault();
-          let value = parseInt(input.value) || 0;
-          value = Math.max(0, value - 1);
-          input.value = value.toString();
-          updateColorFromRgb();
-        }
-        return;
-      }
-      
-      // Allow control/cmd key combinations
-      if (event.ctrlKey || event.metaKey) {
-        return;
-      }
-      
-      // Only allow digits
-      if (!/^[0-9]$/.test(key)) {
-        event.preventDefault();
-      }
-    }
-
-    function preventScrollOnNumberInput(event: WheelEvent) {
-      // Prevent scroll wheel from changing number input values
-      event.preventDefault();
-    }
-
     // Event listeners for color picker
     if (colorPickerInput) {
       colorPickerInput.addEventListener("input", updateColorPreview);
@@ -2604,29 +2413,6 @@ const themeManager = {
     
     // Color picker input is now positioned directly over the new color swatch
     // No need for additional click handlers as the input handles clicks directly
-    
-    if (colorHexInput)
-      colorHexInput.addEventListener("input", updateColorFromHex);
-    
-    // Enhanced RGB input event listeners
-    if (colorRInput) {
-      colorRInput.addEventListener("input", updateColorFromRgb);
-      colorRInput.addEventListener("blur", handleRgbBlur);
-      colorRInput.addEventListener("keydown", handleRgbKeydown);
-      colorRInput.addEventListener("wheel", preventScrollOnNumberInput);
-    }
-    if (colorGInput) {
-      colorGInput.addEventListener("input", updateColorFromRgb);
-      colorGInput.addEventListener("blur", handleRgbBlur);
-      colorGInput.addEventListener("keydown", handleRgbKeydown);
-      colorGInput.addEventListener("wheel", preventScrollOnNumberInput);
-    }
-    if (colorBInput) {
-      colorBInput.addEventListener("input", updateColorFromRgb);
-      colorBInput.addEventListener("blur", handleRgbBlur);
-      colorBInput.addEventListener("keydown", handleRgbKeydown);
-      colorBInput.addEventListener("wheel", preventScrollOnNumberInput);
-    }
     if (colorPickerClose)
       colorPickerClose.addEventListener("click", closeColorPicker);
     if (colorPickerOverlay)
