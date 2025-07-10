@@ -187,15 +187,16 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <div class="color-preview">
               <div class="color-preview-current" id="color-preview-current">
               </div>
-              <div class="color-preview-new" id="color-preview-new"></div>
+              <div class="color-preview-new" id="color-preview-new">
+                <input
+                  type="color"
+                  id="color-picker-input"
+                  class="color-picker-input"
+                  style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
+                />
+              </div>
             </div>
             <div class="color-input-group">
-              <input
-                type="color"
-                id="color-picker-input"
-                class="color-picker-input"
-                style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
-              />
               <div class="input-tabs">
                 <button type="button" class="input-tab active" data-tab="hex">HEX</button>
                 <button type="button" class="input-tab" data-tab="rgb">RGB</button>
