@@ -198,10 +198,26 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             </div>
             <div class="color-values-display">
               <span class="color-value-label">HEX:</span>
-              <span id="color-hex-display" class="color-value-text">#000000</span>
+              <span id="color-hex-display" class="color-value-text hex-value">#000000</span>
+              <button id="copy-hex-btn" class="copy-btn" title="Copy HEX value">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="m5 15-2-2 2-2"></path>
+                  <path d="M5 9v6"></path>
+                  <path d="M1 3h4"></path>
+                </svg>
+              </button>
               <span class="color-value-separator">|</span>
               <span class="color-value-label">RGB:</span>
               <span id="color-rgb-display" class="color-value-text">(0, 0, 0)</span>
+              <button id="copy-rgb-btn" class="copy-btn" title="Copy RGB value">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="m5 15-2-2 2-2"></path>
+                  <path d="M5 9v6"></path>
+                  <path d="M1 3h4"></path>
+                </svg>
+              </button>
             </div>
             <div class="color-picker-actions-container">
               <div class="color-picker-actions">
@@ -1493,7 +1509,7 @@ const themeManager = {
   .color-value-label {
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--secondary);
+    color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -1504,10 +1520,51 @@ const themeManager = {
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   }
 
+  .color-value-text.hex-value {
+    padding: 0.25rem 0.5rem;
+    background: var(--bg);
+    border-radius: 0.25rem;
+    border: 1px solid var(--primary);
+    opacity: 0.8;
+  }
+
   .color-value-separator {
     color: var(--secondary);
     font-weight: 400;
     margin: 0 0.25rem;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin: 0 0.25rem;
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 0.25rem;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+  }
+
+  .copy-btn:hover {
+    opacity: 1;
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .copy-btn:active {
+    transform: scale(0.95);
+  }
+
+  .copy-btn svg {
+    width: 0.75rem;
+    height: 0.75rem;
   }
 
   .color-picker-actions {
@@ -2115,6 +2172,8 @@ const themeManager = {
     const downloadConfigBtn = document.getElementById("download-config");
     const uploadConfigBtn = document.getElementById("upload-config");
     const fileInput = document.getElementById("file-input") as HTMLInputElement;
+    const copyHexBtn = document.getElementById("copy-hex-btn");
+    const copyRgbBtn = document.getElementById("copy-rgb-btn");
     let currentEditingColor: string = "";
 
     // Download configuration functionality
@@ -2399,6 +2458,75 @@ const themeManager = {
     }
 
     // Enhanced RGB input handlers
+    
+    // Copy functionality for color values
+    async function copyToClipboard(text: string, format: string) {
+      try {
+        await navigator.clipboard.writeText(text);
+        console.log(`${format} value copied to clipboard: ${text}`);
+        
+        // Show brief visual feedback
+        const notification = document.createElement('div');
+        notification.textContent = `${format} copied!`;
+        notification.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: var(--primary);
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 0.25rem;
+          font-size: 0.875rem;
+          font-weight: 500;
+          z-index: 10000;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+        `;
+        document.body.appendChild(notification);
+        
+        // Fade in
+        requestAnimationFrame(() => {
+          notification.style.opacity = '1';
+        });
+        
+        // Remove after 1.5 seconds
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 200);
+        }, 1500);
+        
+      } catch (err) {
+        console.error('Failed to copy to clipboard:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+    }
+
+    function copyHexValue() {
+      const hexDisplay = document.getElementById('color-hex-display') as HTMLElement;
+      if (hexDisplay && hexDisplay.textContent) {
+        copyToClipboard(hexDisplay.textContent, 'HEX');
+      }
+    }
+
+    function copyRgbValue() {
+      const rgbDisplay = document.getElementById('color-rgb-display') as HTMLElement;
+      if (rgbDisplay && rgbDisplay.textContent) {
+        // Convert (123, 123, 123) format to rgb(123, 123, 123) format
+        const rgbText = rgbDisplay.textContent.replace(/^\(([^)]+)\)$/, 'rgb($1)');
+        copyToClipboard(rgbText, 'RGB');
+      }
+    }
+
     // Event listeners for color picker
     if (colorPickerInput) {
       colorPickerInput.addEventListener("input", updateColorPreview);
@@ -2415,6 +2543,10 @@ const themeManager = {
     if (resetButton)
       resetButton.addEventListener("click", resetColorToOriginal);
     if (cancelButton) cancelButton.addEventListener("click", closeColorPicker);
+
+    // Copy button event listeners
+    if (copyHexBtn) copyHexBtn.addEventListener("click", copyHexValue);
+    if (copyRgbBtn) copyRgbBtn.addEventListener("click", copyRgbValue);
 
     // Close modal with Escape key
     document.addEventListener("keydown", (e) => {
