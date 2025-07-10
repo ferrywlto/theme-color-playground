@@ -1285,28 +1285,29 @@ const themeManager = {
   }
 
   .contrast-rating.excellent {
-    color: white;
     background: var(--success);
   }
 
   .contrast-rating.good {
-    color: white;
     background: var(--primary);
   }
 
   .contrast-rating.poor {
-    color: var(--dark);
     background: var(--warning);
   }
 
   .contrast-rating.fail {
-    color: white;
     background: var(--danger);
   }
 
-  /* Light theme specific: white text for AA Large badge */
-  [data-theme="light"] .contrast-rating.poor {
+  /* Light theme: white text for all badges */
+  [data-theme="light"] .contrast-rating {
     color: white;
+  }
+
+  /* Dark theme: dark text for all badges */
+  [data-theme="dark"] .contrast-rating {
+    color: var(--dark);
   }
 
   /* Responsive contrast info for mobile */
