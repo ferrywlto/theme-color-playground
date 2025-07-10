@@ -197,14 +197,11 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               </div>
             </div>
             <div class="color-values-display">
-              <div class="color-value-item">
-                <label class="color-value-label">HEX</label>
-                <span id="color-hex-display" class="color-value-text">#000000</span>
-              </div>
-              <div class="color-value-item">
-                <label class="color-value-label">RGB</label>
-                <span id="color-rgb-display" class="color-value-text">rgb(0, 0, 0)</span>
-              </div>
+              <span class="color-value-label">HEX:</span>
+              <span id="color-hex-display" class="color-value-text">#000000</span>
+              <span class="color-value-separator">|</span>
+              <span class="color-value-label">RGB:</span>
+              <span id="color-rgb-display" class="color-value-text">(0, 0, 0)</span>
             </div>
             <div class="color-picker-actions-container">
               <div class="color-picker-actions">
@@ -1483,19 +1480,14 @@ const themeManager = {
   .color-values-display {
     margin-bottom: 1.5rem;
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
     background: var(--surface);
     border-radius: 0.5rem;
     border: 1px solid var(--light);
-  }
-
-  .color-value-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
+    font-size: 0.875rem;
   }
 
   .color-value-label {
@@ -1507,14 +1499,15 @@ const themeManager = {
   }
 
   .color-value-text {
-    font-size: 0.875rem;
     font-weight: 500;
     color: var(--body);
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-    background: var(--bg);
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--light);
+  }
+
+  .color-value-separator {
+    color: var(--secondary);
+    font-weight: 400;
+    margin: 0 0.25rem;
   }
 
   .color-picker-actions {
@@ -2319,7 +2312,7 @@ const themeManager = {
       colorHexDisplay.textContent = currentColor;
       const rgb = hexToRgb(currentColor);
       if (rgb) {
-        colorRgbDisplay.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        colorRgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
       }
       
       colorPreviewCurrent.style.backgroundColor = currentColor;
@@ -2350,7 +2343,7 @@ const themeManager = {
       // Update RGB display
       const rgb = hexToRgb(newColor);
       if (rgb) {
-        colorRgbDisplay.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        colorRgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
       }
       
       colorPreviewNew.style.backgroundColor = newColor;
