@@ -1080,6 +1080,7 @@ const themeManager = {
     top: 0;
     left: 0;
     width: 100%;
+    min-width: 430px;
     height: 100%;
     z-index: 2000;
     display: none;
@@ -1192,17 +1193,9 @@ const themeManager = {
   }
 
   .contrast-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .contrast-info-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
   }
 
   .contrast-info-group {
