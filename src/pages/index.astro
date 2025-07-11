@@ -200,27 +200,13 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               <div class="color-value-group">
                 <span class="color-value-label">HEX:</span>
                 <span id="color-hex-display" class="color-value-text">#000000</span>
-                <button id="copy-hex-btn" class="copy-btn" title="Copy HEX value">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="m5 15-2-2 2-2"></path>
-                    <path d="M5 9v6"></path>
-                    <path d="M1 3h4"></path>
-                  </svg>
-                </button>
+                <span id="copy-hex-btn" class="copy-badge" title="Copy HEX value">copy</span>
               </div>
               <span class="color-value-separator">|</span>
               <div class="color-value-group">
                 <span class="color-value-label">RGB:</span>
                 <span id="color-rgb-display" class="color-value-text">(0, 0, 0)</span>
-                <button id="copy-rgb-btn" class="copy-btn" title="Copy RGB value">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="m5 15-2-2 2-2"></path>
-                    <path d="M5 9v6"></path>
-                    <path d="M1 3h4"></path>
-                  </svg>
-                </button>
+                <span id="copy-rgb-btn" class="copy-badge" title="Copy RGB value">copy</span>
               </div>
             </div>
             <div class="color-picker-actions-container">
@@ -1535,9 +1521,9 @@ const themeManager = {
   }
 
   .color-value-label {
-    font-size: 0.625rem;
-    font-weight: 600;
-    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--body);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     flex-shrink: 0;
@@ -1545,7 +1531,7 @@ const themeManager = {
 
   .color-value-text {
     font-weight: 500;
-    color: var(--primary);
+    color: var(--body);
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
     font-size: 0.75rem;
     flex-shrink: 0;
@@ -1558,38 +1544,29 @@ const themeManager = {
     flex-shrink: 0;
   }
 
-  .copy-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0.25rem;
+  .copy-badge {
+    font-size: 0.625rem;
+    font-weight: 500;
     color: var(--primary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    opacity: 0.6;
-    flex-shrink: 0;
-  }
-
-  .copy-btn:hover {
-    opacity: 1;
     background: var(--primary);
     color: white;
-    transform: scale(1.1);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+    flex-shrink: 0;
+    text-transform: lowercase;
+    user-select: none;
   }
 
-  .copy-btn:active {
+  .copy-badge:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .copy-badge:active {
     transform: scale(0.95);
-  }
-
-  .copy-btn svg {
-    width: 0.625rem;
-    height: 0.625rem;
   }
 
   /* Mobile responsive: stack values vertically when space is limited */
