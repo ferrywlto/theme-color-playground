@@ -379,6 +379,13 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
 				This is an inner card with a light border and dark text content to demonstrate contrast and readability.
 			  </p>
 			</div>
+            <p class="gradient-text">
+              Beautiful gradient text combining primary and secondary colors for stunning visual effects.
+            </p>
+            <div class="gradient-card">
+              <h4>Gradient Background Card</h4>
+              <p>This card showcases a beautiful gradient background flowing from secondary to primary colors, with light text for optimal contrast and readability.</p>
+            </div>
           </div>
 
           <!-- Surface Color Typography -->
@@ -412,6 +419,13 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               <p class="text-dark">
                 This is an inner card with a light border and dark text content to demonstrate contrast and readability.
               </p>
+            </div>
+            <p class="gradient-text">
+              Beautiful gradient text combining primary and secondary colors for stunning visual effects.
+            </p>
+            <div class="gradient-card">
+              <h4>Gradient Background Card</h4>
+              <p>This card showcases a beautiful gradient background flowing from secondary to primary colors, with light text for optimal contrast and readability.</p>
             </div>
           </div>
         </div>
@@ -965,6 +979,40 @@ const themeManager = {
   /* Typography Classes */
   .text-regular {
     color: var(--body);
+  }
+
+  .gradient-text {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .gradient-card {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .gradient-card h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .gradient-card p {
+    margin: 0;
+    line-height: 1.6;
+    opacity: 0.95;
+    color: white;
   }
 
   /* Form Elements */
