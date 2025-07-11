@@ -1226,14 +1226,20 @@ const themeManager = {
 
   .color-preview-current,
   .color-preview-new {
-    width: 32px;
+    flex: 1;
     height: 20px;
     border-radius: 0.25rem;
     border: 1px solid var(--light);
-    flex-shrink: 0;
     position: relative;
-    cursor: pointer;
     transition: var(--transition);
+  }
+
+  .color-preview-current {
+    cursor: default;
+  }
+
+  .color-preview-new {
+    cursor: pointer;
   }
 
   .color-preview-new:hover {
@@ -1359,7 +1365,6 @@ const themeManager = {
     
     .color-preview-current,
     .color-preview-new {
-      width: 28px;
       height: 18px;
     }
       gap: 0.5rem;
