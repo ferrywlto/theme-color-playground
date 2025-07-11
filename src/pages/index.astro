@@ -198,7 +198,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             </div>
             <div class="color-values-display">
               <span class="color-value-label">HEX:</span>
-              <span id="color-hex-display" class="color-value-text hex-value">#000000</span>
+              <span id="color-hex-display" class="color-value-text">#000000</span>
               <button id="copy-hex-btn" class="copy-btn" title="Copy HEX value">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -1518,14 +1518,6 @@ const themeManager = {
     font-weight: 500;
     color: var(--body);
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-  }
-
-  .color-value-text.hex-value {
-    padding: 0.25rem 0.5rem;
-    background: var(--bg);
-    border-radius: 0.25rem;
-    border: 1px solid var(--primary);
-    opacity: 0.8;
   }
 
   .color-value-separator {
