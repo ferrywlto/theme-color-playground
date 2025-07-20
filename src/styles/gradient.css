@@ -77,6 +77,73 @@
   transform: scale(1.05);
 }
 
+/* Companion Suggestions Styles */
+.companion-suggestions-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.companion-suggestions-card h3 {
+  margin: 0 0 1rem 0;
+  color: var(--body);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.companion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.companion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg);
+  transition: all 0.3s ease;
+}
+
+.companion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.companion-gradient-text {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.25rem 0;
+}
+
+.companion-gradient-button {
+  border-radius: 9999px;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  font-size: 0.875rem;
+}
+
+.companion-gradient-button:hover {
+  transform: scale(1.05);
+}
+
 .gradient-card {
   background: linear-gradient(135deg, var(--secondary), var(--primary));
   border-radius: 0.75rem;

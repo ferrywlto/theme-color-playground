@@ -224,4 +224,4 @@ function companionByDeltaE(baseHex, min = 30, max = 40) {
 }
 
 // Export the functions for use in modules
-export { hexToRgb, rgbToHex, hslToRgb, rgbToHsl, hexToLab, deltaE00, randomHex, companionByDeltaE as companion };
+export { hexToRgb, rgbToHex, hslToRgb, rgbToHsl, hexToLab, deltaE00, randomHex, companion, companionByDeltaE };
