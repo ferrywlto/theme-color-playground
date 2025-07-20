@@ -49,8 +49,18 @@ const colorPicker = {
     if (this.applyBtn) this.applyBtn.addEventListener("click", () => this.applyColorChange());
     if (this.resetBtn) this.resetBtn.addEventListener("click", () => this.resetColorToOriginal());
     if (this.cancelBtn) this.cancelBtn.addEventListener("click", () => this.close());
-    if (this.copyHexBtn) this.copyHexBtn.addEventListener("click", () => this.copyHexValue());
-    if (this.copyRgbBtn) this.copyRgbBtn.addEventListener("click", () => this.copyRgbValue());
+    
+    // Direct event listener binding for copy buttons to ensure they work
+    const copyHexBtn = document.getElementById("copy-hex-btn");
+    const copyRgbBtn = document.getElementById("copy-rgb-btn");
+    
+    if (copyHexBtn) {
+      copyHexBtn.addEventListener("click", () => this.copyHexValue());
+    }
+    
+    if (copyRgbBtn) {
+      copyRgbBtn.addEventListener("click", () => this.copyRgbValue());
+    }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.modal && this.modal.classList.contains("active")) {
@@ -224,48 +234,66 @@ const colorPicker = {
   async copyToClipboard(text, format) {
     try {
       await navigator.clipboard.writeText(text);
-      console.log(`${format} value copied to clipboard: ${text}`);
-      
-      const notification = document.createElement('div');
-      notification.textContent = `${format} copied!`;
-      notification.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: var(--primary);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 0.25rem;
-        font-size: 0.875rem;
-        font-weight: 500;
-        z-index: 10000;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-      `;
-      document.body.appendChild(notification);
-      
-      requestAnimationFrame(() => {
-        notification.style.opacity = '1';
-      });
-      
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 200);
-      }, 1500);
+      this.showCopyNotification(`${format} copied!`);
       
     } catch (err) {
-      console.error('Failed to copy to clipboard:', err);
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
+      console.error('Failed to copy to clipboard using navigator.clipboard:', err);
+      
+      // Fallback method
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (successful) {
+          this.showCopyNotification(`${format} copied!`);
+        }
+      } catch (fallbackErr) {
+        console.error('Fallback copy method also failed:', fallbackErr);
+      }
     }
+  },
+
+  showCopyNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      z-index: 10000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    `;
+    document.body.appendChild(notification);
+    
+    requestAnimationFrame(() => {
+      notification.style.opacity = '1';
+    });
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      setTimeout(() => {
+        if (document.body.contains(notification)) {
+          document.body.removeChild(notification);
+        }
+      }, 200);
+    }, 1500);
   },
 
   copyHexValue() {

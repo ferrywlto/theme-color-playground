@@ -91,11 +91,11 @@ function rgbToHsl(r, g, b) {
 
 function companion(r, g, b) {
   const hsl = rgbToHsl(r, g, b); // [H, S, L] with H in deg
-  let [h, s, l] = hsl;
-  let colors = [];
+  let { h, s, l } = hsl;
+  let colors = {};
   colors["analogous"] = hslToRgb((h + 30) % 360, s, l);
-  colors["complementary"] = hslToRgb((h + 180) % 360, s * 0.6, Math.min(1,  Math.max(0, l + 0.1)));
-  colors["depth"] = hslToRgb(h, s, Math.max(0, l - 0.2));
+  colors["complementary"] = hslToRgb((h + 180) % 360, s * 0.6, Math.min(100, Math.max(0, l + 10)));
+  colors["depth"] = hslToRgb(h, s, Math.max(0, l - 20));
   colors["golden"] = hslToRgb((h + 222.5) % 360, s, l);
   colors["lab-distance"] = companionByDeltaE(rgbToHex(r,g,b)); // brute-force search for ΔE ≈ 35
   
