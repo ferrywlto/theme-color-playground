@@ -1,0 +1,158 @@
+/* Component example styles */
+
+.example-card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.example-card:hover {
+  border-color: var(--primary) !important;
+  cursor: pointer;
+}
+
+.example-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.interactive-buttons {
+  background: var(--surface);
+  color: var(--body);
+}
+
+.typography-bg {
+  background: var(--bg);
+  color: var(--body);
+  border-color: var(--surface);
+}
+
+.typography-surface {
+  background: var(--surface);
+  color: var(--body);
+}
+
+.form-elements,
+.code-elements {
+  background: var(--surface);
+  color: var(--body);
+}
+
+.typography-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.forms-code-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Button Group */
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.button-group .btn {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Typography Classes */
+.text-regular {
+  color: var(--body);
+}
+
+.inner-card {
+  background: var(--light);
+  padding: var(--space-md);
+  margin: var(--space-sm) 0;
+  border-radius: var(--radius-md);
+}
+
+/* Form Elements */
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 0.5rem;
+  border: 1px solid var(--surface);
+  border-radius: 0.25rem;
+  background: var(--bg);
+  color: var(--body);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+/* Code Elements */
+.code-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.code-grid code {
+  background: var(--bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+  border: 1px solid var(--primary);
+}
+
+.code-grid pre {
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--primary);
+  margin: 0.5rem 0;
+}
+
+.code-grid pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+/* Responsive breakpoints for button grid */
+@media (max-width: 1024px) {
+  .button-group {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .button-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .typography-comparison,
+  .forms-code-comparison {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

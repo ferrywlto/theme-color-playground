@@ -1,0 +1,325 @@
+/* Header styles */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--surface);
+  border-bottom: 2px solid var(--primary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  color: var(--primary);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header-combined-mobile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-links-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.header-link:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.header-link[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+/* Adjust header buttons for sticky header */
+.sticky-header .theme-toggle-btn,
+.sticky-header .download-config-btn,
+.sticky-header .upload-config-btn,
+.sticky-header .reset-config-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
+/* Theme, download and upload buttons */
+.theme-toggle-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+  transform: rotate(180deg);
+}
+
+.download-config-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--secondary);
+  background: transparent;
+  color: var(--body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.download-config-btn:hover {
+  background: var(--secondary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.download-config-btn:active {
+  transform: scale(0.95);
+}
+
+.download-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.download-config-btn:hover .download-icon {
+  transform: translateY(-2px);
+}
+
+.upload-config-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--info);
+  background: transparent;
+  color: var(--body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-config-btn:hover {
+  background: var(--info);
+  color: white;
+  transform: scale(1.05);
+}
+
+.upload-config-btn:active {
+  transform: scale(0.95);
+}
+
+.upload-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.upload-config-btn:hover .upload-icon {
+  transform: translateY(-2px);
+}
+
+.reset-config-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reset-config-btn:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.05);
+}
+
+.reset-config-btn:active {
+  transform: scale(0.95);
+}
+
+.reset-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.reset-config-btn:hover .reset-icon {
+  transform: rotate(180deg);
+}
+
+/* Mobile responsive header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .header-combined-mobile {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .header-title {
+    font-size: 1.2rem;
+  }
+
+  .header-buttons {
+    gap: 0.5rem;
+  }
+
+  .sticky-header .theme-toggle-btn,
+  .sticky-header .download-config-btn,
+  .sticky-header .upload-config-btn,
+  .sticky-header .reset-config-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .header-links {
+    gap: 0.75rem;
+  }
+
+  .header-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+    border: 2px solid var(--primary);
+    background: transparent;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    box-sizing: border-box;
+  }
+
+  .header-link:hover {
+    transform: none;
+    background: transparent;
+    color: var(--primary);
+  }
+
+  .header-link:active,
+  .header-link:focus {
+    background: var(--primary);
+    color: white;
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0.5rem;
+  }
+
+  .header-title {
+    font-size: 1.1rem;
+  }
+
+  .sticky-header .theme-toggle-btn,
+  .sticky-header .download-config-btn,
+  .sticky-header .upload-config-btn,
+  .sticky-header .reset-config-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}

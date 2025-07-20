@@ -222,3 +222,6 @@ function companionByDeltaE(baseHex, min = 30, max = 40) {
   console.log(`Found after ${tries} attempts → ${candidate}`);
   return candidate;
 }
+
+// Export the functions for use in modules
+export { hexToRgb, rgbToHex, hslToRgb, rgbToHsl, hexToLab, deltaE00, randomHex, companionByDeltaE as companion };
