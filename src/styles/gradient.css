@@ -84,6 +84,9 @@
   border: 2px solid var(--border);
   border-radius: 0.75rem;
   background: var(--surface);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }
 
 .companion-suggestions-card h3 {
@@ -95,25 +98,36 @@
 
 .companion-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
 .companion-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1rem;
   border: 1px solid var(--border);
   border-radius: 0.5rem;
   background: var(--bg);
   transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .companion-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.companion-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .companion-gradient-text {
@@ -126,22 +140,175 @@
   text-transform: uppercase;
   margin: 0;
   padding: 0.25rem 0;
+  min-width: 120px;
 }
 
 .companion-gradient-button {
-  border-radius: 9999px;
+  border-radius: 0.5rem;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   background: linear-gradient(45deg, var(--primary), var(--secondary));
   font-size: 0.875rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
 }
 
 .companion-gradient-button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Companion Color Values Styles */
+.companion-color-values {
+  margin-top: 0;
+  margin-left: auto;
+  padding-top: 0;
+  border-top: none;
+  font-size: 0.8rem;
+  color: var(--body);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.companion-color-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.companion-color-label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.companion-hex-value,
+.companion-rgb-value {
+  font-family: monospace;
+  background-color: var(--surface);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}
+
+.companion-copy-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.companion-copy-btn:hover {
+  opacity: 1;
+}
+
+/* Desktop/larger screens - apply minimum width */
+@media (min-width: 769px) {
+  .companion-suggestions-card {
+    min-width: 430px;
+  }
+}
+
+/* Specific fix for bleeding range 431-520px */
+@media (max-width: 520px) {
+  .companion-suggestions-card {
+    min-width: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 2rem 0 !important;
+    padding: 1rem !important;
+  }
+  
+  .companion-item {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0.75rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  .companion-content {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .companion-color-values {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Mobile responsive styles for companion items */
+@media (max-width: 768px) {
+  .companion-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .companion-content {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .companion-color-values {
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  
+  .companion-gradient-text {
+    min-width: auto;
+    flex: 1;
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 430px) {
+  .companion-suggestions-card {
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .companion-item {
+    padding: 0.75rem;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+  
+  .companion-content {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .companion-gradient-text {
+    font-size: 0.75rem;
+    word-break: break-word;
+  }
+  
+  .companion-gradient-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+  
+  .companion-color-value-row {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .companion-hex-value,
+  .companion-rgb-value {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.2rem;
+    word-break: break-all;
+  }
 }
 
 .gradient-card {

@@ -9,6 +9,7 @@ const gradientCompanion = {
   gradientText: null,
   gradientButton: null,
   companionItems: null,
+  copyButtons: null,
 
   init() {
     console.log('Initializing gradient companion...');
@@ -18,13 +19,15 @@ const gradientCompanion = {
     this.gradientText = document.getElementById('gradient-text');
     this.gradientButton = document.getElementById('gradient-button');
     this.companionItems = document.querySelectorAll('.companion-item');
+    this.copyButtons = document.querySelectorAll('.companion-copy-btn');
 
     console.log('Elements found:', {
       color1Input: !!this.color1Input,
       color2Input: !!this.color2Input,
       gradientText: !!this.gradientText,
       gradientButton: !!this.gradientButton,
-      companionItemsCount: this.companionItems.length
+      companionItemsCount: this.companionItems.length,
+      copyButtonsCount: this.copyButtons.length
     });
 
     this.bindEvents();
@@ -50,7 +53,16 @@ const gradientCompanion = {
       this.color2Input.addEventListener('input', () => {
         console.log('Color2 input changed:', this.color2Input.value);
         this.updateGradient();
-        this.updateCompanionSuggestions();
+      });
+    }
+
+    if (this.copyButtons) {
+      this.copyButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const type = e.currentTarget.dataset.type;
+          const style = e.currentTarget.dataset.style;
+          this.copyValue(type, style, e.currentTarget);
+        });
       });
     }
   },
@@ -100,44 +112,88 @@ const gradientCompanion = {
       // Get companion colors using the companion function from color-exchange.js
       const companionColors = companion(r, g, b);
       console.log('Companion colors:', companionColors);
-      
-      // Update each companion item
+
       this.companionItems.forEach(item => {
         const style = item.dataset.style;
-        const gradientText = item.querySelector('.companion-gradient-text');
-        const gradientButton = item.querySelector('.companion-gradient-button');
-        
-        console.log('Processing style:', style, { gradientText: !!gradientText, gradientButton: !!gradientButton });
-        
-        if (companionColors[style] && gradientText && gradientButton) {
-          const companionColor = companionColors[style];
-          let companionHex;
-          
-          if (style === 'lab-distance') {
-            // lab-distance returns a hex color directly
-            companionHex = companionColor;
-          } else {
-            // Other styles return RGB objects
-            companionHex = rgbToHex(companionColor.r, companionColor.g, companionColor.b);
-          }
-          
-          console.log('Companion hex for', style, ':', companionHex);
-          
+        const companionColor = companionColors[style];
+
+        if (companionColor) {
+          const companionHex = rgbToHex(companionColor.r, companionColor.g, companionColor.b);
           const gradientCSS = `linear-gradient(45deg, ${color1Hex}, ${companionHex})`;
-          
-          // Update companion gradient text
-          gradientText.style.background = gradientCSS;
-          gradientText.style.backgroundClip = 'text';
-          gradientText.style.webkitBackgroundClip = 'text';
-          gradientText.style.webkitTextFillColor = 'transparent';
-          
-          // Update companion gradient button
-          gradientButton.style.background = gradientCSS;
+
+          const textElement = item.querySelector('.companion-gradient-text');
+          if (textElement) {
+            textElement.style.background = gradientCSS;
+            textElement.style.backgroundClip = 'text';
+            textElement.style.webkitBackgroundClip = 'text';
+            textElement.style.webkitTextFillColor = 'transparent';
+          }
+
+          const buttonElement = item.querySelector('.companion-gradient-button');
+          if (buttonElement) {
+            buttonElement.style.background = gradientCSS;
+          }
+
+          // Update HEX and RGB values
+          const hexValueElement = item.querySelector(`.companion-hex-value[data-style="${style}"]`);
+          const rgbValueElement = item.querySelector(`.companion-rgb-value[data-style="${style}"]`);
+
+          if (hexValueElement) {
+            hexValueElement.textContent = companionHex;
+          }
+          if (rgbValueElement) {
+            rgbValueElement.textContent = `(${companionColor.r}, ${companionColor.g}, ${companionColor.b})`;
+          }
         }
       });
     } catch (error) {
-      console.error('Error updating companion suggestions:', error);
+      console.error('Error in updateCompanionSuggestions:', error);
     }
+  },
+
+  copyValue(type, style, element) {
+    const item = document.querySelector(`.companion-item[data-style="${style}"]`);
+    if (!item) return;
+
+    let valueToCopy = '';
+    if (type === 'hex') {
+      valueToCopy = item.querySelector('.companion-hex-value').textContent;
+    } else if (type === 'rgb') {
+      valueToCopy = item.querySelector('.companion-rgb-value').textContent;
+    }
+
+    if (valueToCopy) {
+      navigator.clipboard.writeText(valueToCopy).then(() => {
+        this.showCopyNotification(element);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        // Fallback for older browsers
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = valueToCopy;
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          this.showCopyNotification(element);
+        } catch (fallbackErr) {
+          console.error('Fallback copy failed: ', fallbackErr);
+          alert('Failed to copy value.');
+        }
+      });
+    }
+  },
+
+  showCopyNotification(element) {
+    const originalText = element.textContent;
+    element.textContent = '✅';
+    element.style.opacity = '1';
+    
+    setTimeout(() => {
+      element.textContent = originalText;
+      element.style.opacity = '0.7';
+    }, 1500);
   }
 };
 
