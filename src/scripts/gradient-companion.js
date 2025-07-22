@@ -7,17 +7,17 @@ const gradientCompanion = {
   color1Input: null,
   color2Input: null,
   gradientText: null,
-  gradientButton: null,
+  gradientCard: null,
   companionItems: null,
   copyButtons: null,
 
   init() {
     console.log('Initializing gradient companion...');
-    
+
     this.color1Input = document.getElementById('gradient-color1');
     this.color2Input = document.getElementById('gradient-color2');
     this.gradientText = document.getElementById('gradient-text');
-    this.gradientButton = document.getElementById('gradient-button');
+    this.gradientCard = document.getElementById('gradient-card');
     this.companionItems = document.querySelectorAll('.companion-item');
     this.copyButtons = document.querySelectorAll('.companion-copy-btn');
 
@@ -25,7 +25,7 @@ const gradientCompanion = {
       color1Input: !!this.color1Input,
       color2Input: !!this.color2Input,
       gradientText: !!this.gradientText,
-      gradientButton: !!this.gradientButton,
+      gradientCard: !!this.gradientCard,
       companionItemsCount: this.companionItems.length,
       copyButtonsCount: this.copyButtons.length
     });
@@ -74,6 +74,9 @@ const gradientCompanion = {
 
     const color1 = this.color1Input.value;
     const color2 = this.color2Input.value;
+
+    this.color1Input.parentElement.style.backgroundColor = color1;
+    this.color2Input.parentElement.style.backgroundColor = color2;
     
     const gradientCSS = `linear-gradient(45deg, ${color1}, ${color2})`;
     
@@ -84,10 +87,10 @@ const gradientCompanion = {
       this.gradientText.style.webkitBackgroundClip = 'text';
       this.gradientText.style.webkitTextFillColor = 'transparent';
     }
-    
-    // Update gradient button
-    if (this.gradientButton) {
-      this.gradientButton.style.background = gradientCSS;
+
+    // Update gradient card background
+    if (this.gradientCard) {
+      this.gradientCard.style.background = gradientCSS;
     }
   },
 
