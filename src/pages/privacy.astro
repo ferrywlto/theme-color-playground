@@ -2,6 +2,7 @@
 const title = "Privacy Policy - Theme Color Playground";
 const description = "Privacy policy explaining data collection, storage, and usage for the Theme Color Playground application.";
 import "../styles/theme.css";
+import "../styles/privacy.css";
 
 // Generate URLs using config values
 const siteUrl = import.meta.env.SITE.replace(/\/$/, '');
@@ -18,7 +19,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <link rel="apple-touch-icon" href={imageUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -26,7 +27,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <meta name="author" content="Theme Color Playground" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content={title} />
@@ -36,14 +37,14 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content="Theme Color Playground Privacy Policy" />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content="Theme Color Playground Privacy Policy" />
-    
+
     <!-- Additional Meta Tags -->
     <meta name="theme-color" content="#6366f1" />
     <meta name="color-scheme" content="light dark" />
@@ -73,15 +74,15 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
 
         <section class="privacy-section no-bullets">
           <h2>Data We Collect</h2>
-          
+
           <h3>Local Storage Data</h3>
           <div class="data-item">
             <h4>Theme Preference</h4>
             <ul>
-              <li><strong>What:</strong> Your selected theme preference (light or dark mode)</li>
-              <li><strong>Where stored:</strong> Locally in your browser using localStorage</li>
-              <li><strong>Purpose:</strong> To remember your theme preference between visits</li>
-              <li><strong>Data sent externally:</strong> None - stays on your device</li>
+              <li><strong>What:</strong> Your selected theme preference (light or dark mode).</li>
+              <li><strong>Where stored:</strong> Locally in your browser using localStorage.</li>
+              <li><strong>Purpose:</strong> To remember your theme preference between visits.</li>
+              <li><strong>Data sent externally:</strong> None - stays on your device.</li>
             </ul>
           </div>
 
@@ -89,15 +90,15 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
           <div class="data-item">
             <h4>Website Usage Statistics</h4>
             <ul>
-              <li><strong>What:</strong> Page views, referrer information, device type, and general geographic region</li>
+              <li><strong>What:</strong> Page views, referrer information, device type, and general geographic region.</li>
               <li><strong>Service:</strong> Simple Analytics (privacy-first analytics)</li>
-              <li><strong>Purpose:</strong> To understand how the tool is used and improve it</li>
+              <li><strong>Purpose:</strong> To understand how the tool is used and improve it.</li>
               <li><strong>Privacy features:</strong>
                 <ul>
-                  <li>No personal data or IP addresses stored</li>
-                  <li>No cookies used</li>
-                  <li>Respects Do Not Track (DNT) headers</li>
-                  <li>GDPR, CCPA, and PECR compliant</li>
+                  <li>No personal data or IP addresses stored.</li>
+                  <li>No cookies used.</li>
+                  <li>Respects Do Not Track (DNT) headers.</li>
+                  <li>GDPR, CCPA, and PECR compliant.</li>
                 </ul>
               </li>
             </ul>
@@ -107,64 +108,64 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
         <section class="privacy-section">
           <h2>Data We Do NOT Collect</h2>
           <ul>
-            <li>Personal information (names, email addresses, phone numbers)</li>
-            <li>IP addresses or precise location data</li>
-            <li>Custom color configurations (unless you explicitly download them)</li>
-            <li>Browsing history or behavior across other websites</li>
-            <li>Any data through cookies or tracking pixels</li>
+            <li>Personal information (names, email addresses, phone numbers).</li>
+            <li>IP addresses or precise location data.</li>
+            <li>Custom color configurations (unless you explicitly download them).</li>
+            <li>Browsing history or behavior across other websites.</li>
+            <li>Any data through cookies or tracking pixels.</li>
           </ul>
         </section>
 
         <section class="privacy-section no-bullets">
           <h2>How We Use Your Data</h2>
-          
+
           <h3>Local Storage Usage</h3>
           <ul>
-            <li><strong>Theme Preference:</strong> Automatically applied when you return to the site</li>
-            <li><strong>Functionality:</strong> Enables seamless theme switching without manual re-selection</li>
+            <li><strong>Theme Preference:</strong> Automatically applied when you return to the site.</li>
+            <li><strong>Functionality:</strong> Enables seamless theme switching without manual re-selection.</li>
           </ul>
 
           <h3>Analytics Usage</h3>
           <ul>
-            <li><strong>Site Improvement:</strong> Understanding which features are most used</li>
-            <li><strong>Performance Monitoring:</strong> Ensuring the tool works well for all users</li>
-            <li><strong>Content Decisions:</strong> Informing future development priorities</li>
+            <li><strong>Site Improvement:</strong> Understanding which features are most used.</li>
+            <li><strong>Performance Monitoring:</strong> Ensuring the tool works well for all users.</li>
+            <li><strong>Content Decisions:</strong> Informing future development priorities.</li>
           </ul>
         </section>
 
         <section class="privacy-section no-bullets">
           <h2>Data Storage and Retention</h2>
-          
+
           <h3>Local Storage</h3>
           <ul>
-            <li><strong>Duration:</strong> Persists until you clear your browser data or manually delete it</li>
-            <li><strong>Location:</strong> Stored locally on your device only</li>
-            <li><strong>Access:</strong> Only accessible by this website</li>
+            <li><strong>Duration:</strong> Persists until you clear your browser data or manually delete it.</li>
+            <li><strong>Location:</strong> Stored locally on your device only.</li>
+            <li><strong>Access:</strong> Only accessible by this website.</li>
           </ul>
 
           <h3>Analytics Data</h3>
           <ul>
-            <li><strong>Duration:</strong> Retained by Simple Analytics according to their data retention policy</li>
-            <li><strong>Location:</strong> Stored on Simple Analytics' European servers</li>
-            <li><strong>Processing:</strong> Aggregated and anonymized</li>
+            <li><strong>Duration:</strong> Retained by Simple Analytics according to their data retention policy.</li>
+            <li><strong>Location:</strong> Stored on Simple Analytics' European servers.</li>
+            <li><strong>Processing:</strong> Aggregated and anonymized.</li>
           </ul>
         </section>
 
         <section class="privacy-section no-bullets">
           <h2>Your Rights and Choices</h2>
-          
+
           <h3>Regarding Local Storage</h3>
           <ul>
-            <li><strong>View:</strong> Check your browser's developer tools → Application → Local Storage</li>
-            <li><strong>Delete:</strong> Clear through browser settings or developer tools</li>
-            <li><strong>Control:</strong> Disable localStorage in browser settings (may affect functionality)</li>
+            <li><strong>View:</strong> Check your browser's developer tools → Application → Local Storage.</li>
+            <li><strong>Delete:</strong> Clear through browser settings or developer tools.</li>
+            <li><strong>Control:</strong> Disable localStorage in browser settings (may affect functionality).</li>
           </ul>
 
           <h3>Regarding Analytics</h3>
           <ul>
-            <li><strong>Opt-out:</strong> Enable "Do Not Track" in your browser settings</li>
-            <li><strong>Ad Blockers:</strong> Most ad blockers will automatically block analytics</li>
-            <li><strong>Script Blocking:</strong> Disable JavaScript for this domain (may affect functionality)</li>
+            <li><strong>Opt-out:</strong> Enable "Do Not Track" in your browser settings.</li>
+            <li><strong>Ad Blockers:</strong> Most ad blockers will automatically block analytics.</li>
+            <li><strong>Script Blocking:</strong> Disable JavaScript for this domain (may affect functionality).</li>
           </ul>
         </section>
 
@@ -177,10 +178,10 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             </a>
           </div>
           <ul>
-            <li><strong>Purpose:</strong> Privacy-first website analytics</li>
-            <li><strong>Data shared:</strong> Anonymized page views and basic usage statistics</li>
+            <li><strong>Purpose:</strong> Privacy-first website analytics.</li>
+            <li><strong>Data shared:</strong> Anonymized page views and basic usage statistics.</li>
             <li><strong>Privacy policy:</strong> <a href="https://simpleanalytics.com/privacy" target="_blank" rel="noopener noreferrer">Simple Analytics Privacy Policy</a></li>
-            <li><strong>Location:</strong> European Union (GDPR compliant)</li>
+            <li><strong>Location:</strong> European Union (GDPR compliant).</li>
           </ul>
         </section>
 
@@ -198,7 +199,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
           </p>
           <ul>
             <li>Create an issue on our <a href="https://github.com/ferrywlto/theme-color-playground" target="_blank" rel="noopener noreferrer">GitHub repository</a></li>
-            <li>Contact us through the project's GitHub page</li>
+            <li>Contact us through the project's GitHub page.</li>
           </ul>
         </section>
 
@@ -212,10 +213,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     </main>
 
     <!-- 100% privacy-first analytics -->
-    <script
-      data-collect-dnt="true"
-      async
-      src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js" is:inline></script>
     <noscript>
       <img
         src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true"
@@ -223,289 +221,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
         referrerpolicy="no-referrer-when-downgrade"
       />
     </noscript>
+    <script>
+      import '../scripts/privacy.js';
+    </script>
   </body>
-</html>
-
-<style>
-  .theme-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    background: var(--bg);
-    color: var(--body);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  .privacy-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--primary);
-  }
-
-  .privacy-header h1 {
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-  }
-
-  .last-updated {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-bottom: 1rem;
-  }
-
-  .breadcrumb {
-    margin-top: 1rem;
-  }
-
-  .breadcrumb a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--primary);
-    border-radius: 6px;
-    transition: all 0.3s ease;
-  }
-
-  .breadcrumb a:hover {
-    background: var(--primary);
-    color: white;
-  }
-
-  .privacy-content {
-    max-width: 100%;
-  }
-
-  .privacy-section {
-    margin-bottom: 2.5rem;
-    padding: 1.5rem;
-    background: var(--surface);
-    border-radius: 8px;
-    border-left: 4px solid var(--primary);
-  }
-
-  .privacy-section h2 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    border-bottom: 1px solid var(--primary);
-    padding-bottom: 0.5rem;
-  }
-
-  .privacy-section h3 {
-    color: var(--dark);
-    margin: 1.5rem 0 1rem 0;
-    font-size: 1.2rem;
-  }
-
-  .service-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 1.5rem 0 1rem 0;
-  }
-
-  .service-header h3 {
-    margin: 0;
-    color: var(--dark);
-    font-size: 1.2rem;
-  }
-
-  .analytics-badge {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  .analytics-badge img {
-    height: 38.4px;
-    width: auto;
-    display: block;
-  }
-
-  .privacy-section h4 {
-    color: var(--body);
-    margin: 1rem 0 0.5rem 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-
-  .data-item {
-    background: var(--bg);
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-    border: 1px solid var(--light);
-  }
-
-  .privacy-section ul {
-    margin: 0.5rem 0;
-    padding-left: 1.5rem;
-  }
-
-  .privacy-section.no-bullets ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  .privacy-section.no-bullets ul ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-  }
-
-  .privacy-section li {
-    margin-bottom: 0.5rem;
-  }
-
-  .privacy-section li strong {
-    color: var(--primary);
-  }
-
-  .privacy-section a {
-    color: var(--info);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .privacy-section a:hover {
-    text-decoration: underline;
-  }
-
-  .privacy-section a[target="_blank"]::after {
-    content: " ↗";
-    font-size: 0.8em;
-    opacity: 0.7;
-  }
-
-  .privacy-footer {
-    background: var(--primary);
-    color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: left;
-    margin-top: 2rem;
-  }
-
-  .privacy-footer strong {
-    font-size: 1.1rem;
-  }
-
-  .footer-nav {
-    margin-top: 1rem;
-  }
-
-  .footer-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid white;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    display: inline-block;
-  }
-
-  .footer-nav a:hover {
-    background: white;
-    color: var(--primary);
-  }
-
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .theme-container {
-      padding: 1rem;
-    }
-
-    .privacy-header h1 {
-      font-size: 2rem;
-    }
-
-    .privacy-section {
-      padding: 1rem;
-    }
-
-    .privacy-section h2 {
-      font-size: 1.3rem;
-    }
-
-    .service-header {
-      flex-direction: row;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: nowrap;
-    }
-
-    .service-header h3 {
-      font-size: 1.1rem;
-      white-space: nowrap;
-    }
-
-    .analytics-badge img {
-      height: 38.4px;
-      flex-shrink: 0;
-    }
-  }
-
-  /* Theme-specific adjustments */
-  [data-theme="dark"] .data-item {
-    border-color: var(--dark);
-  }
-
-  [data-theme="light"] .data-item {
-    border-color: var(--light);
-  }
-</style>
-
-<script is:inline>
-  // Theme toggle functionality - ensure DOM is loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    const html = document.documentElement;
-    const analyticsBadge = document.getElementById("analytics-badge-img");
-    
-    // Function to update analytics badge based on theme
-    function updateAnalyticsBadge(theme) {
-      if (analyticsBadge && analyticsBadge instanceof HTMLImageElement) {
-        const mode = theme === "dark" ? "dark" : "light";
-        analyticsBadge.src = `https://simpleanalyticsbadges.com/ferrywl.to?mode=${mode}`;
-      }
-    }
-    
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem("theme") || "light";
-    
-    // Set initial theme
-    html.setAttribute("data-theme", currentTheme);
-    html.classList.remove("theme-light", "theme-dark");
-    html.classList.add(`theme-${currentTheme}`);
-    
-    // Update badge for initial theme
-    updateAnalyticsBadge(currentTheme);
-    
-    // Listen for system theme changes
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (e) => {
-        if (!localStorage.getItem("theme")) {
-          const systemTheme = e.matches ? "dark" : "light";
-          html.setAttribute("data-theme", systemTheme);
-          html.classList.remove("theme-light", "theme-dark");
-          html.classList.add(`theme-${systemTheme}`);
-          updateAnalyticsBadge(systemTheme);
-        }
-      });
-      
-    // Listen for storage changes (when theme is changed from main page)
-    window.addEventListener("storage", function(e) {
-      if (e.key === "theme") {
-        const newTheme = e.newValue || "light";
-        html.setAttribute("data-theme", newTheme);
-        html.classList.remove("theme-light", "theme-dark");
-        html.classList.add(`theme-${newTheme}`);
-        updateAnalyticsBadge(newTheme);
-      }
-    });
-  });
-</script>
