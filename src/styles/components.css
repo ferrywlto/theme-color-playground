@@ -1,5 +1,7 @@
 /* Component example styles */
-
+.component-examples .example-card {
+  min-width: 372px;
+}
 .example-card {
   padding: 1.5rem;
   border-radius: 0.75rem;
@@ -38,28 +40,6 @@
 .code-elements {
   background: var(--surface);
   color: var(--body);
-}
-
-.typography-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.forms-code-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Button Group */
-.button-group {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .button-group .btn {
@@ -136,23 +116,47 @@
   line-height: 1.4;
 }
 
-/* Responsive breakpoints for button grid */
-@media (max-width: 1024px) {
-  .button-group {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.typography-comparison,
+.forms-code-comparison {
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-@media (max-width: 600px) {
+
+/* Button Group */
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 430px) {
   .button-group {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  .typography-comparison,
-  .forms-code-comparison {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+@media (min-width: 600px) {
+  .button-group {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
+
+@media (min-width: 800px) {
+  .button-group {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .typography-comparison,
+  .forms-code-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+
+

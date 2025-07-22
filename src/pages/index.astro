@@ -19,7 +19,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <link rel="apple-touch-icon" href={imageUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -27,7 +27,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <meta name="author" content="Theme Color Playground" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -37,14 +37,14 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content="Theme Color Playground Logo" />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content="Theme Color Playground Logo" />
-    
+
     <!-- Additional Meta Tags -->
     <meta name="theme-color" content="#6366f1" />
     <meta name="color-scheme" content="light dark" />
@@ -53,7 +53,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Theme Playground" />
-    
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -89,7 +89,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
         <div class="header-center">
           <h1 class="header-title">{title}</h1>
         </div>
-        
+
         <!-- Mobile: Combined links and buttons row -->
         <div class="header-combined-mobile">
           <!-- Links: Privacy and GitHub -->
@@ -99,7 +99,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               <a href="https://github.com/ferrywlto/theme-color-playground" target="_blank" rel="noopener noreferrer" class="header-link">GitHub</a>
             </nav>
           </div>
-          
+
           <!-- Function buttons -->
           <div class="header-buttons-section">
             <div class="header-buttons">
@@ -286,7 +286,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <span class="color-name">Subtle</span>
             <span class="color-hex" data-color="subtle"></span>
             <span class="color-rgb" data-color="subtle"></span>
-          </div>		  
+          </div>
         </div>
       </section>
 
@@ -312,7 +312,7 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
           <h4>Gradient Background Card</h4>
           <p>This card showcases the selected gradient background.</p>
         </div>
-        
+
         <!-- Companion Suggestions Card -->
         <div class="companion-suggestions-card">
           <h3>Companion Suggestions</h3>
@@ -477,17 +477,10 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <p class="text-info">
               Informational messages for helpful tips and details.
             </p>
-      <div class="inner-card">
-        <p class="text-dark">
-        This is an inner card with a light border and dark text content to demonstrate contrast and readability.
-        </p>
-      </div>
-            <p class="gradient-text">
-              Beautiful gradient text combining primary and secondary colors for stunning visual effects.
-            </p>
-            <div class="gradient-card">
-              <h4>Gradient Background Card</h4>
-              <p>This card showcases a beautiful gradient background flowing from secondary to primary colors, with light text for optimal contrast and readability.</p>
+            <div class="inner-card">
+              <p class="text-body">
+              This is an inner card with body text content to demonstrate contrast and readability.
+              </p>
             </div>
           </div>
 
@@ -497,9 +490,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <p class="text-regular">
               Body text using the main text color for body content.
             </p>
-      <p class="text-subtle">
-        Subtle colored text for muted content and secondary information.
-      </p>
+            <p class="text-subtle">
+              Subtle colored text for muted content and secondary information.
+            </p>
             <p class="text-primary">
               Primary colored text for important highlights and links.
             </p>
@@ -519,16 +512,9 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
               Informational messages for helpful tips and details.
             </p>
             <div class="inner-card">
-              <p class="text-dark">
-                This is an inner card with a light border and dark text content to demonstrate contrast and readability.
+              <p class="text-body">
+                This is an inner card with body text content to demonstrate contrast and readability.
               </p>
-            </div>
-            <p class="gradient-text">
-              Beautiful gradient text combining primary and secondary colors for stunning visual effects.
-            </p>
-            <div class="gradient-card">
-              <h4>Gradient Background Card</h4>
-              <p>This card showcases a beautiful gradient background flowing from secondary to primary colors, with light text for optimal contrast and readability.</p>
             </div>
           </div>
         </div>
@@ -619,7 +605,7 @@ const themeManager = {
         referrerpolicy="no-referrer-when-downgrade"
       />
     </noscript>
-    
+
     <!-- Import main application script -->
   </body>
 
