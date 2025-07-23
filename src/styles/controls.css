@@ -27,12 +27,13 @@
   display: flex !important;
   align-items: center !important;
   gap: 1rem !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap;
 }
 
 .checkbox-section {
   display: flex !important;
   align-items: center !important;
+  justify-content: flex-start !important;
 }
 
 .control-label {
@@ -46,7 +47,7 @@
   display: flex !important;
   gap: 1.5rem !important;
   align-items: center !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap;
 }
 
 .radio-option {
@@ -92,43 +93,9 @@
   color: var(--body) !important;
 }
 
-.btn.text-both {
-  background: linear-gradient(90deg, var(--light) 50%, var(--dark) 50%) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
-  font-weight: bold !important;
-}
-
 /* Responsive layout */
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   .main-control-row {
-    flex-wrap: nowrap !important;
-  }
-  
-  .radio-section {
-    flex: 1 !important;
-  }
-  
-  .checkbox-section {
-    margin-left: auto !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .main-control-row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.75rem !important;
-  }
-  
-  .radio-section {
-    width: 100% !important;
-  }
-  
-  .checkbox-section {
-    width: 100% !important;
-    justify-content: flex-start !important;
+    flex-wrap: nowrap;
   }
 }
