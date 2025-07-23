@@ -36,11 +36,11 @@ const gradientCompanion = {
   },
 
   bindEvents() {
-    console.log('Binding events...', { 
-      color1Input: !!this.color1Input, 
-      color2Input: !!this.color2Input 
+    console.log('Binding events...', {
+      color1Input: !!this.color1Input,
+      color2Input: !!this.color2Input
     });
-    
+
     if (this.color1Input) {
       this.color1Input.addEventListener('input', () => {
         console.log('Color1 input changed:', this.color1Input.value);
@@ -48,7 +48,7 @@ const gradientCompanion = {
         this.updateCompanionSuggestions();
       });
     }
-    
+
     if (this.color2Input) {
       this.color2Input.addEventListener('input', () => {
         console.log('Color2 input changed:', this.color2Input.value);
@@ -77,9 +77,9 @@ const gradientCompanion = {
 
     this.color1Input.parentElement.style.backgroundColor = color1;
     this.color2Input.parentElement.style.backgroundColor = color2;
-    
+
     const gradientCSS = `linear-gradient(45deg, ${color1}, ${color2})`;
-    
+
     // Update gradient text
     if (this.gradientText) {
       this.gradientText.style.background = gradientCSS;
@@ -96,11 +96,11 @@ const gradientCompanion = {
 
   updateCompanionSuggestions() {
     console.log('updateCompanionSuggestions called');
-    
+
     if (!this.color1Input || !this.companionItems.length) {
-      console.log('Missing elements:', { 
-        color1Input: !!this.color1Input, 
-        companionItemsLength: this.companionItems ? this.companionItems.length : 0 
+      console.log('Missing elements:', {
+        color1Input: !!this.color1Input,
+        companionItemsLength: this.companionItems ? this.companionItems.length : 0
       });
       return;
     }
@@ -108,10 +108,10 @@ const gradientCompanion = {
     try {
       const color1Hex = this.color1Input.value;
       console.log('Color1 hex:', color1Hex);
-      
+
       const { r, g, b } = hexToRgb(color1Hex);
       console.log('RGB values:', { r, g, b });
-      
+
       // Get companion colors using the companion function from color-exchange.js
       const companionColors = companion(r, g, b);
       console.log('Companion colors:', companionColors);
@@ -154,50 +154,61 @@ const gradientCompanion = {
     }
   },
 
-  copyValue(type, style, element) {
+  async copyValue(type, style) {
     const item = document.querySelector(`.companion-item[data-style="${style}"]`);
     if (!item) return;
 
     let valueToCopy = '';
-    if (type === 'hex') {
+    if (type === 'HEX') {
       valueToCopy = item.querySelector('.companion-hex-value').textContent;
-    } else if (type === 'rgb') {
+    } else if (type === 'RGB') {
       valueToCopy = item.querySelector('.companion-rgb-value').textContent;
     }
 
     if (valueToCopy) {
-      navigator.clipboard.writeText(valueToCopy).then(() => {
-        this.showCopyNotification(element);
-      }).catch(err => {
+      try {
+        await navigator.clipboard.writeText(valueToCopy);
+        this.showCopyNotification(`${type} copied!`);
+      } catch (err) {
         console.error('Failed to copy text: ', err);
-        // Fallback for older browsers
-        try {
-          const textArea = document.createElement("textarea");
-          textArea.value = valueToCopy;
-          document.body.appendChild(textArea);
-          textArea.focus();
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-          this.showCopyNotification(element);
-        } catch (fallbackErr) {
-          console.error('Fallback copy failed: ', fallbackErr);
-          alert('Failed to copy value.');
-        }
-      });
+      }
     }
   },
 
-  showCopyNotification(element) {
-    const originalText = element.textContent;
-    element.textContent = '✅';
-    element.style.opacity = '1';
-    
+  showCopyNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      z-index: 10000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    `;
+    document.body.appendChild(notification);
+
+    requestAnimationFrame(() => {
+      notification.style.opacity = '1';
+    });
+
     setTimeout(() => {
-      element.textContent = originalText;
-      element.style.opacity = '0.7';
+      notification.style.opacity = '0';
+      setTimeout(() => {
+        if (document.body.contains(notification)) {
+          document.body.removeChild(notification);
+        }
+      }, 200);
     }, 1500);
-  }
+  },
 };
 
 export default gradientCompanion;
