@@ -43,21 +43,21 @@ const colorPicker = {
     if (this.input) {
       this.input.addEventListener("input", () => this.updateColorPreview());
     }
-    
+
     if (this.closeBtn) this.closeBtn.addEventListener("click", () => this.close());
     if (this.overlay) this.overlay.addEventListener("click", () => this.close());
     if (this.applyBtn) this.applyBtn.addEventListener("click", () => this.applyColorChange());
     if (this.resetBtn) this.resetBtn.addEventListener("click", () => this.resetColorToOriginal());
     if (this.cancelBtn) this.cancelBtn.addEventListener("click", () => this.close());
-    
+
     // Direct event listener binding for copy buttons to ensure they work
     const copyHexBtn = document.getElementById("copy-hex-btn");
     const copyRgbBtn = document.getElementById("copy-rgb-btn");
-    
+
     if (copyHexBtn) {
       copyHexBtn.addEventListener("click", () => this.copyHexValue());
     }
-    
+
     if (copyRgbBtn) {
       copyRgbBtn.addEventListener("click", () => this.copyRgbValue());
     }
@@ -83,8 +83,8 @@ const colorPicker = {
   },
 
   open(colorName) {
-    if (!this.modal || !this.title || !this.input || !this.hexDisplay || 
-        !this.rgbDisplay || !this.previewCurrent || !this.previewNew) {
+    if (!this.modal || !this.title || !this.input || !this.hexDisplay ||
+      !this.rgbDisplay || !this.previewCurrent || !this.previewNew) {
       console.error("Color picker elements not found");
       return;
     }
@@ -98,13 +98,13 @@ const colorPicker = {
 
     this.title.textContent = `Edit ${colorName.charAt(0).toUpperCase() + colorName.slice(1)} Color`;
     this.input.value = currentColor;
-    
+
     this.hexDisplay.textContent = currentColor;
     const rgb = hexToRgb(currentColor);
     if (rgb) {
       this.rgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
     }
-    
+
     this.previewCurrent.style.backgroundColor = currentColor;
     this.previewNew.style.backgroundColor = currentColor;
 
@@ -124,16 +124,16 @@ const colorPicker = {
   updateColorPreview() {
     if (!this.input || !this.hexDisplay || !this.rgbDisplay || !this.previewNew) return;
     const newColor = this.input.value;
-    
+
     this.hexDisplay.textContent = newColor;
-    
+
     const rgb = hexToRgb(newColor);
     if (rgb) {
       this.rgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
     }
-    
+
     this.previewNew.style.backgroundColor = newColor;
-    
+
     if (this.currentEditingColor && this.previewCurrent) {
       const html = document.documentElement;
       const currentTheme = html.getAttribute("data-theme") || "light";
@@ -162,7 +162,7 @@ const colorPicker = {
     this.updateContrastDisplay("current-bg-rating", currentBgRating.rating, currentBgRating.className);
     this.updateContrastDisplay("current-surface-contrast", currentSurfaceRatio.toFixed(2));
     this.updateContrastDisplay("current-surface-rating", currentSurfaceRating.rating, currentSurfaceRating.className);
-    
+
     this.updateContrastDisplay("new-bg-contrast", newBgRatio.toFixed(2));
     this.updateContrastDisplay("new-bg-rating", newBgRating.rating, newBgRating.className);
     this.updateContrastDisplay("new-surface-contrast", newSurfaceRatio.toFixed(2));
@@ -211,16 +211,16 @@ const colorPicker = {
     if (this.input) {
       this.input.value = originalColor;
     }
-    
+
     if (this.hexDisplay) {
       this.hexDisplay.textContent = originalColor;
     }
-    
+
     const rgb = hexToRgb(originalColor);
     if (rgb && this.rgbDisplay) {
       this.rgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
     }
-    
+
     if (this.previewNew) {
       this.previewNew.style.backgroundColor = originalColor;
     }
@@ -235,29 +235,9 @@ const colorPicker = {
     try {
       await navigator.clipboard.writeText(text);
       this.showCopyNotification(`${format} copied!`);
-      
+
     } catch (err) {
       console.error('Failed to copy to clipboard using navigator.clipboard:', err);
-      
-      // Fallback method
-      try {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        const successful = document.execCommand('copy');
-        document.body.removeChild(textArea);
-        
-        if (successful) {
-          this.showCopyNotification(`${format} copied!`);
-        }
-      } catch (fallbackErr) {
-        console.error('Fallback copy method also failed:', fallbackErr);
-      }
     }
   },
 
@@ -281,11 +261,11 @@ const colorPicker = {
       transition: opacity 0.2s ease;
     `;
     document.body.appendChild(notification);
-    
+
     requestAnimationFrame(() => {
       notification.style.opacity = '1';
     });
-    
+
     setTimeout(() => {
       notification.style.opacity = '0';
       setTimeout(() => {
