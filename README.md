@@ -11,6 +11,7 @@
 A powerful, **framework-free** web application that lets you:
 - 🌗 **Design dual-theme color systems** (light & dark mode)
 - 🎨 **Interactive color picking** with real-time preview
+- 🎨 **Interactive gradient blending and suggestion** with real-time preview
 - 📱 **Mobile-first responsive design** that works everywhere
 - 💾 **Export/Import configurations** as JSON files
 - ♿ **Accessibility-compliant** with WCAG guidelines
@@ -25,6 +26,8 @@ Perfect for designers, developers, and anyone building modern web applications w
 - Instant theme switching (light ↔ dark)
 - CSS custom properties generation
 - Visual feedback for all color changes
+- Gradient blending playground to see real time gradient color
+- Gradient color suggestion on first color choice
 
 ### 📱 **Modern Web Standards**
 - Fully responsive design (mobile-first)
