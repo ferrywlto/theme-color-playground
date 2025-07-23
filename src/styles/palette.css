@@ -154,19 +154,19 @@
   grid-template-columns: repeat(1, 1fr);
 }
 
-@media (min-width: 430px) {
+@media (min-width: 600px) {
   .color-grid {
     grid-template-columns: repeat(2 , 1fr);
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .color-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1400px) {
   .color-grid {
     gap: 0.75rem;
     margin-bottom: 2rem;

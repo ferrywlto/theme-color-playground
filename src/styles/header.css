@@ -12,15 +12,32 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.sticky-header .theme-toggle-btn,
+.sticky-header .download-config-btn,
+.sticky-header .upload-config-btn,
+.sticky-header .reset-config-btn {
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+.header-title {
+  white-space: nowrap;
+  color: var(--primary);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
 .header-content {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  padding: 0.5rem;
 }
 
 .header-center {
@@ -28,19 +45,12 @@
   align-items: center;
 }
 
-.header-title {
-  color: var(--primary);
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 .header-combined-mobile {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
   flex-wrap: wrap;
+  gap: 0.25rem;
 }
 
 .header-links-section {
@@ -76,27 +86,7 @@
   white-space: nowrap;
 }
 
-.header-link:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-1px);
-}
 
-.header-link[target="_blank"]::after {
-  content: " ↗";
-  font-size: 0.7em;
-  opacity: 0.7;
-}
-
-/* Adjust header buttons for sticky header */
-.sticky-header .theme-toggle-btn,
-.sticky-header .download-config-btn,
-.sticky-header .upload-config-btn,
-.sticky-header .reset-config-btn {
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-}
 
 /* Theme, download and upload buttons */
 .theme-toggle-btn {
@@ -243,26 +233,22 @@
   transform: rotate(180deg);
 }
 
-/* Mobile responsive header */
-@media (max-width: 768px) {
+@media (min-width: 500px) {
+
   .header-content {
-    flex-direction: column;
     gap: 0.75rem;
     text-align: center;
     padding: 0.5rem 1rem;
   }
 
   .header-combined-mobile {
-    justify-content: center;
-    gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
   }
 
   .header-title {
     font-size: 1.2rem;
-  }
-
-  .header-buttons {
-    gap: 0.5rem;
   }
 
   .sticky-header .theme-toggle-btn,
@@ -272,6 +258,41 @@
     width: 35px;
     height: 35px;
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 800px)
+{
+  .header-combined-mobile {
+    gap: 1.5rem;
+  }
+  .header-buttons {
+    gap: 0.5rem;
+  }
+
+  .header-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .header-link[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.7em;
+    opacity: 0.7;
+  }
+
+  .header-link:hover {
+    transform: none;
+    background: transparent;
+    color: var(--primary);
+  }
+
+  .header-link:active,
+  .header-link:focus {
+    background: var(--primary);
+    color: white;
+    transform: scale(0.95);
   }
 
   .header-links {
@@ -291,35 +312,23 @@
     box-sizing: border-box;
   }
 
-  .header-link:hover {
-    transform: none;
-    background: transparent;
-    color: var(--primary);
-  }
-
-  .header-link:active,
-  .header-link:focus {
-    background: var(--primary);
-    color: white;
-    transform: scale(0.95);
-  }
-}
-
-@media (max-width: 480px) {
   .header-content {
-    padding: 0.5rem;
+    flex-direction: row;
+    padding: 0.75rem 1.5rem;
+    gap: 2rem;
   }
 
   .header-title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 
   .sticky-header .theme-toggle-btn,
   .sticky-header .download-config-btn,
   .sticky-header .upload-config-btn,
   .sticky-header .reset-config-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 }
