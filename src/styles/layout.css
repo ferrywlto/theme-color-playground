@@ -7,9 +7,13 @@
   background: var(--bg);
   color: var(--body);
   min-height: 100vh;
-  margin-top: 80px; /* Space for fixed header */
+  margin-top: 120px; /* Space for fixed header */
 }
-
+@media (min-width: 800px) {
+  .theme-container {
+    margin-top: 60px;
+  }
+}
 .description-section {
   text-align: left;
   margin-bottom: 2rem;
