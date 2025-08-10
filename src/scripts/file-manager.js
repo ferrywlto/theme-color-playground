@@ -44,8 +44,15 @@ const fileManager = {
 
         if (this.isValidConfig(config)) {
           themeManager.colorValues = config;
+          themeManager.saveColorValuesToLocalStorage();
           themeManager.updateCSSVariables();
           themeManager.updateColorValues();
+
+          // Reset brand selector dropdown
+          if (window.brandColors && window.brandColors.brandSelector) {
+            window.brandColors.brandSelector.value = '';
+            window.brandColors.hideBrandElements(); // Hide brand palette and mood/reason cards
+          }
 
           this.showNotification('Configuration loaded successfully!', 'success');
         } else {
