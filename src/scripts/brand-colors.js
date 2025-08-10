@@ -73,7 +73,7 @@ const brandColors = {
     this.brandData.forEach((brand, index) => {
       const option = document.createElement('option');
       option.value = index;
-      option.textContent = brand.name + ` - (${brand.theme}) - (${brand.category})`;
+      option.textContent = `[${brand.category}] ${brand.name} (${brand.theme})`;
       this.brandSelector.appendChild(option);
     });
 
