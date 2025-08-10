@@ -219,7 +219,9 @@ function companionByDeltaE(baseHex, min = 30, max = 40) {
     deltaE00(baseLab, hexToLab(candidate)) > max
   );
 
-  console.log(`Found after ${tries} attempts → ${candidate}`);
+  if (import.meta.env.DEV) {
+    console.log(`Found after ${tries} attempts → ${candidate}`);
+  }
   return candidate;
 }
 

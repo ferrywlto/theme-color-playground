@@ -1,6 +1,3 @@
-// Brand colors functionality
-import { hexToRgb, rgbToHex } from '../helper/color-exchange.js';
-
 const brandColors = {
   brandData: [],
   brandSelector: null,
@@ -12,7 +9,9 @@ const brandColors = {
   reasonText: null,
 
   async init() {
-    console.log('Initializing brand colors...');
+    if (import.meta.env.DEV) {
+      console.log('Initializing brand colors...');
+    }
 
     this.brandSelector = document.getElementById('brand-selector');
     this.brandPalette = document.getElementById('brand-palette');
@@ -22,9 +21,11 @@ const brandColors = {
     this.reasonCard = document.getElementById('reason-card');
     this.reasonText = document.getElementById('reason-text');
 
-    console.log('Brand selector found:', !!this.brandSelector);
-    console.log('Brand palette found:', !!this.brandPalette);
-    console.log('Brand colors container found:', !!this.brandColorsContainer);
+    if (import.meta.env.DEV) {
+      console.log('Brand selector found:', !!this.brandSelector);
+      console.log('Brand palette found:', !!this.brandPalette);
+      console.log('Brand colors container found:', !!this.brandColorsContainer);
+    }
 
     if (!this.brandSelector) {
       console.warn('Brand selector not found');
@@ -35,7 +36,9 @@ const brandColors = {
     this.populateDropdown();
     this.bindEvents();
 
-    console.log('Brand colors initialization complete');
+    if (import.meta.env.DEV) {
+      console.log('Brand colors initialization complete');
+    }
   },
 
   async loadBrandData() {
@@ -43,13 +46,17 @@ const brandColors = {
       // Use the correct base path for the application
       const url = '/theme-color-playground/brand-colors.json';
 
-      console.log('Attempting to fetch brand colors from:', url);
+      if (import.meta.env.DEV) {
+        console.log('Attempting to fetch brand colors from:', url);
+      }
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       this.brandData = await response.json();
-      console.log('Brand data loaded:', this.brandData);
+      if (import.meta.env.DEV) {
+        console.log('Brand data loaded:', this.brandData);
+      }
       this.populateDropdown();
     } catch (error) {
       console.error('Failed to load brand colors:', error);
@@ -59,11 +66,15 @@ const brandColors = {
 
   populateDropdown() {
     if (!this.brandData.length) {
-      console.log('No brand data available for dropdown');
+      if (import.meta.env.DEV) {
+        console.log('No brand data available for dropdown');
+      }
       return;
     }
 
-    console.log('Populating dropdown with', this.brandData.length, 'brands');
+    if (import.meta.env.DEV) {
+      console.log('Populating dropdown with', this.brandData.length, 'brands');
+    }
 
     // Clear existing options except the first one
     while (this.brandSelector.children.length > 1) {
@@ -77,7 +88,9 @@ const brandColors = {
       this.brandSelector.appendChild(option);
     });
 
-    console.log('Dropdown populated with options:', this.brandSelector.children.length);
+    if (import.meta.env.DEV) {
+      console.log('Dropdown populated with options:', this.brandSelector.children.length);
+    }
   },
 
   bindEvents() {
@@ -97,7 +110,9 @@ const brandColors = {
     const brand = this.brandData[index];
     if (!brand) return;
 
-    console.log('Loading brand config:', brand);
+    if (import.meta.env.DEV) {
+      console.log('Loading brand config:', brand);
+    }
 
     // Update themeManager's color values
     if (window.themeManager) {

@@ -38,7 +38,9 @@ const fileManager = {
     reader.onload = (e) => {
       try {
         const config = JSON.parse(e.target.result);
-        console.log('Uploaded config:', config);
+        if (import.meta.env.DEV) {
+          console.log('Uploaded config:', config);
+        }
         
         if (this.isValidConfig(config)) {
           themeManager.colorValues = config;
@@ -99,7 +101,9 @@ const fileManager = {
       URL.revokeObjectURL(url);
       
       this.showNotification('Configuration downloaded!', 'success');
-      console.log('Downloaded config:', themeManager.colorValues);
+      if (import.meta.env.DEV) {
+        console.log('Downloaded config:', themeManager.colorValues);
+      }
     } catch (error) {
       console.error('Error downloading config:', error);
       this.showNotification('Error downloading configuration', 'error');

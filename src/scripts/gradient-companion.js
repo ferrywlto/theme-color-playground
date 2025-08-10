@@ -1,7 +1,9 @@
 // Gradient companion functionality
 import { hexToRgb, rgbToHex, companion } from '../helper/color-exchange.js';
 
-console.log('Imported functions:', { hexToRgb, rgbToHex, companion });
+if (import.meta.env.DEV) {
+  console.log('Imported functions:', { hexToRgb, rgbToHex, companion });
+}
 
 const gradientCompanion = {
   color1Input: null,
@@ -12,7 +14,9 @@ const gradientCompanion = {
   copyButtons: null,
 
   init() {
-    console.log('Initializing gradient companion...');
+    if (import.meta.env.DEV) {
+      console.log('Initializing gradient companion...');
+    }
 
     this.color1Input = document.getElementById('gradient-color1');
     this.color2Input = document.getElementById('gradient-color2');
@@ -21,14 +25,16 @@ const gradientCompanion = {
     this.companionItems = document.querySelectorAll('.companion-item');
     this.copyButtons = document.querySelectorAll('.companion-copy-btn');
 
-    console.log('Elements found:', {
-      color1Input: !!this.color1Input,
-      color2Input: !!this.color2Input,
-      gradientText: !!this.gradientText,
-      gradientCard: !!this.gradientCard,
-      companionItemsCount: this.companionItems.length,
-      copyButtonsCount: this.copyButtons.length
-    });
+    if (import.meta.env.DEV) {
+      console.log('Elements found:', {
+        color1Input: !!this.color1Input,
+        color2Input: !!this.color2Input,
+        gradientText: !!this.gradientText,
+        gradientCard: !!this.gradientCard,
+        companionItemsCount: this.companionItems.length,
+        copyButtonsCount: this.copyButtons.length
+      });
+    }
 
     this.bindEvents();
     this.updateGradient();
@@ -36,14 +42,18 @@ const gradientCompanion = {
   },
 
   bindEvents() {
-    console.log('Binding events...', {
-      color1Input: !!this.color1Input,
-      color2Input: !!this.color2Input
-    });
+    if (import.meta.env.DEV) {
+      console.log('Binding events...', {
+        color1Input: !!this.color1Input,
+        color2Input: !!this.color2Input
+      });
+    }
 
     if (this.color1Input) {
       this.color1Input.addEventListener('input', () => {
-        console.log('Color1 input changed:', this.color1Input.value);
+        if (import.meta.env.DEV) {
+          console.log('Color1 input changed:', this.color1Input.value);
+        }
         this.updateGradient();
         this.updateCompanionSuggestions();
       });
@@ -51,7 +61,9 @@ const gradientCompanion = {
 
     if (this.color2Input) {
       this.color2Input.addEventListener('input', () => {
-        console.log('Color2 input changed:', this.color2Input.value);
+        if (import.meta.env.DEV) {
+          console.log('Color2 input changed:', this.color2Input.value);
+        }
         this.updateGradient();
       });
     }
@@ -95,26 +107,31 @@ const gradientCompanion = {
   },
 
   updateCompanionSuggestions() {
-    console.log('updateCompanionSuggestions called');
+    if (import.meta.env.DEV) {
+      console.log('updateCompanionSuggestions called');
+    }
 
     if (!this.color1Input || !this.companionItems.length) {
-      console.log('Missing elements:', {
-        color1Input: !!this.color1Input,
-        companionItemsLength: this.companionItems ? this.companionItems.length : 0
-      });
+      if (import.meta.env.DEV) {
+        console.log('Missing elements:', {
+          color1Input: !!this.color1Input,
+          companionItemsLength: this.companionItems ? this.companionItems.length : 0
+        });
+      }
       return;
     }
 
     try {
       const color1Hex = this.color1Input.value;
-      console.log('Color1 hex:', color1Hex);
-
       const { r, g, b } = hexToRgb(color1Hex);
-      console.log('RGB values:', { r, g, b });
-
       // Get companion colors using the companion function from color-exchange.js
       const companionColors = companion(r, g, b);
-      console.log('Companion colors:', companionColors);
+
+      if (import.meta.env.DEV) {
+        console.log('Color1 hex:', color1Hex);
+        console.log('RGB values:', { r, g, b });
+        console.log('Companion colors:', companionColors);
+      }
 
       this.companionItems.forEach(item => {
         const style = item.dataset.style;

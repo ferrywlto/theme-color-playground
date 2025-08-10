@@ -8,7 +8,9 @@ import brandColors from './brand-colors.js';
 
 // Initialize all modules when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Initializing theme color playground...');
+  if (import.meta.env.DEV) {
+    console.log('Initializing theme color playground...');
+  }
 
   themeManager.init();
   colorPicker.init();
@@ -23,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.themeManager = themeManager;
   window.brandColors = brandColors;
 
-  console.log('All modules initialized successfully');
+  if (import.meta.env.DEV) {
+    console.log('All modules initialized successfully');
+  }
 });
 
 // Export modules for potential external access

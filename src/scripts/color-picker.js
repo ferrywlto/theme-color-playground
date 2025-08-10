@@ -75,7 +75,9 @@ const colorPicker = {
         e.preventDefault();
         const colorName = swatch.getAttribute("data-color");
         if (colorName) {
-          console.log("Opening color picker for:", colorName);
+          if (import.meta.env.DEV) {
+            console.log("Opening color picker for:", colorName);
+          }
           this.open(colorName);
         }
       });
@@ -94,7 +96,9 @@ const colorPicker = {
     const currentTheme = html.getAttribute("data-theme") || "light";
     const currentColor = themeManager.colorValues[currentTheme][colorName];
 
-    console.log("Opening color picker for:", colorName, "Current color:", currentColor);
+    if (import.meta.env.DEV) {
+      console.log("Opening color picker for:", colorName, "Current color:", currentColor);
+    }
 
     this.title.textContent = `Edit ${colorName.charAt(0).toUpperCase() + colorName.slice(1)} Color`;
     this.input.value = currentColor;
@@ -186,7 +190,9 @@ const colorPicker = {
     const html = document.documentElement;
     const currentTheme = html.getAttribute("data-theme") || "light";
 
-    console.log("Applying color change:", this.currentEditingColor, newColor);
+    if (import.meta.env.DEV) {
+      console.log("Applying color change:", this.currentEditingColor, newColor);
+    }
 
     themeManager.colorValues[currentTheme][this.currentEditingColor] = newColor;
     themeManager.updateCSSVariables();
