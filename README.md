@@ -34,6 +34,7 @@ Perfect for designers, developers, and anyone building modern web applications w
 - See how different brand colors work in both light and dark themes.
 - Get inspiration for your own color schemes.
 - Understand the mood and reasoning behind the color choices.
+- Total 379 brands for selection. (Some are duplicates, clean up from time to time. With more to add in future.)
 
 ### 📱 **Modern Web Standards**
 - Fully responsive design (mobile-first)
