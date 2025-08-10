@@ -91,7 +91,7 @@
 .contrast-info-section {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: var(--bg);
+  background: var(--background);
   border-radius: 0.5rem;
   border: 1px solid var(--light);
 }

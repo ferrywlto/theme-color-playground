@@ -26,7 +26,7 @@
 }
 
 .typography-bg {
-  background: var(--bg);
+  background: var(--background);
   color: var(--body);
   border-color: var(--surface);
 }
@@ -75,7 +75,7 @@
   padding: 0.5rem;
   border: 1px solid var(--surface);
   border-radius: 0.25rem;
-  background: var(--bg);
+  background: var(--background);
   color: var(--body);
 }
 
@@ -91,7 +91,7 @@
 }
 
 .code-grid code {
-  background: var(--bg);
+  background: var(--background);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-family: "Courier New", monospace;
@@ -100,7 +100,7 @@
 }
 
 .code-grid pre {
-  background: var(--bg);
+  background: var(--background);
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -165,7 +165,7 @@
   height: 50px;
   border-radius: 50%;
   background-color: var(--primary);
-  color: var(--bg);
+  color: var(--background);
   border: none;
   cursor: pointer;
   display: flex;
