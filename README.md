@@ -29,6 +29,12 @@ Perfect for designers, developers, and anyone building modern web applications w
 - Gradient blending playground to see real time gradient color
 - Gradient color suggestion on first color choice
 
+### 🎨 **Brand Color Sample**
+- Explore a curated list of brand color palettes.
+- See how different brand colors work in both light and dark themes.
+- Get inspiration for your own color schemes.
+- Understand the mood and reasoning behind the color choices.
+
 ### 📱 **Modern Web Standards**
 - Fully responsive design (mobile-first)
 - Semantic HTML5 structure
@@ -75,6 +81,70 @@ npm run build
 # Preview production build
 npm run preview
 ```
+## JSON Schema
+
+### Brand Color Sample
+The JSON schema used for storing brand sample colors was defined as below:
+```json
+[
+  {
+    "name" : "Brand Name",
+    "theme": "light",
+    "mood": "Brilliant and bold",
+    "reason": "It works great",
+    "palette": ["#28A745", "#E60000", "#FFC107", "#FFFFFF", "#000000"],
+    "colors": {
+      "background": "#FAFAFA",
+      "surface": "#E4E4E4",
+      "body": "#4D4D4D",
+      "subtle": "#656565",
+      "primary": "#E60000",
+      "secondary": "#0000DD",
+      "success": "#28A745",
+      "warning": "#FFC107",
+      "danger": "#E60000",
+      "info": "#0000DD",
+      "light": "#FFFFFF",
+      "dark": "#343A40"
+    },
+  }
+]
+```
+### Import/Export
+The JSON schema used for import and export was defined as below:
+```json
+{
+  "light": {
+    "background": "#FAFAFA",
+    "surface": "#E4E4E4",
+    "body": "#4D4D4D",
+    "subtle": "#656565",
+    "primary": "#E60000",
+    "secondary": "#0000DD",
+    "success": "#28A745",
+    "warning": "#FFC107",
+    "danger": "#E60000",
+    "info": "#0000DD",
+    "light": "#FFFFFF",
+    "dark": "#343A40"
+  },
+  "dark": {
+    "background": "#242424",
+    "surface": "#4D4D4D",
+    "body": "#E4E4E4",
+    "subtle": "#6B7280",
+    "primary": "#00D9A8",
+    "secondary": "#FFC0CB",
+    "success": "#006564",
+    "danger": "#FFA0BC",
+    "warning": "#FFD700",
+    "info": "#4DA3FF",
+    "light": "#606060",
+    "dark": "#000000"
+  }
+}
+```
+
 
 ## 🌐 Live Demo
 

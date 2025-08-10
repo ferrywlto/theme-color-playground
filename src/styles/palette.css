@@ -39,8 +39,8 @@
 }
 
 /* Color swatch background classes */
-.bg-color[data-bg="bg"] {
-  background: var(--bg);
+.bg-color[data-bg="background"] {
+  background: var(--background);
   color: var(--body);
   border: 1px solid var(--body);
 }
@@ -52,32 +52,32 @@
 
 .bg-body {
   background: var(--body);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-subtle {
   background: var(--subtle);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-primary {
   background: var(--primary);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-secondary {
   background: var(--secondary);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-success {
   background: var(--success);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-danger {
   background: var(--danger);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-warning {
@@ -87,7 +87,7 @@
 
 .bg-info {
   background: var(--info);
-  color: var(--bg);
+  color: var(--background);
 }
 
 .bg-light {
@@ -97,28 +97,28 @@
 
 .bg-dark {
   background: var(--dark);
-  color: var(--bg);
+  color: var(--background);
 }
 
 /* Dark theme specific color adjustments */
 [data-theme="dark"] .color-swatch[data-color="secondary"] {
   background: var(--secondary) !important;
-  color: var(--bg) !important;
+  color: var(--background) !important;
 }
 
 [data-theme="dark"] .color-swatch[data-color="success"] {
   background: var(--success) !important;
-  color: var(--bg) !important;
+  color: var(--background) !important;
 }
 
 [data-theme="dark"] .color-swatch[data-color="warning"] {
   background: var(--warning) !important;
-  color: var(--bg) !important;
+  color: var(--background) !important;
 }
 
 [data-theme="dark"] .color-swatch[data-color="danger"] {
   background: var(--danger) !important;
-  color: var(--bg) !important;
+  color: var(--background) !important;
 }
 
 /* Color swatch edit icon */

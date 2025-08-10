@@ -1,7 +1,7 @@
 /* Theme Variables */
 :root {
   /* Default to light theme */
-  --bg: #FAFAFA;
+  --background: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
   --subtle: #656565;
@@ -41,7 +41,7 @@
 
 /* Light Theme */
 html.theme-light {
-  --bg: #FAFAFA;
+  --background: #FAFAFA;
   --surface: #E4E4E4;
   --body: #4D4D4D;
   --subtle: #656565;
@@ -58,7 +58,7 @@ html.theme-light {
 
 /* Dark Theme */
 html.theme-dark {
-  --bg: #242424;
+  --background: #242424;
   --surface: #4E4E4E;
   --body: #E4E4E4;
   --subtle: #6B7280;
@@ -76,7 +76,7 @@ html.theme-dark {
 /* Auto theme based on system preference */
 @media (prefers-color-scheme: dark) {
   html:not(.theme-light):not(.theme-dark) {
-    --bg: #242424;
+    --background: #242424;
     --surface: #4D4D4D;
     --body: #E4E4E4;
     --subtle: #6B7280;
@@ -98,7 +98,7 @@ html.theme-dark {
 }
 
 body {
-  background-color: var(--bg);
+  background-color: var(--background);
   color: var(--body);
   transition: var(--transition);
   margin: 0;
@@ -108,7 +108,7 @@ body {
 }
 
 html {
-  background-color: var(--bg);
+  background-color: var(--background);
   transition: var(--transition);
 }
 

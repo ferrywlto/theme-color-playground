@@ -5,7 +5,7 @@ import { hexToRgb } from '../helper/color-exchange.js';
 const themeManager = {
   colorValues: {
     light: {
-      bg: "#FAFAFA",
+      background: "#FAFAFA",
       surface: "#E4E4E4",
       body: "#4D4D4D",
       subtle: "#656565",
@@ -19,7 +19,7 @@ const themeManager = {
       dark: "#262626",
     },
     dark: {
-      bg: "#242424",
+      background: "#242424",
       surface: "#4D4D4D",
       body: "#E4E4E4",
       subtle: "#6B7280",

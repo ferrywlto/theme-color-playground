@@ -145,7 +145,7 @@ const colorPicker = {
   updateContrastRatios(currentColor, newColor) {
     const html = document.documentElement;
     const currentTheme = html.getAttribute("data-theme") || "light";
-    const bgColor = themeManager.colorValues[currentTheme].bg;
+    const bgColor = themeManager.colorValues[currentTheme].background;
     const surfaceColor = themeManager.colorValues[currentTheme].surface;
 
     const currentBgRatio = themeManager.calculateContrastRatio(currentColor, bgColor);

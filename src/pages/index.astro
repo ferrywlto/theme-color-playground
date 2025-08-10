@@ -222,9 +222,43 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
         </div>
       </div>
 
+      <!-- Brand Color Palette Section -->
+      <section class="brand-palette-section">
+        <h2>Brand Color Sample</h2>
+
+        <!-- Brand Color Selector -->
+        <div class="brand-selector">
+          <label for="brand-selector" class="brand-selector-label">Choose Brand Colors:</label>
+          <select id="brand-selector" class="brand-selector-dropdown">
+            <option value="">Select a brand...</option>
+          </select>
+        </div>
+
+        <!-- Brand Color Palette -->
+        <div id="brand-palette" class="brand-palette" style="display: none;">
+          <h3>Brand Color Palette</h3>
+          <div class="brand-colors">
+            <!-- Dynamic brand colors will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Color Design Mood Card -->
+        <div id="mood-card" class="design-card" style="display: none;">
+          <h3>Color Design Mood</h3>
+          <p id="mood-text"></p>
+        </div>
+
+        <!-- Why These Colors Work Card -->
+        <div id="reason-card" class="design-card" style="display: none;">
+          <h3>Why these colors work together?</h3>
+          <p id="reason-text"></p>
+        </div>
+      </section>
+
       <!-- Color Palette Display -->
       <section class="color-palette-section">
         <h2>Color Palette</h2>
+
         <div class="color-grid">
           <div class="color-swatch bg-primary" data-color="primary">
             <span class="color-name">Primary</span>
@@ -266,10 +300,10 @@ const imageUrl = `${siteUrl}${basePath}favicon.svg`;
             <span class="color-hex" data-color="dark"></span>
             <span class="color-rgb" data-color="dark"></span>
           </div>
-          <div class="color-swatch bg-color" data-color="bg">
+          <div class="color-swatch bg-color" data-color="background">
             <span class="color-name">Background</span>
-            <span class="color-hex" data-color="bg"></span>
-            <span class="color-rgb" data-color="bg"></span>
+            <span class="color-hex" data-color="background"></span>
+            <span class="color-rgb" data-color="background"></span>
           </div>
           <div class="color-swatch bg-surface" data-color="surface">
             <span class="color-name">Surface</span>
@@ -614,5 +648,6 @@ const themeManager = {
   <script>
     import '../scripts/main.js';
     import '../scripts/scroll-to-top.js';
+    import '../scripts/brand-palette.js';
   </script>
 </html>
