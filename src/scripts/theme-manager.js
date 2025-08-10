@@ -41,24 +41,14 @@ const themeManager = {
       light: { ...this.colorValues.light },
       dark: { ...this.colorValues.dark },
     };
+
+    this.loadColorValuesFromLocalStorage();
     
-    // Initialize theme from localStorage or default to light
     const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    document.documentElement.classList.add(`theme-${savedTheme}`);
-    
-    // Update theme icon
-    const themeIcon = document.querySelector(".theme-icon");
-    if (themeIcon) {
-      themeIcon.textContent = savedTheme === "dark" ? "☀️" : "🌙";
-    }
+    this.applyTheme(savedTheme);
     
     // Set up event listeners
     this.setupEventListeners();
-    
-    // Initialize display
-    this.updateCSSVariables();
-    this.updateColorValues();
   },
 
   setupEventListeners() {
@@ -75,6 +65,35 @@ const themeManager = {
         this.toggleTheme();
       }
     });
+  },
+
+  applyTheme(theme) {
+    const html = document.documentElement;
+    const themeIcon = document.querySelector(".theme-icon");
+
+    html.setAttribute("data-theme", theme);
+    html.classList.remove("theme-light", "theme-dark");
+    html.classList.add(`theme-${theme}`);
+    localStorage.setItem("theme", theme);
+
+    if (themeIcon) {
+      themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+    }
+
+    this.updateColorValues();
+    this.updateCSSVariables();
+    this.saveColorValuesToLocalStorage();
+
+    // Update button text colors based on new theme
+    if (window.buttonControls) {
+      window.buttonControls.setTextColorBasedOnTheme();
+    }
+  },
+
+  toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    this.applyTheme(newTheme);
   },
 
   // Helper function to calculate color brightness (luminance)
@@ -173,27 +192,14 @@ const themeManager = {
     });
   },
 
-  toggleTheme() {
-    const html = document.documentElement;
-    const themeIcon = document.querySelector(".theme-icon");
-    const newTheme = html.getAttribute("data-theme") === "light" ? "dark" : "light";
-    
-    console.log("Switching to theme:", newTheme);
-    html.setAttribute("data-theme", newTheme);
-    html.classList.remove("theme-light", "theme-dark");
-    html.classList.add(`theme-${newTheme}`);
-    localStorage.setItem("theme", newTheme);
+  saveColorValuesToLocalStorage() {
+    localStorage.setItem('colorValues', JSON.stringify(this.colorValues));
+  },
 
-    if (themeIcon) {
-      themeIcon.textContent = newTheme === "dark" ? "☀️" : "🌙";
-    }
-
-    this.updateColorValues();
-    this.updateCSSVariables();
-    
-    // Update button text colors based on new theme
-    if (window.buttonControls) {
-      window.buttonControls.setTextColorBasedOnTheme();
+  loadColorValuesFromLocalStorage() {
+    const savedColors = localStorage.getItem('colorValues');
+    if (savedColors) {
+      this.colorValues = JSON.parse(savedColors);
     }
   }
 };

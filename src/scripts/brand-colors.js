@@ -99,6 +99,12 @@ const brandColors = {
 
     console.log('Loading brand config:', brand);
 
+    // Update themeManager's color values
+    if (window.themeManager) {
+      window.themeManager.colorValues[brand.theme] = brand.colors;
+      window.themeManager.saveColorValuesToLocalStorage();
+    }
+
     // Show brand elements
     this.showBrandElements();
 
@@ -107,9 +113,6 @@ const brandColors = {
 
     // Switch theme based on brand.theme
     this.switchTheme(brand.theme);
-
-    // Update color palette with brand colors
-    this.updateColorPalette(brand.colors);
 
     // Update mood and reason
     this.updateMoodAndReason(brand.mood, brand.reason);
@@ -151,48 +154,7 @@ const brandColors = {
       console.warn('Theme manager not available');
       return;
     }
-
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-
-    if (theme !== currentTheme) {
-      // Use the existing theme manager to switch themes
-      window.themeManager.toggleTheme();
-    }
-  },
-
-  updateColorPalette(colors) {
-    if (!colors) return;
-
-    // Update CSS custom properties
-    const root = document.documentElement;
-    Object.entries(colors).forEach(([colorName, colorValue]) => {
-      root.style.setProperty(`--${colorName}`, colorValue);
-    });
-
-    // Update color swatch displays
-    Object.entries(colors).forEach(([colorName, colorValue]) => {
-      const hexDisplay = document.querySelector(`[data-color="${colorName}"] .color-hex`);
-      const rgbDisplay = document.querySelector(`[data-color="${colorName}"] .color-rgb`);
-
-      if (hexDisplay) {
-        hexDisplay.textContent = colorValue;
-      }
-
-      if (rgbDisplay) {
-        try {
-          const rgb = hexToRgb(colorValue);
-          rgbDisplay.textContent = `(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-        } catch (error) {
-          console.warn(`Failed to convert ${colorValue} to RGB:`, error);
-          rgbDisplay.textContent = 'Invalid';
-        }
-      }
-    });
-
-    // Trigger any necessary updates in other modules
-    if (window.buttonControls && window.buttonControls.updateButtonColors) {
-      window.buttonControls.updateButtonColors();
-    }
+    window.themeManager.applyTheme(theme);
   },
 
   updateMoodAndReason(mood, reason) {
