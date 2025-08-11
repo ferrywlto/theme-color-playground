@@ -528,6 +528,28 @@
     }
   },
   {
+    "name": "American Express",
+    "theme": "light",
+    "mood": "Modern, trustworthy, and high-contrast. The iconic Blue Box look pairs a bright brand blue with a deep navy and cool neutrals, leaning on crisp white space for clarity and premium feel.",
+    "reason": "AMEX communications emphasize a bright blue + deep blue palette with neutrals; the Pentagram refresh reinforces this two-blue system and lots of white space. Using bright blue as primary and deep blue as secondary keeps hierarchy clear, with neutrals for backgrounds and copy.",
+    "category": "Financial Services",
+    "palette": ["#2671B9", "#1B2954", "#FFFFFF", "#868D94", "#323031"],
+    "colors": {
+      "primary": "#2671B9",
+      "secondary": "#1B2954",
+      "success": "#28A745",
+      "danger": "#DC3545",
+      "warning": "#FFC107",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#323031",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#FFFFFF"
+    }
+  },
+  {
     "name": "Ant",
     "theme": "dark",
     "mood": "Sleek deep-navy",
@@ -968,6 +990,28 @@
     }
   },
   {
+    "name": "Barclays",
+    "theme": "light",
+    "mood": "Open, modern, and corporate-trustworthy. A bright cerulean primary with a deep navy secondary, set on crisp whites and cool greys.",
+    "reason": "Design references show a two-blue system where the vivid cerulean leads and the darker navy supports headings/icons. This keeps calls-to-action obvious while preserving a professional financial tone.",
+    "category": "Financial Services",
+    "palette": ["#00AEEF", "#00395D", "#FFFFFF", "#F2F2F2", "#111111"],
+    "colors": {
+      "primary": "#00AEEF",
+      "secondary": "#00395D",
+      "success": "#28A745",
+      "danger": "#DC3545",
+      "warning": "#FFC107",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#00395D",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#F2F2F2"
+    }
+  },
+  {
     "name": "Bershka",
     "theme": "light",
     "mood": "Modern, youthful, minimalist",
@@ -1210,6 +1254,28 @@
     }
   },
   {
+  "name": "Cathay Pacific",
+  "theme": "light",
+  "mood": "Calm, premium, and quietly confident. The signature Cathay Jade with generous white space feels serene and upscale; warm stone/wood neutrals add hospitality, while a restrained red accent provides energy without shouting.",
+  "reason": "Cathay specifies Jade as the primary color with white treated as co-primary. Secondary hues are natural neutrals (Sand, Slate) and Light/Medium Jade; a vivid Cathay Saffron (Pantone 185) is reserved for accents. This mix keeps content legible and brand-distinct while avoiding heavy color blocks that could feel dated in aviation UIs.",
+  "category": "Airline",
+  "palette": ["#006564", "#FFFFFF", "#C6C2C1", "#C1B49A", "#C2262E"],
+  "colors": {
+      "primary": "#006564",
+      "secondary": "#5E967E",
+      "success": "#28A745",
+      "danger": "#C2262E",
+      "warning": "#C1B49A",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#343A40",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#EBEDEC"
+    }
+  },
+  {
     "name": "Chakra-Ui",
     "theme": "dark",
     "mood": "Neutral and balanced (soft tones on dark background)",
@@ -1273,6 +1339,28 @@
       "body": "#000000",
       "background": "#FFFFFF",
       "subtle": "#FFFFFF"
+    }
+  },
+  {
+    "name": "Chase",
+    "theme": "light",
+    "mood": "Clear, digital-forward, and dependable. A bright ‘Chase Blue’ leads, supported by a deeper blue/near-black and airy neutrals.",
+    "reason": "Aggregated references consistently show Chase’s primary blue around #117ACA, with dark neutral/near-black for contrast. Some assets also use a deeper blue (~#005EB8) for hierarchy in UI components.",
+    "category": "Financial Services",
+    "palette": ["#117ACA", "#005EB8", "#FFFFFF", "#211E1E", "#F2F4F7"],
+    "colors": {
+      "primary": "#117ACA",
+      "secondary": "#005EB8",
+      "success": "#28A745",
+      "danger": "#DC3545",
+      "warning": "#FFC107",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#211E1E",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#F2F4F7"
     }
   },
   {
@@ -1342,7 +1430,7 @@
     }
   },
   {
-    "name": "Cnn",
+    "name": "CNN",
     "theme": "light",
     "mood": "authoritative and bold",
     "reason": "CNN’s signature red accents headlines and links against a clean white and black layout, projecting urgency and authority while ensuring news content remains readable.",
@@ -3211,6 +3299,28 @@
     }
   },
   {
+    "name": "HSBC",
+    "theme": "light",
+    "mood": "Minimal, precise, and high-contrast. HSBC Red with black-and-white creates a bold, unmistakable financial brand.",
+    "reason": "Official materials emphasize a very tight palette: HSBC Red as the single accent, with white and black doing most of the layout work. A cool grey supports body copy and dividers without diluting the red.",
+    "category": "Financial Services",
+    "palette": ["#DB0011", "#FFFFFF", "#000000", "#9FA1A4", "#F5F5F5"],
+    "colors": {
+      "primary": "#DB0011",
+      "secondary": "#000000",
+      "success": "#28A745",
+      "danger": "#DC3545",
+      "warning": "#FFC107",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#000000",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#F5F5F5"
+    }
+  },
+  {
     "name": "Huawei1",
     "theme": "light",
     "mood": "Progressive, high-tech",
@@ -3294,7 +3404,7 @@
       "subtle": "#FFFFFF"
     }
   },  {
-    "name": "Hugo Boss (Boss",
+    "name": "Hugo Boss",
     "theme": "light",
     "mood": "Clean, understated, contemporary",
     "reason": "The HUGO BOSS site after rebrand is very pared-back: mostly black and white, with the addition of a soft camel-beige (one of the new brand colors for BOSS). The black-on-white framework is extremely clear and modern. The camel accent (#C2B280) is used tastefully — perhaps in backgrounds or on hover — adding a touch of warmth and fashion-forward style without shouting. Overall, the scheme looks premium and calm. It doesn’t rely on bold color pops; instead it uses typography and layout for impact, which suits the brand’s suave, refined image and allows the clothing colors to stand out.",
@@ -3338,7 +3448,7 @@
     }
   },
   {
-    "name": "Ibm1",
+    "name": "IBM",
     "theme": "light",
     "mood": "Classic & Authoritative",
     "reason": "IBM’s design leverages its deep “IBM blue” to signal authority and trust (seen in headers, links, and accents). The rest of the palette is very neutral and classic – black or dark gray text on white for maximum legibility, with light gray for backgrounds or borders. The restrained use of color and strong contrast give IBM’s site a corporate, trustworthy tone, consistent with its long-standing tech heritage and gravitas.",
@@ -3360,7 +3470,7 @@
     }
   },
   {
-    "name": "Ibm2",
+    "name": "IBM",
     "theme": "light",
     "mood": "Rational, enterprise-class",
     "reason": "Classic IBM blue modernised with gradient tints; cool neutrals aid clarity. (IBM, Color Hex)",
@@ -3382,7 +3492,7 @@
     }
   },
   {
-    "name": "Ikea1",
+    "name": "IKEA",
     "theme": "light",
     "mood": "friendly and functional",
     "reason": "IKEA’s familiar blue-and-yellow palette dominates its site, echoing its store branding. The cheerful yellow highlights on a blue and white interface make for a friendly, functional browsing experience that aligns with its homey image.",
@@ -3404,7 +3514,7 @@
     }
   },
   {
-    "name": "Ikea2",
+    "name": "IKEA2",
     "theme": "light",
     "mood": "Bright and playful",
     "reason": "The bold blue and yellow (reflecting IKEA’s Swedish heritage) create an eye-catching yet friendly vibe. High contrast with white backgrounds and black text ensures content is easy to read, making the site feel fun and approachable.",
@@ -3998,7 +4108,29 @@
     }
   },
   {
-    "name": "Louisvuitton1",
+    "name": "Lloyds Bank",
+    "theme": "light",
+    "mood": "Assured, heritage-rich, and clean. The signature deep green paired with generous white space and the black horse mark signals stability and tradition.",
+    "reason": "Public-facing materials consistently keep Lloyds’ green as the hero with black and white as core neutrals. The green anchors CTAs and highlights; neutrals keep forms and financial data legible without visual noise.",
+    "category": "Financial Services",
+    "palette": ["#00864F", "#FFFFFF", "#231F20", "#F2F2F2", "#4D4D4D"],
+    "colors": {
+      "primary": "#00864F",
+      "secondary": "#231F20",
+      "success": "#28A745",
+      "danger": "#DC3545",
+      "warning": "#FFC107",
+      "info": "#17A2B8",
+      "light": "#FFFFFF",
+      "dark": "#231F20",
+      "surface": "#FFFFFF",
+      "body": "#000000",
+      "background": "#FFFFFF",
+      "subtle": "#F2F2F2"
+    }
+  },
+  {
+    "name": "Louis Vuitton1",
     "theme": "light",
     "mood": "Elegant, heritage-rich",
     "reason": "Louis Vuitton’s palette revolves around its classic deep brown (#19110B) and golden caramel tones (#9B7E4B), echoing the famous monogram canvas. The site often uses white or light beige backgrounds with very dark brown (nearly black) text, maintaining excellent contrast. The touches of warm brown and gold in buttons or headers reinforce the luxury heritage and make the interface feel uniquely LV. It’s a rich combination that feels opulent but still subtle enough to let product visuals stand out.",
@@ -4020,7 +4152,7 @@
     }
   },
   {
-    "name": "Louisvuitton2",
+    "name": "Louis Vuitton2",
     "theme": "light",
     "mood": "Elegant and heritage-rich",
     "reason": "Louis Vuitton’s site palette uses warm brown and gold tones reminiscent of its classic monogram canvas. These heritage colors, used with restraint on a clean white background, evoke tradition and luxury. Black text and subtle gray elements ensure modern readability, so the overall feel is both opulent and user-friendly, aligning with the brand’s upscale image.",
